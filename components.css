@@ -5,7 +5,8 @@
 .article-summary-box,
 .article-guide-box,
 .article-remember-box,
-.article-in-short-box {
+.article-in-short-box,
+.article-infographic {
   margin: 28px 0;
   border-radius: 26px;
   border: 1px solid rgba(21, 42, 77, 0.12);
@@ -39,7 +40,8 @@
 .article-summary-box__label,
 .article-guide-box__label,
 .article-remember-box__label,
-.article-in-short-box__label {
+.article-in-short-box__label,
+.article-infographic__label {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -56,7 +58,8 @@
 .article-dialogue-box h3,
 .article-guide-box h3,
 .article-remember-box h3,
-.article-in-short-box h3 {
+.article-in-short-box h3,
+.article-infographic h3 {
   margin: 0 0 8px;
   color: #152a4d;
   font-size: 1.18rem;
@@ -68,9 +71,31 @@
 .article-dialogue-box p,
 .article-guide-box p,
 .article-remember-box p,
-.article-in-short-box p {
+.article-in-short-box p,
+.article-infographic p {
   margin: 0;
   color: #243044;
+}
+
+.article-infographic {
+  background: #ffffff;
+}
+
+.article-infographic__body {
+  padding: 18px 18px 0;
+}
+
+.article-infographic img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.article-infographic figcaption {
+  padding: 14px 18px 18px;
+  color: #6b7280;
+  font-size: 0.92rem;
+  line-height: 1.7;
 }
 
 .article-dialogue-box {
@@ -213,7 +238,8 @@
   .article-summary-box,
   .article-guide-box,
   .article-remember-box,
-  .article-in-short-box {
+  .article-in-short-box,
+  .article-infographic {
     margin: 22px 0;
     border-radius: 22px;
   }
@@ -230,6 +256,15 @@
     padding: 20px;
   }
 
+  .article-infographic__body {
+    padding: 14px 14px 0;
+  }
+
+  .article-infographic figcaption {
+    padding: 12px 14px 16px;
+    font-size: 0.86rem;
+  }
+
   .article-support-box__icon {
     width: 58px;
     height: 58px;
@@ -241,7 +276,8 @@
   .article-dialogue-box h3,
   .article-guide-box h3,
   .article-remember-box h3,
-  .article-in-short-box h3 {
+  .article-in-short-box h3,
+  .article-infographic h3 {
     font-size: 1.08rem;
   }
 
