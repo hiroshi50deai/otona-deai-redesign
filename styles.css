@@ -290,3 +290,37 @@ h1 span { color: var(--pink); }
   .article-filter-list a { justify-content: center; }
   .footer-inner { flex-direction: column; align-items: flex-start; }
 }
+
+@media (max-width: 640px) {
+  .article-page .article-hero {
+    padding-top: 24px;
+    padding-bottom: 30px;
+  }
+
+  .article-page .article-hero::before {
+    content: "";
+    display: block;
+    width: min(100% - 28px, 1120px);
+    max-width: 100%;
+    aspect-ratio: 16 / 9;
+    margin: 0 auto 22px;
+    border-radius: 22px;
+    background-image: url("assets/eyecatches/why-50s-men-get-no-likes.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 0 12px 28px rgba(21,42,77,0.10);
+  }
+
+  .article-page .article-hero-guide {
+    display: none;
+  }
+
+  .article-page .article-main > figure.article-block:first-child {
+    display: none;
+  }
+
+  .article-page .article-layout {
+    padding-top: 26px;
+  }
+}
