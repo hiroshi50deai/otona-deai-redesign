@@ -1,6 +1,11 @@
 const navToggle = document.querySelector('.nav-toggle');
 const siteNav = document.querySelector('.site-nav');
 
+const componentStyles = document.createElement('link');
+componentStyles.rel = 'stylesheet';
+componentStyles.href = 'components.css';
+document.head.appendChild(componentStyles);
+
 if (navToggle && siteNav) {
   navToggle.addEventListener('click', () => {
     const isOpen = siteNav.classList.toggle('is-open');
