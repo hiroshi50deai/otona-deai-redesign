@@ -22,34 +22,6 @@ document.querySelectorAll('img[src="assets/eyecatches/why-50s-men-get-no-likes.s
   img.src = 'assets/eyecatches/why-50s-men-get-no-likes.png';
 });
 
-// On narrow screens, move the eyecatch before the article title.
-// This makes the first view more visual on small devices like iPhone 8.
-const articleEyecatch = document.querySelector('.article-page .article-main > figure.article-block:first-child');
-const articleHeroGrid = document.querySelector('.article-page .article-hero-grid');
-const articleHeroCopy = document.querySelector('.article-page .article-hero-copy');
-const articleMain = document.querySelector('.article-page .article-main');
-const originalEyecatchNext = articleEyecatch ? articleEyecatch.nextElementSibling : null;
-const mobileArticleQuery = window.matchMedia('(max-width: 640px)');
-
-function placeArticleEyecatch(event) {
-  if (!articleEyecatch || !articleHeroGrid || !articleHeroCopy || !articleMain) return;
-
-  if (mobileArticleQuery.matches) {
-    articleEyecatch.classList.add('mobile-first-eyecatch');
-    articleHeroGrid.insertBefore(articleEyecatch, articleHeroCopy);
-  } else {
-    articleEyecatch.classList.remove('mobile-first-eyecatch');
-    if (originalEyecatchNext && originalEyecatchNext.parentElement === articleMain) {
-      articleMain.insertBefore(articleEyecatch, originalEyecatchNext);
-    } else {
-      articleMain.insertBefore(articleEyecatch, articleMain.firstChild);
-    }
-  }
-}
-
-placeArticleEyecatch();
-mobileArticleQuery.addEventListener('change', placeArticleEyecatch);
-
 const visualFixes = document.createElement('style');
 visualFixes.textContent = `
   .hero-guide::before {
@@ -130,7 +102,7 @@ visualFixes.textContent = `
     }
 
     .article-page .article-hero {
-      padding-top: 26px !important;
+      padding-top: 24px !important;
       padding-bottom: 30px !important;
     }
 
@@ -138,18 +110,8 @@ visualFixes.textContent = `
       gap: 18px !important;
     }
 
-    .article-page .mobile-first-eyecatch {
-      margin: 0 0 10px !important;
-      padding: 0 !important;
-      overflow: hidden !important;
-      border-radius: 22px !important;
-      box-shadow: 0 12px 28px rgba(21,42,77,0.08) !important;
-    }
-
-    .article-page .mobile-first-eyecatch img {
-      display: block !important;
-      width: 100% !important;
-      height: auto !important;
+    .article-page .article-main > figure.article-block:first-child {
+      display: none !important;
     }
 
     .article-page .article-layout {
