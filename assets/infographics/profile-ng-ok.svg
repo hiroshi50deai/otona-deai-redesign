@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-label="プロフィール文のNGとOK比較">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eef3fb"/><stop offset="1" stop-color="#fff7ed"/></linearGradient><filter id="s"><feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#152a4d" flood-opacity="0.13"/></filter></defs>
+  <rect width="1200" height="675" rx="34" fill="url(#bg)"/>
+  <text x="600" y="90" text-anchor="middle" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="48" font-weight="900" fill="#152a4d">プロフィール文は、言い方で変わる</text>
+  <g filter="url(#s)">
+    <rect x="88" y="170" width="475" height="390" rx="30" fill="#fff"/>
+    <rect x="88" y="170" width="475" height="76" rx="30" fill="#6b7280"/>
+    <text x="326" y="220" text-anchor="middle" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="34" font-weight="900" fill="#fff">NG</text>
+    <text x="135" y="305" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="30" font-weight="900" fill="#152a4d">年齢より若く見られます</text>
+    <text x="135" y="365" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="26" font-weight="700" fill="#6b7280">自虐・若さアピール・条件ばかり</text>
+    <text x="135" y="425" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="26" font-weight="700" fill="#6b7280">相手が会話を始めにくい</text>
+  </g>
+  <g filter="url(#s)">
+    <rect x="637" y="170" width="475" height="390" rx="30" fill="#fff"/>
+    <rect x="637" y="170" width="475" height="76" rx="30" fill="#e07a9a"/>
+    <text x="875" y="220" text-anchor="middle" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="34" font-weight="900" fill="#fff">OK</text>
+    <text x="684" y="305" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="30" font-weight="900" fill="#152a4d">落ち着いて話せる時間を</text>
+    <text x="684" y="350" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="30" font-weight="900" fill="#152a4d">大切にしたいです</text>
+    <text x="684" y="415" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="26" font-weight="700" fill="#6b7280">人柄・休日・会話の入口が伝わる</text>
+  </g>
+  <text x="600" y="625" text-anchor="middle" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="30" font-weight="900" fill="#152a4d">自分を大きく見せるより、安心して話せる人に見えること</text>
+</svg>
