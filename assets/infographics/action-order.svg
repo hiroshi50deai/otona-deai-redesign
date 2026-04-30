@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-label="見直す順番の図解">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fffaf5"/><stop offset="1" stop-color="#eef3fb"/></linearGradient><filter id="s"><feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#152a4d" flood-opacity="0.12"/></filter></defs>
+  <rect width="1200" height="675" rx="34" fill="url(#bg)"/>
+  <text x="600" y="92" text-anchor="middle" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="50" font-weight="900" fill="#152a4d">見直す順番</text>
+  <text x="600" y="142" text-anchor="middle" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="26" font-weight="700" fill="#6b7280">全部を一気に変えず、効果が出やすい順に整える</text>
+  <g filter="url(#s)" font-family="Hiragino Sans, Yu Gothic, sans-serif">
+    <rect x="110" y="215" width="980" height="90" rx="30" fill="#fff"/><circle cx="170" cy="260" r="34" fill="#e07a9a"/><text x="170" y="272" text-anchor="middle" font-size="30" font-weight="900" fill="#fff">1</text><text x="230" y="272" font-size="34" font-weight="900" fill="#152a4d">メイン写真を変える</text>
+    <rect x="110" y="325" width="980" height="90" rx="30" fill="#fff"/><circle cx="170" cy="370" r="34" fill="#e07a9a"/><text x="170" y="382" text-anchor="middle" font-size="30" font-weight="900" fill="#fff">2</text><text x="230" y="382" font-size="34" font-weight="900" fill="#152a4d">サブ写真で雰囲気を補う</text>
+    <rect x="110" y="435" width="980" height="90" rx="30" fill="#fff"/><circle cx="170" cy="480" r="34" fill="#e07a9a"/><text x="170" y="492" text-anchor="middle" font-size="30" font-weight="900" fill="#fff">3</text><text x="230" y="492" font-size="34" font-weight="900" fill="#152a4d">プロフィール文を整える</text>
+    <rect x="110" y="545" width="980" height="90" rx="30" fill="#152a4d"/><text x="600" y="602" text-anchor="middle" font-size="31" font-weight="900" fill="#fff">最後にメッセージの距離感を短く自然にする</text>
+  </g>
+</svg>
