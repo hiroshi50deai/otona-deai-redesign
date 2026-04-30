@@ -38,6 +38,19 @@ function createElementFromHTML(html) {
   return template.content.firstElementChild;
 }
 
+function createInfographic(src, title, caption) {
+  return createElementFromHTML(`
+    <figure class="article-infographic" data-reading-guide="true">
+      <div class="article-infographic__body">
+        <p class="article-infographic__label">図解</p>
+        <h3>${title}</h3>
+      </div>
+      <img src="${src}" alt="${title}" loading="lazy" />
+      <figcaption>${caption}</figcaption>
+    </figure>
+  `);
+}
+
 function addArticleSupportComponents() {
   const articlePage = document.querySelector('.article-page');
   if (!articlePage || document.querySelector('[data-reading-guide="true"]')) return;
@@ -53,6 +66,7 @@ function addArticleSupportComponents() {
   const checklistBlock = articleBlocks.find((block) => block.textContent.includes('50代男性がまず見直すべき5つのポイント'));
   const profileExampleBlock = articleBlocks.find((block) => block.textContent.includes('50代男性向け・プロフィール改善の具体例'));
   const finalBlock = articleBlocks.find((block) => block.textContent.includes('まとめ｜50代男性がいいねをもらえない理由'));
+  const ctaBlock = document.querySelector('.article-service-cta');
 
   const openingGuide = createElementFromHTML(`
     <aside class="article-guide-box" data-reading-guide="true">
@@ -65,6 +79,12 @@ function addArticleSupportComponents() {
       </ul>
     </aside>
   `);
+
+  const causeMap = createInfographic(
+    'assets/infographics/no-likes-cause-map.svg',
+    'いいねが来ない原因を、4つに分けて見る',
+    '原因を一つに決めつけず、写真・清潔感・プロフィール文・メッセージに分けて確認します。'
+  );
 
   const ageShort = createElementFromHTML(`
     <aside class="article-in-short-box" data-reading-guide="true">
@@ -111,6 +131,12 @@ function addArticleSupportComponents() {
     </aside>
   `);
 
+  const photoGraphic = createInfographic(
+    'assets/infographics/photo-checkpoints.svg',
+    '写真で見られるポイント',
+    '女性は顔立ちだけではなく、清潔感・明るさ・表情・背景から安心できる人かを見ています。'
+  );
+
   const womenGuide = createElementFromHTML(`
     <aside class="article-guide-box" data-reading-guide="true">
       <p class="article-guide-box__label">この章でわかること</p>
@@ -135,6 +161,12 @@ function addArticleSupportComponents() {
     </aside>
   `);
 
+  const profileGraphic = createInfographic(
+    'assets/infographics/profile-ng-ok.svg',
+    'プロフィール文のNGとOK',
+    '同じ内容でも、言い方を変えるだけで安心感と会話のしやすさが伝わりやすくなります。'
+  );
+
   const improveShort = createElementFromHTML(`
     <aside class="article-in-short-box" data-reading-guide="true">
       <p class="article-in-short-box__label">つまり</p>
@@ -146,6 +178,12 @@ function addArticleSupportComponents() {
       </ul>
     </aside>
   `);
+
+  const actionGraphic = createInfographic(
+    'assets/infographics/action-order.svg',
+    '見直す順番',
+    '全部を一気に直そうとせず、まず写真、次にプロフィール文、最後にメッセージの距離感を整えます。'
+  );
 
   const summaryBox = createElementFromHTML(`
     <aside class="article-summary-box" data-reading-guide="true">
@@ -171,6 +209,28 @@ function addArticleSupportComponents() {
     </aside>
   `);
 
+  const finalDialogue = createElementFromHTML(`
+    <aside class="article-dialogue-box" data-reading-guide="true">
+      <h3>最後にもう一度</h3>
+      <div class="article-dialogue-box__rows">
+        <div class="dialogue-row dialogue-row--reader">
+          <div class="dialogue-bubble">
+            <span class="dialogue-name">読者</span>
+            <p>自分の場合、どこから直せばいいのか分からなくなります。</p>
+          </div>
+          <div class="dialogue-avatar">🙍‍♂️</div>
+        </div>
+        <div class="dialogue-row dialogue-row--teacher">
+          <div class="dialogue-avatar">👨‍🏫</div>
+          <div class="dialogue-bubble">
+            <span class="dialogue-name">教室</span>
+            <p>まずは写真です。次にプロフィール文。最後にメッセージ。この順番なら迷いにくいです。</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+  `);
+
   const finalRemember = createElementFromHTML(`
     <aside class="article-remember-box" data-reading-guide="true">
       <p class="article-remember-box__label">ここだけ覚える</p>
@@ -184,15 +244,29 @@ function addArticleSupportComponents() {
   `);
 
   insertAfter(introBlock, openingGuide);
+  insertAfter(openingGuide, causeMap);
   insertAfter(ageBlock, ageShort);
   insertAfter(ageShort, pointBox);
   insertAfter(reasonBlock, dialogueBox);
+  insertAfter(dialogueBox, photoGraphic);
   insertAfter(womenBlock, womenGuide);
   insertAfter(ngBlock, ngRemember);
+  insertAfter(ngRemember, profileGraphic);
   insertAfter(improveBlock, improveShort);
+  insertAfter(improveShort, actionGraphic);
   insertAfter(checklistBlock, summaryBox);
   insertAfter(profileExampleBlock, exampleGuide);
-  insertAfter(finalBlock, finalRemember);
+  insertAfter(finalBlock, finalDialogue);
+  insertAfter(finalDialogue, finalRemember);
+
+  if (ctaBlock) {
+    const h2 = ctaBlock.querySelector('h2');
+    const p = ctaBlock.querySelector('p:not(.eyebrow)');
+    const btn = ctaBlock.querySelector('.btn');
+    if (h2) h2.textContent = 'この記事を読んで、自分のプロフィールも見直した方がいいかもと感じた方へ。';
+    if (p) p.textContent = '写真・プロフィール文・メッセージの流れを一緒に見れば、どこで損しているかを整理できます。まずは今の状態を見直すところから始めましょう。';
+    if (btn) btn.textContent = '自分のプロフィールを見直してみる';
+  }
 }
 
 addArticleSupportComponents();
