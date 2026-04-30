@@ -27,6 +27,79 @@ document.querySelectorAll('img[src="assets/eyecatches/why-50s-men-get-no-likes.s
   img.src = 'assets/eyecatches/why-50s-men-get-no-likes.png';
 });
 
+function insertAfter(target, element) {
+  if (!target || !target.parentElement || !element) return;
+  target.parentElement.insertBefore(element, target.nextSibling);
+}
+
+function createElementFromHTML(html) {
+  const template = document.createElement('template');
+  template.innerHTML = html.trim();
+  return template.content.firstElementChild;
+}
+
+function addArticleSupportComponents() {
+  const articlePage = document.querySelector('.article-page');
+  if (!articlePage || document.querySelector('.article-support-box[data-auto="true"]')) return;
+
+  const articleBlocks = Array.from(document.querySelectorAll('.article-main .article-block'));
+
+  const introBlock = articleBlocks.find((block) => block.textContent.includes('この記事では、50代男性が'));
+  const reasonBlock = articleBlocks.find((block) => block.textContent.includes('50代男性がマッチングアプリでいいねをもらえない主な理由'));
+  const checklistBlock = articleBlocks.find((block) => block.textContent.includes('50代男性がまず見直すべき5つのポイント'));
+
+  const pointBox = createElementFromHTML(`
+    <aside class="article-support-box" data-auto="true">
+      <div class="article-support-box__icon">💡</div>
+      <div>
+        <p class="article-support-box__label">教室ポイント</p>
+        <h3>年齢だけで判断されているわけではありません。</h3>
+        <p>マッチングアプリでは、写真・清潔感・プロフィール文・メッセージの印象が合わさって判断されます。まずは変えられる部分から整えましょう。</p>
+      </div>
+    </aside>
+  `);
+
+  const dialogueBox = createElementFromHTML(`
+    <aside class="article-dialogue-box" data-auto="true">
+      <h3>よくある不安</h3>
+      <div class="article-dialogue-box__rows">
+        <div class="dialogue-row dialogue-row--reader">
+          <div class="dialogue-bubble">
+            <span class="dialogue-name">読者</span>
+            <p>やっぱり50代だと、もうマッチングアプリは厳しいんですか？</p>
+          </div>
+          <div class="dialogue-avatar">🙍‍♂️</div>
+        </div>
+        <div class="dialogue-row dialogue-row--teacher">
+          <div class="dialogue-avatar">👨‍🏫</div>
+          <div class="dialogue-bubble">
+            <span class="dialogue-name">教室</span>
+            <p>年齢の影響はあります。でも、年齢だけが原因とは限りません。まずは写真・清潔感・プロフィール文の見え方を確認しましょう。</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+  `);
+
+  const summaryBox = createElementFromHTML(`
+    <aside class="article-summary-box" data-auto="true">
+      <p class="article-summary-box__label">この章のまとめ</p>
+      <h3>最初に直すなら、この順番です。</h3>
+      <ul>
+        <li>まずはメイン写真で清潔感と安心感を伝える</li>
+        <li>次にプロフィール文で人柄と会話の入口を作る</li>
+        <li>最後にメッセージの距離感を短く自然に整える</li>
+      </ul>
+    </aside>
+  `);
+
+  insertAfter(introBlock, pointBox);
+  insertAfter(reasonBlock, dialogueBox);
+  insertAfter(checklistBlock, summaryBox);
+}
+
+addArticleSupportComponents();
+
 const visualFixes = document.createElement('style');
 visualFixes.textContent = `
   .hero-guide::before {
