@@ -97,6 +97,18 @@ visualFixes.textContent = `
       background: rgba(255, 255, 255, 0.92) !important;
     }
 
+    .article-page .article-hero-guide {
+      display: none !important;
+    }
+
+    .article-page .article-hero {
+      padding-bottom: 30px !important;
+    }
+
+    .article-page .article-layout {
+      padding-top: 24px !important;
+    }
+
     .section-heading.with-mascot {
       display: block !important;
     }
