@@ -40,42 +40,39 @@ function createElementFromHTML(html) {
 
 function createInfographic(src, title, caption) {
   return createElementFromHTML(`
-    <figure class="article-infographic" data-reading-guide="true">
+    <figure class="article-infographic article-infographic--large" data-reading-guide="true">
       <div class="article-infographic__body">
         <p class="article-infographic__label">図解</p>
         <h3>${title}</h3>
       </div>
-      <img src="${src}" alt="${title}" loading="lazy" />
+      <a href="${src}" target="_blank" rel="noopener">
+        <img src="${src}" alt="${title}" loading="lazy" />
+      </a>
       <figcaption>${caption}</figcaption>
     </figure>
   `);
 }
 
-function addArticleSupportComponents() {
+function addArticleReadingLayout() {
   const articlePage = document.querySelector('.article-page');
   if (!articlePage || document.querySelector('[data-reading-guide="true"]')) return;
 
   const articleBlocks = Array.from(document.querySelectorAll('.article-main .article-block'));
-
   const introBlock = articleBlocks.find((block) => block.textContent.includes('この記事では、50代男性が'));
-  const ageBlock = articleBlocks.find((block) => block.textContent.includes('50代男性がマッチングアプリでいいねをもらえないのは'));
   const reasonBlock = articleBlocks.find((block) => block.textContent.includes('50代男性がマッチングアプリでいいねをもらえない主な理由'));
   const womenBlock = articleBlocks.find((block) => block.textContent.includes('女性は50代男性のどこを見ているのか'));
-  const ngBlock = articleBlocks.find((block) => block.textContent.includes('50代男性がやりがちなNGプロフィール'));
-  const improveBlock = articleBlocks.find((block) => block.textContent.includes('いいねをもらえる50代男性は、何を整えているのか'));
   const checklistBlock = articleBlocks.find((block) => block.textContent.includes('50代男性がまず見直すべき5つのポイント'));
-  const profileExampleBlock = articleBlocks.find((block) => block.textContent.includes('50代男性向け・プロフィール改善の具体例'));
   const finalBlock = articleBlocks.find((block) => block.textContent.includes('まとめ｜50代男性がいいねをもらえない理由'));
   const ctaBlock = document.querySelector('.article-service-cta');
 
-  const openingGuide = createElementFromHTML(`
-    <aside class="article-guide-box" data-reading-guide="true">
-      <p class="article-guide-box__label">この章でわかること</p>
-      <h3>この記事全体の地図</h3>
+  const topConclusion = createElementFromHTML(`
+    <aside class="article-summary-box article-summary-box--compact" data-reading-guide="true">
+      <p class="article-summary-box__label">この記事の結論</p>
+      <h3>まず、ここだけ押さえれば大丈夫です。</h3>
       <ul>
-        <li>いいねが来ない理由は年齢だけではない</li>
-        <li>女性は写真・清潔感・プロフィール文を見ている</li>
-        <li>最初に直す順番は写真、プロフィール、メッセージ</li>
+        <li>年齢だけが原因ではない</li>
+        <li>写真・清潔感・プロフィールで改善できる</li>
+        <li>最初は写真から見直す</li>
       </ul>
     </aside>
   `);
@@ -83,156 +80,23 @@ function addArticleSupportComponents() {
   const causeMap = createInfographic(
     'assets/infographics/no-likes-cause-map.svg',
     'いいねが来ない原因を、4つに分けて見る',
-    '原因を一つに決めつけず、写真・清潔感・プロフィール文・メッセージに分けて確認します。'
+    '原因を一つに決めつけず、写真・清潔感・プロフィール文・メッセージに分けて確認します。画像をタップすると大きく開けます。'
   );
-
-  const ageShort = createElementFromHTML(`
-    <aside class="article-in-short-box" data-reading-guide="true">
-      <p class="article-in-short-box__label">つまり</p>
-      <h3>年齢は影響します。でも、全部の原因ではありません。</h3>
-      <ul>
-        <li>50代という年齢が不利になる場面はある</li>
-        <li>でも写真・清潔感・プロフィール文は改善できる</li>
-        <li>まずは変えられる場所を見つけることが大切</li>
-      </ul>
-    </aside>
-  `);
-
-  const pointBox = createElementFromHTML(`
-    <aside class="article-support-box" data-reading-guide="true">
-      <div class="article-support-box__icon">💡</div>
-      <div>
-        <p class="article-support-box__label">教室ポイント</p>
-        <h3>年齢だけで判断されているわけではありません。</h3>
-        <p>マッチングアプリでは、写真・清潔感・プロフィール文・メッセージの印象が合わさって判断されます。まずは変えられる部分から整えましょう。</p>
-      </div>
-    </aside>
-  `);
-
-  const dialogueBox = createElementFromHTML(`
-    <aside class="article-dialogue-box" data-reading-guide="true">
-      <h3>よくある不安</h3>
-      <div class="article-dialogue-box__rows">
-        <div class="dialogue-row dialogue-row--reader">
-          <div class="dialogue-bubble">
-            <span class="dialogue-name">読者</span>
-            <p>やっぱり50代だと、もうマッチングアプリは厳しいんですか？</p>
-          </div>
-          <div class="dialogue-avatar">🙍‍♂️</div>
-        </div>
-        <div class="dialogue-row dialogue-row--teacher">
-          <div class="dialogue-avatar">👨‍🏫</div>
-          <div class="dialogue-bubble">
-            <span class="dialogue-name">教室</span>
-            <p>年齢の影響はあります。でも、年齢だけが原因とは限りません。まずは写真・清潔感・プロフィール文の見え方を確認しましょう。</p>
-          </div>
-        </div>
-      </div>
-    </aside>
-  `);
 
   const photoGraphic = createInfographic(
     'assets/infographics/photo-checkpoints.svg',
     '写真で見られるポイント',
-    '女性は顔立ちだけではなく、清潔感・明るさ・表情・背景から安心できる人かを見ています。'
+    '女性は顔立ちだけではなく、清潔感・明るさ・表情・背景から安心できる人かを見ています。画像をタップすると大きく開けます。'
   );
-
-  const womenGuide = createElementFromHTML(`
-    <aside class="article-guide-box" data-reading-guide="true">
-      <p class="article-guide-box__label">この章でわかること</p>
-      <h3>女性が見ているのは、顔だけではありません。</h3>
-      <ul>
-        <li>清潔感があるか</li>
-        <li>安心して話せそうか</li>
-        <li>一緒にいて疲れなさそうか</li>
-      </ul>
-    </aside>
-  `);
-
-  const ngRemember = createElementFromHTML(`
-    <aside class="article-remember-box" data-reading-guide="true">
-      <p class="article-remember-box__label">ここだけ覚える</p>
-      <h3>プロフィールで避けたいのは、この3つです。</h3>
-      <ul>
-        <li>昔の写真で実物とのギャップを作る</li>
-        <li>車・時計・高級店で自慢っぽく見える</li>
-        <li>自虐や重すぎる真剣さで相手に気を遣わせる</li>
-      </ul>
-    </aside>
-  `);
-
-  const profileGraphic = createInfographic(
-    'assets/infographics/profile-ng-ok.svg',
-    'プロフィール文のNGとOK',
-    '同じ内容でも、言い方を変えるだけで安心感と会話のしやすさが伝わりやすくなります。'
-  );
-
-  const improveShort = createElementFromHTML(`
-    <aside class="article-in-short-box" data-reading-guide="true">
-      <p class="article-in-short-box__label">つまり</p>
-      <h3>いいねをもらえる人は、魅力を“伝わる形”に整えています。</h3>
-      <ul>
-        <li>写真は若作りより自然さ</li>
-        <li>服装はブランドよりサイズ感</li>
-        <li>プロフィールはスペックより人柄</li>
-      </ul>
-    </aside>
-  `);
 
   const actionGraphic = createInfographic(
     'assets/infographics/action-order.svg',
     '見直す順番',
-    '全部を一気に直そうとせず、まず写真、次にプロフィール文、最後にメッセージの距離感を整えます。'
+    '全部を一気に直そうとせず、まず写真、次にプロフィール文、最後にメッセージの距離感を整えます。画像をタップすると大きく開けます。'
   );
 
-  const summaryBox = createElementFromHTML(`
-    <aside class="article-summary-box" data-reading-guide="true">
-      <p class="article-summary-box__label">この章のまとめ</p>
-      <h3>最初に直すなら、この順番です。</h3>
-      <ul>
-        <li>まずはメイン写真で清潔感と安心感を伝える</li>
-        <li>次にプロフィール文で人柄と会話の入口を作る</li>
-        <li>最後にメッセージの距離感を短く自然に整える</li>
-      </ul>
-    </aside>
-  `);
-
-  const exampleGuide = createElementFromHTML(`
-    <aside class="article-guide-box" data-reading-guide="true">
-      <p class="article-guide-box__label">この章でわかること</p>
-      <h3>文章は、言い方ひとつで印象が変わります。</h3>
-      <ul>
-        <li>若く見られるアピールは強く出しすぎない</li>
-        <li>穏やかさや生活感を伝える</li>
-        <li>最初のメッセージは相手が返しやすくする</li>
-      </ul>
-    </aside>
-  `);
-
-  const finalDialogue = createElementFromHTML(`
-    <aside class="article-dialogue-box" data-reading-guide="true">
-      <h3>最後にもう一度</h3>
-      <div class="article-dialogue-box__rows">
-        <div class="dialogue-row dialogue-row--reader">
-          <div class="dialogue-bubble">
-            <span class="dialogue-name">読者</span>
-            <p>自分の場合、どこから直せばいいのか分からなくなります。</p>
-          </div>
-          <div class="dialogue-avatar">🙍‍♂️</div>
-        </div>
-        <div class="dialogue-row dialogue-row--teacher">
-          <div class="dialogue-avatar">👨‍🏫</div>
-          <div class="dialogue-bubble">
-            <span class="dialogue-name">教室</span>
-            <p>まずは写真です。次にプロフィール文。最後にメッセージ。この順番なら迷いにくいです。</p>
-          </div>
-        </div>
-      </div>
-    </aside>
-  `);
-
-  const finalRemember = createElementFromHTML(`
-    <aside class="article-remember-box" data-reading-guide="true">
+  const rememberBox = createElementFromHTML(`
+    <aside class="article-remember-box article-remember-box--compact" data-reading-guide="true">
       <p class="article-remember-box__label">ここだけ覚える</p>
       <h3>50代だから終わり、ではありません。</h3>
       <ul>
@@ -243,33 +107,23 @@ function addArticleSupportComponents() {
     </aside>
   `);
 
-  insertAfter(introBlock, openingGuide);
-  insertAfter(openingGuide, causeMap);
-  insertAfter(ageBlock, ageShort);
-  insertAfter(ageShort, pointBox);
-  insertAfter(reasonBlock, dialogueBox);
-  insertAfter(dialogueBox, photoGraphic);
-  insertAfter(womenBlock, womenGuide);
-  insertAfter(ngBlock, ngRemember);
-  insertAfter(ngRemember, profileGraphic);
-  insertAfter(improveBlock, improveShort);
-  insertAfter(improveShort, actionGraphic);
-  insertAfter(checklistBlock, summaryBox);
-  insertAfter(profileExampleBlock, exampleGuide);
-  insertAfter(finalBlock, finalDialogue);
-  insertAfter(finalDialogue, finalRemember);
+  insertAfter(introBlock, topConclusion);
+  insertAfter(topConclusion, causeMap);
+  insertAfter(reasonBlock, photoGraphic);
+  insertAfter(checklistBlock, actionGraphic);
+  insertAfter(finalBlock, rememberBox);
 
   if (ctaBlock) {
     const h2 = ctaBlock.querySelector('h2');
     const p = ctaBlock.querySelector('p:not(.eyebrow)');
     const btn = ctaBlock.querySelector('.btn');
-    if (h2) h2.textContent = 'この記事を読んで、自分のプロフィールも見直した方がいいかもと感じた方へ。';
-    if (p) p.textContent = '写真・プロフィール文・メッセージの流れを一緒に見れば、どこで損しているかを整理できます。まずは今の状態を見直すところから始めましょう。';
-    if (btn) btn.textContent = '自分のプロフィールを見直してみる';
+    if (h2) h2.textContent = '自分のプロフィールを見直したい方へ';
+    if (p) p.textContent = '写真・プロフィール文・メッセージのどこで損しているかを整理できます。';
+    if (btn) btn.textContent = 'プロフィールを見直す';
   }
 }
 
-addArticleSupportComponents();
+addArticleReadingLayout();
 
 const visualFixes = document.createElement('style');
 visualFixes.textContent = `
@@ -334,6 +188,41 @@ visualFixes.textContent = `
     transform: translateY(-50%) rotate(135deg) !important;
   }
 
+  .article-page .article-main {
+    gap: 34px !important;
+  }
+
+  .article-page .article-block {
+    padding: clamp(26px, 4.2vw, 46px) !important;
+  }
+
+  .article-page .article-block p {
+    margin-top: 0.95em !important;
+    margin-bottom: 0.95em !important;
+  }
+
+  .article-page .article-block h2 {
+    margin-top: 0 !important;
+    margin-bottom: 1.1em !important;
+  }
+
+  .article-page .article-block h3 {
+    margin-top: 2em !important;
+    margin-bottom: 0.85em !important;
+  }
+
+  .article-infographic--large img {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  @media (min-width: 901px) {
+    .article-page .article-layout {
+      grid-template-columns: minmax(0, 780px) 280px !important;
+      justify-content: center !important;
+    }
+  }
+
   @media (max-width: 640px) {
     .character-img,
     .hero-character,
@@ -352,7 +241,7 @@ visualFixes.textContent = `
 
     .article-page .article-hero {
       padding-top: 24px !important;
-      padding-bottom: 30px !important;
+      padding-bottom: 28px !important;
     }
 
     .article-page .article-hero-grid {
@@ -364,7 +253,96 @@ visualFixes.textContent = `
     }
 
     .article-page .article-layout {
-      padding-top: 24px !important;
+      padding-top: 22px !important;
+    }
+
+    .article-page h1 {
+      font-size: clamp(1.65rem, 8vw, 2.15rem) !important;
+      line-height: 1.42 !important;
+      letter-spacing: -0.03em !important;
+    }
+
+    .article-page .article-lead,
+    .article-page .article-block p,
+    .article-page .article-block li {
+      font-size: 1.04rem !important;
+      line-height: 2.0 !important;
+    }
+
+    .article-page .article-block {
+      padding: 24px 20px !important;
+      border-radius: 22px !important;
+    }
+
+    .article-page .article-block h2 {
+      font-size: 1.42rem !important;
+      line-height: 1.55 !important;
+      margin-bottom: 1em !important;
+    }
+
+    .article-page .article-block h3 {
+      font-size: 1.15rem !important;
+      line-height: 1.55 !important;
+      margin-top: 2.2em !important;
+    }
+
+    .article-page .article-main {
+      gap: 26px !important;
+    }
+
+    .article-infographic--large {
+      margin-left: -6px !important;
+      margin-right: -6px !important;
+      border-radius: 22px !important;
+    }
+
+    .article-infographic--large .article-infographic__body {
+      padding: 18px 16px 0 !important;
+    }
+
+    .article-infographic--large h3 {
+      font-size: 1.18rem !important;
+      line-height: 1.55 !important;
+    }
+
+    .article-infographic--large img {
+      display: block !important;
+      width: 100% !important;
+      min-height: 210px !important;
+      object-fit: contain !important;
+      background: #fff !important;
+    }
+
+    .article-infographic--large figcaption {
+      font-size: 0.92rem !important;
+      line-height: 1.75 !important;
+    }
+
+    .article-summary-box--compact,
+    .article-remember-box--compact {
+      padding: 20px !important;
+      border-radius: 22px !important;
+    }
+
+    .article-summary-box--compact h3,
+    .article-remember-box--compact h3 {
+      font-size: 1.12rem !important;
+    }
+
+    .article-summary-box--compact li,
+    .article-remember-box--compact li {
+      font-size: 1rem !important;
+      line-height: 1.85 !important;
+    }
+
+    .article-service-cta {
+      padding: 24px 20px !important;
+      border-radius: 22px !important;
+    }
+
+    .article-service-cta h2 {
+      font-size: 1.32rem !important;
+      line-height: 1.55 !important;
     }
 
     .section-heading.with-mascot {
