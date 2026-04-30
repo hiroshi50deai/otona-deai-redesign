@@ -40,16 +40,46 @@ function createElementFromHTML(html) {
 
 function addArticleSupportComponents() {
   const articlePage = document.querySelector('.article-page');
-  if (!articlePage || document.querySelector('.article-support-box[data-auto="true"]')) return;
+  if (!articlePage || document.querySelector('[data-reading-guide="true"]')) return;
 
   const articleBlocks = Array.from(document.querySelectorAll('.article-main .article-block'));
 
   const introBlock = articleBlocks.find((block) => block.textContent.includes('この記事では、50代男性が'));
+  const ageBlock = articleBlocks.find((block) => block.textContent.includes('50代男性がマッチングアプリでいいねをもらえないのは'));
   const reasonBlock = articleBlocks.find((block) => block.textContent.includes('50代男性がマッチングアプリでいいねをもらえない主な理由'));
+  const womenBlock = articleBlocks.find((block) => block.textContent.includes('女性は50代男性のどこを見ているのか'));
+  const ngBlock = articleBlocks.find((block) => block.textContent.includes('50代男性がやりがちなNGプロフィール'));
+  const improveBlock = articleBlocks.find((block) => block.textContent.includes('いいねをもらえる50代男性は、何を整えているのか'));
   const checklistBlock = articleBlocks.find((block) => block.textContent.includes('50代男性がまず見直すべき5つのポイント'));
+  const profileExampleBlock = articleBlocks.find((block) => block.textContent.includes('50代男性向け・プロフィール改善の具体例'));
+  const finalBlock = articleBlocks.find((block) => block.textContent.includes('まとめ｜50代男性がいいねをもらえない理由'));
+
+  const openingGuide = createElementFromHTML(`
+    <aside class="article-guide-box" data-reading-guide="true">
+      <p class="article-guide-box__label">この章でわかること</p>
+      <h3>この記事全体の地図</h3>
+      <ul>
+        <li>いいねが来ない理由は年齢だけではない</li>
+        <li>女性は写真・清潔感・プロフィール文を見ている</li>
+        <li>最初に直す順番は写真、プロフィール、メッセージ</li>
+      </ul>
+    </aside>
+  `);
+
+  const ageShort = createElementFromHTML(`
+    <aside class="article-in-short-box" data-reading-guide="true">
+      <p class="article-in-short-box__label">つまり</p>
+      <h3>年齢は影響します。でも、全部の原因ではありません。</h3>
+      <ul>
+        <li>50代という年齢が不利になる場面はある</li>
+        <li>でも写真・清潔感・プロフィール文は改善できる</li>
+        <li>まずは変えられる場所を見つけることが大切</li>
+      </ul>
+    </aside>
+  `);
 
   const pointBox = createElementFromHTML(`
-    <aside class="article-support-box" data-auto="true">
+    <aside class="article-support-box" data-reading-guide="true">
       <div class="article-support-box__icon">💡</div>
       <div>
         <p class="article-support-box__label">教室ポイント</p>
@@ -60,7 +90,7 @@ function addArticleSupportComponents() {
   `);
 
   const dialogueBox = createElementFromHTML(`
-    <aside class="article-dialogue-box" data-auto="true">
+    <aside class="article-dialogue-box" data-reading-guide="true">
       <h3>よくある不安</h3>
       <div class="article-dialogue-box__rows">
         <div class="dialogue-row dialogue-row--reader">
@@ -81,8 +111,44 @@ function addArticleSupportComponents() {
     </aside>
   `);
 
+  const womenGuide = createElementFromHTML(`
+    <aside class="article-guide-box" data-reading-guide="true">
+      <p class="article-guide-box__label">この章でわかること</p>
+      <h3>女性が見ているのは、顔だけではありません。</h3>
+      <ul>
+        <li>清潔感があるか</li>
+        <li>安心して話せそうか</li>
+        <li>一緒にいて疲れなさそうか</li>
+      </ul>
+    </aside>
+  `);
+
+  const ngRemember = createElementFromHTML(`
+    <aside class="article-remember-box" data-reading-guide="true">
+      <p class="article-remember-box__label">ここだけ覚える</p>
+      <h3>プロフィールで避けたいのは、この3つです。</h3>
+      <ul>
+        <li>昔の写真で実物とのギャップを作る</li>
+        <li>車・時計・高級店で自慢っぽく見える</li>
+        <li>自虐や重すぎる真剣さで相手に気を遣わせる</li>
+      </ul>
+    </aside>
+  `);
+
+  const improveShort = createElementFromHTML(`
+    <aside class="article-in-short-box" data-reading-guide="true">
+      <p class="article-in-short-box__label">つまり</p>
+      <h3>いいねをもらえる人は、魅力を“伝わる形”に整えています。</h3>
+      <ul>
+        <li>写真は若作りより自然さ</li>
+        <li>服装はブランドよりサイズ感</li>
+        <li>プロフィールはスペックより人柄</li>
+      </ul>
+    </aside>
+  `);
+
   const summaryBox = createElementFromHTML(`
-    <aside class="article-summary-box" data-auto="true">
+    <aside class="article-summary-box" data-reading-guide="true">
       <p class="article-summary-box__label">この章のまとめ</p>
       <h3>最初に直すなら、この順番です。</h3>
       <ul>
@@ -93,9 +159,40 @@ function addArticleSupportComponents() {
     </aside>
   `);
 
-  insertAfter(introBlock, pointBox);
+  const exampleGuide = createElementFromHTML(`
+    <aside class="article-guide-box" data-reading-guide="true">
+      <p class="article-guide-box__label">この章でわかること</p>
+      <h3>文章は、言い方ひとつで印象が変わります。</h3>
+      <ul>
+        <li>若く見られるアピールは強く出しすぎない</li>
+        <li>穏やかさや生活感を伝える</li>
+        <li>最初のメッセージは相手が返しやすくする</li>
+      </ul>
+    </aside>
+  `);
+
+  const finalRemember = createElementFromHTML(`
+    <aside class="article-remember-box" data-reading-guide="true">
+      <p class="article-remember-box__label">ここだけ覚える</p>
+      <h3>50代だから終わり、ではありません。</h3>
+      <ul>
+        <li>年齢は変えられない</li>
+        <li>でも、写真・清潔感・文章・距離感は変えられる</li>
+        <li>見せ方を整えれば、出会いの入口は作れる</li>
+      </ul>
+    </aside>
+  `);
+
+  insertAfter(introBlock, openingGuide);
+  insertAfter(ageBlock, ageShort);
+  insertAfter(ageShort, pointBox);
   insertAfter(reasonBlock, dialogueBox);
+  insertAfter(womenBlock, womenGuide);
+  insertAfter(ngBlock, ngRemember);
+  insertAfter(improveBlock, improveShort);
   insertAfter(checklistBlock, summaryBox);
+  insertAfter(profileExampleBlock, exampleGuide);
+  insertAfter(finalBlock, finalRemember);
 }
 
 addArticleSupportComponents();
