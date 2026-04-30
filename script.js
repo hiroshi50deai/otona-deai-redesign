@@ -17,6 +17,11 @@ if (navToggle && siteNav) {
   });
 }
 
+// Use the generated PNG eyecatch instead of the temporary SVG placeholder.
+document.querySelectorAll('img[src="assets/eyecatches/why-50s-men-get-no-likes.svg"]').forEach((img) => {
+  img.src = 'assets/eyecatches/why-50s-men-get-no-likes.png';
+});
+
 const visualFixes = document.createElement('style');
 visualFixes.textContent = `
   .hero-guide::before {
