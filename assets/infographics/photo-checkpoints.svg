@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-label="女性が写真で見ているポイント">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff1f5"/><stop offset="1" stop-color="#fffaf5"/></linearGradient><filter id="s"><feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#152a4d" flood-opacity="0.12"/></filter></defs>
+  <rect width="1200" height="675" rx="34" fill="url(#bg)"/>
+  <text x="600" y="94" text-anchor="middle" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="48" font-weight="900" fill="#152a4d">女性が写真で見ているポイント</text>
+  <text x="600" y="142" text-anchor="middle" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="26" font-weight="700" fill="#6b7280">顔立ちだけではなく、全体の安心感を見ている</text>
+  <g filter="url(#s)">
+    <rect x="115" y="205" width="970" height="355" rx="32" fill="#fff"/>
+    <g font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="34" font-weight="900" fill="#152a4d">
+      <text x="205" y="285">☑ 明るい場所で撮れている</text>
+      <text x="205" y="355">☑ 清潔感のある服装</text>
+      <text x="205" y="425">☑ 穏やかな表情</text>
+      <text x="690" y="285">☑ 自撮り感が強すぎない</text>
+      <text x="690" y="355">☑ 背景に生活感が出すぎない</text>
+      <text x="690" y="425">☑ 今の自分に近い写真</text>
+    </g>
+    <rect x="282" y="485" width="635" height="58" rx="29" fill="#e07a9a"/>
+    <text x="600" y="524" text-anchor="middle" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="26" font-weight="900" fill="#fff">若く見せるより、安心して見られる写真へ</text>
+  </g>
+</svg>
