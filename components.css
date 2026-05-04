@@ -478,12 +478,24 @@
 
   .conversation-row-v2--student .conversation-bubble-v2::after,
   .conversation-row-v2--teacher .conversation-bubble-v2::after {
-    left: 22px;
+    left: 24px;
     right: auto;
-    top: -10px;
-    border-left: 1px solid rgba(21, 42, 77, 0.12);
-    border-top: 1px solid rgba(21, 42, 77, 0.12);
-    border-right: none;
-    border-bottom: none;
+    top: -13px;
+    width: 0;
+    height: 0;
+    background: transparent;
+    transform: none;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 13px solid currentColor;
+    border-top: none;
+  }
+
+  .conversation-row-v2--student .conversation-bubble-v2::after {
+    color: #f6f9ff;
+  }
+
+  .conversation-row-v2--teacher .conversation-bubble-v2::after {
+    color: #fff7ed;
   }
 }
