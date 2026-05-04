@@ -240,6 +240,7 @@
   background: linear-gradient(135deg, #fffaf5, #eef3fb);
   border: 1px solid rgba(21, 42, 77, 0.12);
   box-shadow: 0 16px 40px rgba(21, 42, 77, 0.08);
+  overflow: visible;
 }
 
 .article-conversation-block__title {
@@ -257,6 +258,7 @@
   gap: 18px;
   align-items: start;
   margin: 18px 0;
+  overflow: visible;
 }
 
 .conversation-row-v2--teacher {
@@ -300,6 +302,7 @@
 
 .conversation-bubble-v2 {
   position: relative;
+  overflow: visible;
   padding: 20px 22px;
   border-radius: 24px;
   background: #ffffff;
@@ -307,6 +310,7 @@
   color: #243044;
   font-size: 1.02rem;
   line-height: 1.95;
+  box-shadow: 0 8px 20px rgba(21, 42, 77, 0.05);
 }
 
 .conversation-row-v2--student .conversation-bubble-v2 {
@@ -317,7 +321,33 @@
   background: #fff7ed;
 }
 
+.conversation-bubble-v2::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: inherit;
+  transform: rotate(45deg);
+  z-index: 1;
+}
+
+.conversation-row-v2--student .conversation-bubble-v2::after {
+  left: -10px;
+  top: 28px;
+  border-left: 1px solid rgba(21, 42, 77, 0.12);
+  border-bottom: 1px solid rgba(21, 42, 77, 0.12);
+}
+
+.conversation-row-v2--teacher .conversation-bubble-v2::after {
+  right: -10px;
+  top: 28px;
+  border-right: 1px solid rgba(21, 42, 77, 0.12);
+  border-top: 1px solid rgba(21, 42, 77, 0.12);
+}
+
 .conversation-bubble-v2 p {
+  position: relative;
+  z-index: 2;
   margin: 0 0 0.85em;
 }
 
@@ -444,5 +474,16 @@
     border-radius: 20px;
     font-size: 1rem;
     line-height: 1.9;
+  }
+
+  .conversation-row-v2--student .conversation-bubble-v2::after,
+  .conversation-row-v2--teacher .conversation-bubble-v2::after {
+    left: 22px;
+    right: auto;
+    top: -10px;
+    border-left: 1px solid rgba(21, 42, 77, 0.12);
+    border-top: 1px solid rgba(21, 42, 77, 0.12);
+    border-right: none;
+    border-bottom: none;
   }
 }
