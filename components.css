@@ -499,3 +499,84 @@
     color: #fff7ed;
   }
 }
+
+/* Final mobile override: keep conversation bubbles beside the speaker */
+@media (max-width: 640px) {
+  .article-conversation-block .conversation-row-v2 {
+    display: grid !important;
+    grid-template-columns: 54px minmax(0, 1fr) !important;
+    gap: 10px !important;
+    align-items: start !important;
+    margin: 18px 0 !important;
+  }
+
+  .article-conversation-block .conversation-row-v2--teacher {
+    grid-template-columns: minmax(0, 1fr) 54px !important;
+  }
+
+  .article-conversation-block .conversation-row-v2--teacher .conversation-person,
+  .article-conversation-block .conversation-row-v2--teacher .conversation-bubble-v2 {
+    order: initial !important;
+  }
+
+  .article-conversation-block .conversation-person {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 6px !important;
+    width: 54px !important;
+  }
+
+  .article-conversation-block .conversation-person__image {
+    width: 52px !important;
+    height: 52px !important;
+  }
+
+  .article-conversation-block .conversation-person__label {
+    min-width: 0 !important;
+    padding: 4px 6px !important;
+    font-size: 0.62rem !important;
+    line-height: 1.2 !important;
+    text-align: center !important;
+    white-space: normal !important;
+  }
+
+  .article-conversation-block .conversation-bubble-v2 {
+    position: relative !important;
+    padding: 14px 15px !important;
+    border-radius: 18px !important;
+    font-size: 0.96rem !important;
+    line-height: 1.85 !important;
+    overflow: visible !important;
+  }
+
+  .article-conversation-block .conversation-bubble-v2::after {
+    content: "" !important;
+    position: absolute !important;
+    width: 14px !important;
+    height: 14px !important;
+    top: 22px !important;
+    background: inherit !important;
+    transform: rotate(45deg) !important;
+    z-index: 1 !important;
+  }
+
+  .article-conversation-block .conversation-row-v2--student .conversation-bubble-v2::after {
+    left: -7px !important;
+    right: auto !important;
+    border-left: 1px solid rgba(21, 42, 77, 0.12) !important;
+    border-bottom: 1px solid rgba(21, 42, 77, 0.12) !important;
+    border-right: none !important;
+    border-top: none !important;
+  }
+
+  .article-conversation-block .conversation-row-v2--teacher .conversation-bubble-v2::after {
+    right: -7px !important;
+    left: auto !important;
+    border-right: 1px solid rgba(21, 42, 77, 0.12) !important;
+    border-top: 1px solid rgba(21, 42, 77, 0.12) !important;
+    border-left: none !important;
+    border-bottom: none !important;
+  }
+}
