@@ -1,35 +1,61 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-label="いいねが来ない主な原因マップ">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1780" role="img" aria-label="いいねが来ない主な原因マップ">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fffaf5"/><stop offset="1" stop-color="#eef3fb"/></linearGradient>
-    <filter id="s"><feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#152a4d" flood-opacity="0.14"/></filter>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fffaf5"/>
+      <stop offset="1" stop-color="#eef3fb"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#fffdfb"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#152a4d" flood-opacity="0.12"/>
+    </filter>
   </defs>
-  <rect width="1200" height="675" rx="34" fill="url(#bg)"/>
-  <text x="600" y="92" text-anchor="middle" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="46" font-weight="900" fill="#152a4d">いいねが来ない主な原因マップ</text>
-  <text x="600" y="142" text-anchor="middle" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="26" font-weight="700" fill="#6b7280">年齢だけでなく、画面上の“見え方”を分解して考える</text>
-  <g filter="url(#s)">
-    <rect x="92" y="210" width="210" height="220" rx="26" fill="#fff"/>
-    <text x="197" y="280" text-anchor="middle" font-size="54">📷</text>
-    <text x="197" y="338" text-anchor="middle" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="31" font-weight="900" fill="#152a4d">写真</text>
-    <text x="197" y="382" text-anchor="middle" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="22" font-weight="700" fill="#6b7280">暗い・古い・自撮り</text>
+
+  <rect width="1200" height="1780" rx="36" fill="url(#bg)"/>
+
+  <text x="600" y="110" text-anchor="middle" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="60" font-weight="900" fill="#152a4d">いいねが来ない主な原因マップ</text>
+  <text x="600" y="168" text-anchor="middle" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="32" font-weight="700" fill="#6b7280">年齢だけではなく、まずは画面上の見え方を4つに分けて確認する</text>
+
+  <g filter="url(#shadow)">
+    <rect x="95" y="240" width="1010" height="260" rx="34" fill="url(#card)"/>
+    <circle cx="220" cy="370" r="72" fill="#fff1f5"/>
+    <text x="220" y="395" text-anchor="middle" font-size="78">📷</text>
+    <text x="340" y="340" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="52" font-weight="900" fill="#152a4d">写真</text>
+    <text x="340" y="400" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="36" font-weight="700" fill="#6b7280">暗い・古い・自撮り感が強い</text>
+    <text x="340" y="448" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="36" font-weight="700" fill="#6b7280">第一印象で損しやすい</text>
   </g>
-  <g filter="url(#s)">
-    <rect x="360" y="210" width="210" height="220" rx="26" fill="#fff"/>
-    <text x="465" y="280" text-anchor="middle" font-size="54">✨</text>
-    <text x="465" y="338" text-anchor="middle" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="31" font-weight="900" fill="#152a4d">清潔感</text>
-    <text x="465" y="382" text-anchor="middle" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="22" font-weight="700" fill="#6b7280">髪・服・表情</text>
+
+  <g filter="url(#shadow)">
+    <rect x="95" y="550" width="1010" height="260" rx="34" fill="url(#card)"/>
+    <circle cx="220" cy="680" r="72" fill="#fff7ed"/>
+    <text x="220" y="705" text-anchor="middle" font-size="78">✨</text>
+    <text x="340" y="650" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="52" font-weight="900" fill="#152a4d">清潔感</text>
+    <text x="340" y="710" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="36" font-weight="700" fill="#6b7280">髪・服・表情・サイズ感で</text>
+    <text x="340" y="758" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="36" font-weight="700" fill="#6b7280">安心感が伝わるかが決まる</text>
   </g>
-  <g filter="url(#s)">
-    <rect x="628" y="210" width="210" height="220" rx="26" fill="#fff"/>
-    <text x="733" y="280" text-anchor="middle" font-size="54">📝</text>
-    <text x="733" y="338" text-anchor="middle" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="31" font-weight="900" fill="#152a4d">プロフィール</text>
-    <text x="733" y="382" text-anchor="middle" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="22" font-weight="700" fill="#6b7280">何者か伝わらない</text>
+
+  <g filter="url(#shadow)">
+    <rect x="95" y="860" width="1010" height="260" rx="34" fill="url(#card)"/>
+    <circle cx="220" cy="990" r="72" fill="#eef3fb"/>
+    <text x="220" y="1015" text-anchor="middle" font-size="78">📝</text>
+    <text x="340" y="960" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="52" font-weight="900" fill="#152a4d">プロフィール</text>
+    <text x="340" y="1020" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="36" font-weight="700" fill="#6b7280">何者か・どんな人かが伝わらないと</text>
+    <text x="340" y="1068" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="36" font-weight="700" fill="#6b7280">会ってみたいに変わりにくい</text>
   </g>
-  <g filter="url(#s)">
-    <rect x="896" y="210" width="210" height="220" rx="26" fill="#fff"/>
-    <text x="1001" y="280" text-anchor="middle" font-size="54">💬</text>
-    <text x="1001" y="338" text-anchor="middle" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="31" font-weight="900" fill="#152a4d">メッセージ</text>
-    <text x="1001" y="382" text-anchor="middle" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="22" font-weight="700" fill="#6b7280">重い・長い・近い</text>
+
+  <g filter="url(#shadow)">
+    <rect x="95" y="1170" width="1010" height="260" rx="34" fill="url(#card)"/>
+    <circle cx="220" cy="1300" r="72" fill="#fff1f5"/>
+    <text x="220" y="1325" text-anchor="middle" font-size="78">💬</text>
+    <text x="340" y="1270" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="52" font-weight="900" fill="#152a4d">メッセージ</text>
+    <text x="340" y="1330" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="36" font-weight="700" fill="#6b7280">重い・長い・距離が近すぎると</text>
+    <text x="340" y="1378" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="36" font-weight="700" fill="#6b7280">やり取りが続きにくい</text>
   </g>
-  <rect x="210" y="500" width="780" height="78" rx="39" fill="#152a4d"/>
-  <text x="600" y="551" text-anchor="middle" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="30" font-weight="900" fill="#fff">まずは変えられる場所から整える</text>
+
+  <g filter="url(#shadow)">
+    <rect x="140" y="1515" width="920" height="130" rx="65" fill="#152a4d"/>
+    <text x="600" y="1595" text-anchor="middle" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="42" font-weight="900" fill="#ffffff">まずは変えられる場所から整える</text>
+  </g>
 </svg>
