@@ -232,6 +232,99 @@
   margin-top: 18px;
 }
 
+/* SEO-friendly teacher/student conversation component */
+.article-conversation-block {
+  margin: 30px 0;
+  padding: clamp(20px, 4vw, 34px);
+  border-radius: 30px;
+  background: linear-gradient(135deg, #fffaf5, #eef3fb);
+  border: 1px solid rgba(21, 42, 77, 0.12);
+  box-shadow: 0 16px 40px rgba(21, 42, 77, 0.08);
+}
+
+.article-conversation-block__title {
+  margin: 0 0 20px;
+  color: #152a4d;
+  font-size: 1.24rem;
+  line-height: 1.45;
+  font-weight: 900;
+  text-align: center;
+}
+
+.conversation-row-v2 {
+  display: grid;
+  grid-template-columns: 108px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+  margin: 18px 0;
+}
+
+.conversation-row-v2--teacher {
+  grid-template-columns: minmax(0, 1fr) 108px;
+}
+
+.conversation-person {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+}
+
+.conversation-person__image {
+  display: block;
+  width: 92px;
+  height: 92px;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid rgba(224, 122, 154, 0.18);
+  box-shadow: 0 10px 22px rgba(21, 42, 77, 0.10);
+}
+
+.conversation-person__label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 86px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: #152a4d;
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.conversation-row-v2--teacher .conversation-person__label {
+  background: #e07a9a;
+}
+
+.conversation-bubble-v2 {
+  position: relative;
+  padding: 20px 22px;
+  border-radius: 24px;
+  background: #ffffff;
+  border: 1px solid rgba(21, 42, 77, 0.12);
+  color: #243044;
+  font-size: 1.02rem;
+  line-height: 1.95;
+}
+
+.conversation-row-v2--student .conversation-bubble-v2 {
+  background: #f6f9ff;
+}
+
+.conversation-row-v2--teacher .conversation-bubble-v2 {
+  background: #fff7ed;
+}
+
+.conversation-bubble-v2 p {
+  margin: 0 0 0.85em;
+}
+
+.conversation-bubble-v2 p:last-child {
+  margin-bottom: 0;
+}
+
 @media (max-width: 640px) {
   .article-support-box,
   .article-dialogue-box,
@@ -302,5 +395,54 @@
 
   .dialogue-bubble {
     padding: 14px 15px;
+  }
+
+  .article-conversation-block {
+    margin: 24px 0;
+    padding: 18px 14px;
+    border-radius: 24px;
+  }
+
+  .article-conversation-block__title {
+    font-size: 1.1rem;
+    text-align: left;
+  }
+
+  .conversation-row-v2,
+  .conversation-row-v2--teacher {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin: 20px 0;
+  }
+
+  .conversation-row-v2--teacher .conversation-person {
+    order: 0;
+  }
+
+  .conversation-row-v2--teacher .conversation-bubble-v2 {
+    order: 1;
+  }
+
+  .conversation-person {
+    grid-template-columns: 58px 1fr;
+    justify-items: start;
+    align-items: center;
+  }
+
+  .conversation-person__image {
+    width: 58px;
+    height: 58px;
+  }
+
+  .conversation-person__label {
+    min-width: auto;
+    font-size: 0.78rem;
+  }
+
+  .conversation-bubble-v2 {
+    padding: 17px 16px;
+    border-radius: 20px;
+    font-size: 1rem;
+    line-height: 1.9;
   }
 }
