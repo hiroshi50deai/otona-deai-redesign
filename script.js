@@ -53,6 +53,51 @@ function createInfographic(src, title, caption) {
   `);
 }
 
+function createIntroConversation() {
+  return createElementFromHTML(`
+    <section class="article-conversation-block" aria-label="先生と生徒の会話">
+      <h2 class="article-conversation-block__title">先生と生徒の会話で読む</h2>
+
+      <div class="conversation-row-v2 conversation-row-v2--student">
+        <div class="conversation-person">
+          <div class="conversation-person__image conversation-person__image--student" aria-hidden="true">50</div>
+          <span class="conversation-person__label">生徒・50代男性</span>
+        </div>
+        <div class="conversation-bubble-v2">
+          <p>マッチングアプリを始めてみたけれど、まったくいいねが来ないんです。</p>
+          <p>こちらから送っても、ほとんどマッチしません。</p>
+          <p>やっぱり50代男性は、もう恋愛対象として見られないのでしょうか。</p>
+        </div>
+      </div>
+
+      <div class="conversation-row-v2 conversation-row-v2--teacher">
+        <div class="conversation-bubble-v2">
+          <p>そんなふうに感じて、落ち込んでいる50代男性は少なくありません。</p>
+          <p>たしかに、マッチングアプリでは年齢が影響する場面があります。20代・30代の男性と同じ土俵で見られれば、50代という年齢が不利に働くこともあります。</p>
+          <p>ただし、ここで大事なのは、いいねをもらえない理由を「年齢だけ」で片づけないことです。同じ50代でも、きちんとマッチしている男性はいます。</p>
+          <p>派手な若作りをしているわけではなく、写真・清潔感・プロフィール文・メッセージの見せ方を整えて、女性に安心感や魅力が伝わるようにしている人です。</p>
+          <p>この記事では、50代男性がマッチングアプリでいいねをもらえない理由と、まず見直すべきポイントを具体的に解説します。</p>
+        </div>
+        <div class="conversation-person">
+          <img class="conversation-person__image" src="assets/characters/03_ok_explain.png" alt="解説する先生キャラクター" />
+          <span class="conversation-person__label">先生</span>
+        </div>
+      </div>
+    </section>
+  `);
+}
+
+function convertIntroToConversation() {
+  const articlePage = document.querySelector('.article-page');
+  if (!articlePage || document.querySelector('.article-conversation-block')) return;
+
+  const articleBlocks = Array.from(document.querySelectorAll('.article-main .article-block'));
+  const introBlock = articleBlocks.find((block) => block.textContent.includes('マッチングアプリを始めてみたけれど') && block.textContent.includes('この記事では、50代男性が'));
+  if (!introBlock) return;
+
+  introBlock.replaceWith(createIntroConversation());
+}
+
 function addArticleReadingLayout() {
   const articlePage = document.querySelector('.article-page');
   if (!articlePage || document.querySelector('[data-reading-guide="true"]')) return;
@@ -60,7 +105,6 @@ function addArticleReadingLayout() {
   const articleBlocks = Array.from(document.querySelectorAll('.article-main .article-block'));
   const introBlock = articleBlocks.find((block) => block.textContent.includes('この記事では、50代男性が'));
   const reasonBlock = articleBlocks.find((block) => block.textContent.includes('50代男性がマッチングアプリでいいねをもらえない主な理由'));
-  const womenBlock = articleBlocks.find((block) => block.textContent.includes('女性は50代男性のどこを見ているのか'));
   const checklistBlock = articleBlocks.find((block) => block.textContent.includes('50代男性がまず見直すべき5つのポイント'));
   const finalBlock = articleBlocks.find((block) => block.textContent.includes('まとめ｜50代男性がいいねをもらえない理由'));
   const ctaBlock = document.querySelector('.article-service-cta');
@@ -124,6 +168,7 @@ function addArticleReadingLayout() {
 }
 
 addArticleReadingLayout();
+convertIntroToConversation();
 
 const visualFixes = document.createElement('style');
 visualFixes.textContent = `
@@ -134,58 +179,21 @@ visualFixes.textContent = `
     opacity: 0 !important;
   }
 
+  .conversation-person__image--student {
+    display: grid !important;
+    place-items: center !important;
+    background: linear-gradient(135deg, #eef3fb, #ffffff) !important;
+    color: #152a4d !important;
+    font-weight: 900 !important;
+    font-size: 1.45rem !important;
+  }
+
+  .hero-guide::before {
+    display: none !important;
+  }
+
   .character-img {
     filter: drop-shadow(0 12px 18px rgba(21,42,77,0.10)) !important;
-  }
-
-  .section-heading.with-mascot {
-    align-items: center !important;
-  }
-
-  .mini-guide {
-    position: relative !important;
-    display: grid !important;
-    grid-template-columns: 96px minmax(190px, 1fr) !important;
-    align-items: center !important;
-    gap: 14px !important;
-    width: 360px !important;
-    min-height: auto !important;
-    padding: 10px 0 !important;
-  }
-
-  .mini-guide .small-character {
-    position: static !important;
-    width: 96px !important;
-    height: auto !important;
-    flex: none !important;
-    margin: 0 !important;
-    z-index: 2 !important;
-  }
-
-  .mini-guide .speech-bubble.small {
-    position: relative !important;
-    left: auto !important;
-    top: auto !important;
-    right: auto !important;
-    bottom: auto !important;
-    max-width: none !important;
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 14px 16px !important;
-    font-size: 0.88rem !important;
-    line-height: 1.7 !important;
-    text-align: left !important;
-    z-index: 3 !important;
-  }
-
-  .mini-guide .speech-bubble.small::after {
-    left: -9px !important;
-    right: auto !important;
-    top: 50% !important;
-    bottom: auto !important;
-    width: 18px !important;
-    height: 18px !important;
-    transform: translateY(-50%) rotate(135deg) !important;
   }
 
   .article-page .article-main {
@@ -231,10 +239,6 @@ visualFixes.textContent = `
       filter: none !important;
     }
 
-    .guide-panel {
-      background: rgba(255, 255, 255, 0.92) !important;
-    }
-
     .article-page .article-hero-guide {
       display: none !important;
     }
@@ -242,10 +246,6 @@ visualFixes.textContent = `
     .article-page .article-hero {
       padding-top: 24px !important;
       padding-bottom: 28px !important;
-    }
-
-    .article-page .article-hero-grid {
-      gap: 18px !important;
     }
 
     .article-page .article-main > figure.article-block:first-child {
@@ -296,15 +296,6 @@ visualFixes.textContent = `
       border-radius: 22px !important;
     }
 
-    .article-infographic--large .article-infographic__body {
-      padding: 18px 16px 0 !important;
-    }
-
-    .article-infographic--large h3 {
-      font-size: 1.18rem !important;
-      line-height: 1.55 !important;
-    }
-
     .article-infographic--large img {
       display: block !important;
       width: 100% !important;
@@ -313,26 +304,10 @@ visualFixes.textContent = `
       background: #fff !important;
     }
 
-    .article-infographic--large figcaption {
-      font-size: 0.92rem !important;
-      line-height: 1.75 !important;
-    }
-
     .article-summary-box--compact,
     .article-remember-box--compact {
       padding: 20px !important;
       border-radius: 22px !important;
-    }
-
-    .article-summary-box--compact h3,
-    .article-remember-box--compact h3 {
-      font-size: 1.12rem !important;
-    }
-
-    .article-summary-box--compact li,
-    .article-remember-box--compact li {
-      font-size: 1rem !important;
-      line-height: 1.85 !important;
     }
 
     .article-service-cta {
@@ -343,51 +318,6 @@ visualFixes.textContent = `
     .article-service-cta h2 {
       font-size: 1.32rem !important;
       line-height: 1.55 !important;
-    }
-
-    .section-heading.with-mascot {
-      display: block !important;
-    }
-
-    .mini-guide {
-      display: grid !important;
-      grid-template-columns: 86px 1fr !important;
-      gap: 10px !important;
-      width: 100% !important;
-      max-width: 100% !important;
-      margin-top: 20px !important;
-      padding: 12px !important;
-      border-radius: 22px !important;
-      background: rgba(255, 255, 255, 0.48) !important;
-      border: 1px solid rgba(21,42,77,0.08) !important;
-    }
-
-    .mini-guide .small-character {
-      width: 82px !important;
-      align-self: end !important;
-    }
-
-    .mini-guide .speech-bubble.small {
-      max-width: none !important;
-      width: 100% !important;
-      padding: 13px 14px !important;
-      font-size: 0.86rem !important;
-      line-height: 1.7 !important;
-      box-shadow: 0 8px 20px rgba(21,42,77,0.06) !important;
-    }
-
-    .mini-guide .speech-bubble.small::after {
-      left: -8px !important;
-      right: auto !important;
-      top: 50% !important;
-      bottom: auto !important;
-      width: 16px !important;
-      height: 16px !important;
-      transform: translateY(-50%) rotate(135deg) !important;
-    }
-
-    .problem-grid {
-      margin-top: 20px !important;
     }
   }
 `;
