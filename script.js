@@ -6,6 +6,22 @@ componentStyles.rel = 'stylesheet';
 componentStyles.href = 'components.css';
 document.head.appendChild(componentStyles);
 
+// Replace old teacher character assets with the new site-specific character set.
+const characterImageReplacements = {
+  'assets/characters/05_icon_bust.png': 'assets/characters/teacher-new-icon.png',
+  'assets/characters/01_hero_teacher.png': 'assets/characters/teacher-new-main.png',
+  'assets/characters/02_worry.png': 'assets/characters/teacher-new-worry.png',
+  'assets/characters/03_ok_explain.png': 'assets/characters/teacher-new-explain.png',
+  'assets/characters/04_gentle_cta.png': 'assets/characters/teacher-new-cta.png',
+};
+
+document.querySelectorAll('img').forEach((img) => {
+  const currentSrc = img.getAttribute('src');
+  if (currentSrc && characterImageReplacements[currentSrc]) {
+    img.src = characterImageReplacements[currentSrc];
+  }
+});
+
 if (navToggle && siteNav) {
   navToggle.addEventListener('click', () => {
     const isOpen = siteNav.classList.toggle('is-open');
