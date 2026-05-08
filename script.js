@@ -6,7 +6,6 @@ componentStyles.rel = 'stylesheet';
 componentStyles.href = 'components.css';
 document.head.appendChild(componentStyles);
 
-// Replace old teacher character assets with the new site-specific character set.
 const characterImageReplacements = {
   'assets/characters/05_icon_bust.png': 'assets/characters/teacher-new-icon.png',
   'assets/characters/01_hero_teacher.png': 'assets/characters/teacher-new-main.png',
@@ -38,7 +37,6 @@ if (navToggle && siteNav) {
   });
 }
 
-// Use the generated PNG eyecatch instead of the temporary SVG placeholder.
 document.querySelectorAll('img[src="assets/eyecatches/why-50s-men-get-no-likes.svg"]').forEach((img) => {
   img.src = 'assets/eyecatches/why-50s-men-get-no-likes.png';
 });
@@ -73,7 +71,6 @@ function createIntroConversation() {
   return createElementFromHTML(`
     <section class="article-conversation-block" aria-label="先生と生徒の会話">
       <h2 class="article-conversation-block__title">先生と生徒の会話で読む</h2>
-
       <div class="conversation-row-v2 conversation-row-v2--student">
         <div class="conversation-person">
           <div class="conversation-person__image conversation-person__image--student" aria-hidden="true">50</div>
@@ -85,7 +82,6 @@ function createIntroConversation() {
           <p>やっぱり50代男性は、もう恋愛対象として見られないのでしょうか。</p>
         </div>
       </div>
-
       <div class="conversation-row-v2 conversation-row-v2--teacher">
         <div class="conversation-bubble-v2">
           <p>そんなふうに感じて、落ち込んでいる50代男性は少なくありません。</p>
@@ -107,98 +103,37 @@ function createAgeReasonConversation() {
   return createElementFromHTML(`
     <section class="article-conversation-block article-conversation-block--section" aria-label="年齢だけが原因ではない理由の会話">
       <h2 class="article-conversation-block__title">50代男性がマッチングアプリでいいねをもらえないのは「年齢だけ」が原因ではない</h2>
-
       <div class="conversation-row-v2 conversation-row-v2--student">
-        <div class="conversation-person">
-          <div class="conversation-person__image conversation-person__image--student" aria-hidden="true">50</div>
-          <span class="conversation-person__label">生徒・50代男性</span>
-        </div>
-        <div class="conversation-bubble-v2">
-          <p>先生、やっぱり50代男性がマッチングアプリで不利になることはあるんですよね。</p>
-          <p>女性はプロフィールを見るときに、まず年齢を確認しますよね。</p>
-        </div>
+        <div class="conversation-person"><div class="conversation-person__image conversation-person__image--student" aria-hidden="true">50</div><span class="conversation-person__label">生徒・50代男性</span></div>
+        <div class="conversation-bubble-v2"><p>先生、やっぱり50代男性がマッチングアプリで不利になることはあるんですよね。</p><p>女性はプロフィールを見るときに、まず年齢を確認しますよね。</p></div>
       </div>
-
       <div class="conversation-row-v2 conversation-row-v2--teacher">
-        <div class="conversation-bubble-v2">
-          <p>はい。そこは率直に言うと、50代男性が不利になる場面はあります。</p>
-          <p>年齢差が大きい相手を避ける女性もいますし、アプリによっては利用者層が若く、50代男性がそもそも見られにくいこともあります。</p>
-          <p>だから、年齢の影響がゼロだとは言えません。</p>
-        </div>
-        <div class="conversation-person">
-          <img class="conversation-person__image" src="assets/characters/teacher-new-explain.png" alt="解説する先生キャラクター" />
-          <span class="conversation-person__label">先生</span>
-        </div>
+        <div class="conversation-bubble-v2"><p>はい。そこは率直に言うと、50代男性が不利になる場面はあります。</p><p>年齢差が大きい相手を避ける女性もいますし、アプリによっては利用者層が若く、50代男性がそもそも見られにくいこともあります。</p><p>だから、年齢の影響がゼロだとは言えません。</p></div>
+        <div class="conversation-person"><img class="conversation-person__image" src="assets/characters/teacher-new-explain.png" alt="解説する先生キャラクター" /><span class="conversation-person__label">先生</span></div>
       </div>
-
       <div class="conversation-row-v2 conversation-row-v2--student">
-        <div class="conversation-person">
-          <div class="conversation-person__image conversation-person__image--student" aria-hidden="true">50</div>
-          <span class="conversation-person__label">生徒・50代男性</span>
-        </div>
-        <div class="conversation-bubble-v2">
-          <p>やっぱりそうなんですね。</p>
-          <p>そうなると、「50代だから無理」「おじさんだから相手にされない」と考えてしまいます。</p>
-          <p>もう何をしても意味がないのかな、と感じてしまうんです。</p>
-        </div>
+        <div class="conversation-person"><div class="conversation-person__image conversation-person__image--student" aria-hidden="true">50</div><span class="conversation-person__label">生徒・50代男性</span></div>
+        <div class="conversation-bubble-v2"><p>やっぱりそうなんですね。</p><p>そうなると、「50代だから無理」「おじさんだから相手にされない」と考えてしまいます。</p><p>もう何をしても意味がないのかな、と感じてしまうんです。</p></div>
       </div>
-
       <div class="conversation-row-v2 conversation-row-v2--teacher">
-        <div class="conversation-bubble-v2">
-          <p>でも、問題はそこからです。</p>
-          <p>いいねをもらえない理由を「年齢だけ」で片づけてしまうと、本当は改善できる部分まで見えなくなってしまいます。</p>
-          <p>年齢は変えられませんが、見せ方は変えられます。</p>
-        </div>
-        <div class="conversation-person">
-          <img class="conversation-person__image" src="assets/characters/teacher-new-explain.png" alt="解説する先生キャラクター" />
-          <span class="conversation-person__label">先生</span>
-        </div>
+        <div class="conversation-bubble-v2"><p>でも、問題はそこからです。</p><p>いいねをもらえない理由を「年齢だけ」で片づけてしまうと、本当は改善できる部分まで見えなくなってしまいます。</p><p>年齢は変えられませんが、見せ方は変えられます。</p></div>
+        <div class="conversation-person"><img class="conversation-person__image" src="assets/characters/teacher-new-explain.png" alt="解説する先生キャラクター" /><span class="conversation-person__label">先生</span></div>
       </div>
-
       <div class="conversation-row-v2 conversation-row-v2--student">
-        <div class="conversation-person">
-          <div class="conversation-person__image conversation-person__image--student" aria-hidden="true">50</div>
-          <span class="conversation-person__label">生徒・50代男性</span>
-        </div>
-        <div class="conversation-bubble-v2">
-          <p>見せ方というのは、写真やプロフィールのことですか？</p>
-          <p>中身が誠実でも、画面上で伝わっていなければダメということですか？</p>
-        </div>
+        <div class="conversation-person"><div class="conversation-person__image conversation-person__image--student" aria-hidden="true">50</div><span class="conversation-person__label">生徒・50代男性</span></div>
+        <div class="conversation-bubble-v2"><p>見せ方というのは、写真やプロフィールのことですか？</p><p>中身が誠実でも、画面上で伝わっていなければダメということですか？</p></div>
       </div>
-
       <div class="conversation-row-v2 conversation-row-v2--teacher">
-        <div class="conversation-bubble-v2">
-          <p>その通りです。</p>
-          <p>マッチングアプリでは、女性はあなたの中身をいきなり知ることはできません。</p>
-          <p>最初に見るのは、写真・年齢・プロフィール文・雰囲気です。</p>
-          <p>つまり、あなた自身の価値というより、画面上でどう見えているかが大きく影響します。</p>
-        </div>
-        <div class="conversation-person">
-          <img class="conversation-person__image" src="assets/characters/teacher-new-explain.png" alt="解説する先生キャラクター" />
-          <span class="conversation-person__label">先生</span>
-        </div>
+        <div class="conversation-bubble-v2"><p>その通りです。</p><p>マッチングアプリでは、女性はあなたの中身をいきなり知ることはできません。</p><p>最初に見るのは、写真・年齢・プロフィール文・雰囲気です。</p><p>つまり、あなた自身の価値というより、画面上でどう見えているかが大きく影響します。</p></div>
+        <div class="conversation-person"><img class="conversation-person__image" src="assets/characters/teacher-new-explain.png" alt="解説する先生キャラクター" /><span class="conversation-person__label">先生</span></div>
       </div>
-
       <div class="conversation-row-v2 conversation-row-v2--student">
-        <div class="conversation-person">
-          <div class="conversation-person__image conversation-person__image--student" aria-hidden="true">50</div>
-          <span class="conversation-person__label">生徒・50代男性</span>
-        </div>
-        <div class="conversation-bubble-v2">
-          <p>たしかに、現実の自分が誠実でも、写真が暗かったり、服装がくたびれていたり、プロフィール文が雑だったら、伝わらないですよね。</p>
-        </div>
+        <div class="conversation-person"><div class="conversation-person__image conversation-person__image--student" aria-hidden="true">50</div><span class="conversation-person__label">生徒・50代男性</span></div>
+        <div class="conversation-bubble-v2"><p>たしかに、現実の自分が誠実でも、写真が暗かったり、服装がくたびれていたり、プロフィール文が雑だったら、伝わらないですよね。</p></div>
       </div>
-
       <div class="conversation-row-v2 conversation-row-v2--teacher">
-        <div class="conversation-bubble-v2">
-          <p>はい。逆に、特別なイケメンでなくても、写真・清潔感・文章・距離感が整っていれば、「この人なら話してみてもいいかもしれない」と思われる可能性は十分にあります。</p>
-          <p>50代男性に必要なのは、若者の真似ではありません。</p>
-          <p>大人の男性として、女性に安心して見てもらえる状態に整えることです。</p>
-        </div>
-        <div class="conversation-person">
-          <img class="conversation-person__image" src="assets/characters/teacher-new-explain.png" alt="解説する先生キャラクター" />
-          <span class="conversation-person__label">先生</span>
-        </div>
+        <div class="conversation-bubble-v2"><p>はい。逆に、特別なイケメンでなくても、写真・清潔感・文章・距離感が整っていれば、「この人なら話してみてもいいかもしれない」と思われる可能性は十分にあります。</p><p>50代男性に必要なのは、若者の真似ではありません。</p><p>大人の男性として、女性に安心して見てもらえる状態に整えることです。</p></div>
+        <div class="conversation-person"><img class="conversation-person__image" src="assets/characters/teacher-new-explain.png" alt="解説する先生キャラクター" /><span class="conversation-person__label">先生</span></div>
       </div>
     </section>
   `);
@@ -207,23 +142,17 @@ function createAgeReasonConversation() {
 function convertIntroToConversation() {
   const articlePage = document.querySelector('.article-page');
   if (!articlePage || document.querySelector('.article-conversation-block')) return;
-
   const articleBlocks = Array.from(document.querySelectorAll('.article-main .article-block'));
   const introBlock = articleBlocks.find((block) => block.textContent.includes('マッチングアプリを始めてみたけれど') && block.textContent.includes('この記事では、50代男性が'));
-  if (!introBlock) return;
-
-  introBlock.replaceWith(createIntroConversation());
+  if (introBlock) introBlock.replaceWith(createIntroConversation());
 }
 
 function convertAgeReasonSectionToConversation() {
   const articlePage = document.querySelector('.article-page');
   if (!articlePage || document.querySelector('.article-conversation-block--section')) return;
-
   const articleBlocks = Array.from(document.querySelectorAll('.article-main .article-block'));
   const targetBlock = articleBlocks.find((block) => block.textContent.includes('50代男性がマッチングアプリでいいねをもらえないのは「年齢だけ」が原因ではない'));
-  if (!targetBlock) return;
-
-  targetBlock.replaceWith(createAgeReasonConversation());
+  if (targetBlock) targetBlock.replaceWith(createAgeReasonConversation());
 }
 
 function addArticleReadingLayout() {
@@ -236,51 +165,18 @@ function addArticleReadingLayout() {
   const checklistBlock = articleBlocks.find((block) => block.textContent.includes('50代男性がまず見直すべき5つのポイント'));
   const finalBlock = articleBlocks.find((block) => block.textContent.includes('まとめ｜50代男性がいいねをもらえない理由'));
   const ctaBlock = document.querySelector('.article-service-cta');
+  const photoReasonHeading = Array.from(document.querySelectorAll('.article-main h3')).find((heading) => heading.textContent.includes('理由1：プロフィール写真で清潔感や安心感が伝わっていない'));
 
-  const topConclusion = createElementFromHTML(`
-    <aside class="article-summary-box article-summary-box--compact" data-reading-guide="true">
-      <p class="article-summary-box__label">この記事の結論</p>
-      <h3>まず、ここだけ押さえれば大丈夫です。</h3>
-      <ul>
-        <li>年齢だけが原因ではない</li>
-        <li>写真・清潔感・プロフィールで改善できる</li>
-        <li>最初は写真から見直す</li>
-      </ul>
-    </aside>
-  `);
-
-  const causeMap = createInfographic(
-    'assets/infographics/no-likes-cause-map.svg',
-    'いいねが来ない原因を、4つに分けて見る',
-    '原因を一つに決めつけず、写真・清潔感・プロフィール文・メッセージに分けて確認します。画像をタップすると大きく開けます。'
-  );
-
-  const photoGraphic = createInfographic(
-    'assets/infographics/photo-checkpoints.svg',
-    '写真で見られるポイント',
-    '女性は顔立ちだけではなく、清潔感・明るさ・表情・背景から安心できる人かを見ています。画像をタップすると大きく開けます。'
-  );
-
-  const actionGraphic = createInfographic(
-    'assets/infographics/action-order.svg',
-    '見直す順番',
-    '全部を一気に直そうとせず、まず写真、次にプロフィール文、最後にメッセージの距離感を整えます。画像をタップすると大きく開けます。'
-  );
-
-  const rememberBox = createElementFromHTML(`
-    <aside class="article-remember-box article-remember-box--compact" data-reading-guide="true">
-      <p class="article-remember-box__label">ここだけ覚える</p>
-      <h3>50代だから終わり、ではありません。</h3>
-      <ul>
-        <li>年齢は変えられない</li>
-        <li>でも、写真・清潔感・文章・距離感は変えられる</li>
-        <li>見せ方を整えれば、出会いの入口は作れる</li>
-      </ul>
-    </aside>
-  `);
+  const topConclusion = createElementFromHTML(`<aside class="article-summary-box article-summary-box--compact" data-reading-guide="true"><p class="article-summary-box__label">この記事の結論</p><h3>まず、ここだけ押さえれば大丈夫です。</h3><ul><li>年齢だけが原因ではない</li><li>写真・清潔感・プロフィールで改善できる</li><li>最初は写真から見直す</li></ul></aside>`);
+  const causeMap = createInfographic('assets/infographics/no-likes-cause-map.svg', 'いいねが来ない原因を、4つに分けて見る', '原因を一つに決めつけず、写真・清潔感・プロフィール文・メッセージに分けて確認します。画像をタップすると大きく開けます。');
+  const photoCleanlinessGraphic = createInfographic('assets/infographics/profile-photo-cleanliness.svg', 'プロフィール写真で清潔感や安心感が伝わっていない理由', '写真の数秒で、清潔感・安心感・話しかけやすさが判断されます。画像をタップすると大きく開けます。');
+  const photoGraphic = createInfographic('assets/infographics/photo-checkpoints.svg', '写真で見られるポイント', '女性は顔立ちだけではなく、清潔感・明るさ・表情・背景から安心できる人かを見ています。画像をタップすると大きく開けます。');
+  const actionGraphic = createInfographic('assets/infographics/action-order.svg', '見直す順番', '全部を一気に直そうとせず、まず写真、次にプロフィール文、最後にメッセージの距離感を整えます。画像をタップすると大きく開けます。');
+  const rememberBox = createElementFromHTML(`<aside class="article-remember-box article-remember-box--compact" data-reading-guide="true"><p class="article-remember-box__label">ここだけ覚える</p><h3>50代だから終わり、ではありません。</h3><ul><li>年齢は変えられない</li><li>でも、写真・清潔感・文章・距離感は変えられる</li><li>見せ方を整えれば、出会いの入口は作れる</li></ul></aside>`);
 
   insertAfter(introBlock, topConclusion);
   insertAfter(topConclusion, causeMap);
+  insertAfter(photoReasonHeading, photoCleanlinessGraphic);
   insertAfter(reasonBlock, photoGraphic);
   insertAfter(checklistBlock, actionGraphic);
   insertAfter(finalBlock, rememberBox);
@@ -301,153 +197,33 @@ convertAgeReasonSectionToConversation();
 
 const visualFixes = document.createElement('style');
 visualFixes.textContent = `
-  .hero-guide::before {
-    content: none !important;
-    display: none !important;
-    background: none !important;
-    opacity: 0 !important;
-  }
-
-  .conversation-person__image--student {
-    display: grid !important;
-    place-items: center !important;
-    background: linear-gradient(135deg, #eef3fb, #ffffff) !important;
-    color: #152a4d !important;
-    font-weight: 900 !important;
-    font-size: 1.45rem !important;
-  }
-
-  .hero-guide::before {
-    display: none !important;
-  }
-
-  .character-img {
-    filter: drop-shadow(0 12px 18px rgba(21,42,77,0.10)) !important;
-  }
-
-  .article-page .article-main {
-    gap: 34px !important;
-  }
-
-  .article-page .article-block {
-    padding: clamp(26px, 4.2vw, 46px) !important;
-  }
-
-  .article-page .article-block p {
-    margin-top: 0.95em !important;
-    margin-bottom: 0.95em !important;
-  }
-
-  .article-page .article-block h2 {
-    margin-top: 0 !important;
-    margin-bottom: 1.1em !important;
-  }
-
-  .article-page .article-block h3 {
-    margin-top: 2em !important;
-    margin-bottom: 0.85em !important;
-  }
-
-  .article-infographic--large img {
-    width: 100% !important;
-    max-width: none !important;
-  }
-
-  @media (min-width: 901px) {
-    .article-page .article-layout {
-      grid-template-columns: minmax(0, 780px) 280px !important;
-      justify-content: center !important;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .character-img,
-    .hero-character,
-    .small-character,
-    .medium-character {
-      filter: none !important;
-    }
-
-    .article-page .article-hero-guide {
-      display: none !important;
-    }
-
-    .article-page .article-hero {
-      padding-top: 24px !important;
-      padding-bottom: 28px !important;
-    }
-
-    .article-page .article-main > figure.article-block:first-child {
-      display: none !important;
-    }
-
-    .article-page .article-layout {
-      padding-top: 22px !important;
-    }
-
-    .article-page h1 {
-      font-size: clamp(1.65rem, 8vw, 2.15rem) !important;
-      line-height: 1.42 !important;
-      letter-spacing: -0.03em !important;
-    }
-
-    .article-page .article-lead,
-    .article-page .article-block p,
-    .article-page .article-block li {
-      font-size: 1.04rem !important;
-      line-height: 2.0 !important;
-    }
-
-    .article-page .article-block {
-      padding: 24px 20px !important;
-      border-radius: 22px !important;
-    }
-
-    .article-page .article-block h2 {
-      font-size: 1.42rem !important;
-      line-height: 1.55 !important;
-      margin-bottom: 1em !important;
-    }
-
-    .article-page .article-block h3 {
-      font-size: 1.15rem !important;
-      line-height: 1.55 !important;
-      margin-top: 2.2em !important;
-    }
-
-    .article-page .article-main {
-      gap: 26px !important;
-    }
-
-    .article-infographic--large {
-      margin-left: -6px !important;
-      margin-right: -6px !important;
-      border-radius: 22px !important;
-    }
-
-    .article-infographic--large img {
-      display: block !important;
-      width: 100% !important;
-      min-height: 210px !important;
-      object-fit: contain !important;
-      background: #fff !important;
-    }
-
-    .article-summary-box--compact,
-    .article-remember-box--compact {
-      padding: 20px !important;
-      border-radius: 22px !important;
-    }
-
-    .article-service-cta {
-      padding: 24px 20px !important;
-      border-radius: 22px !important;
-    }
-
-    .article-service-cta h2 {
-      font-size: 1.32rem !important;
-      line-height: 1.55 !important;
-    }
+  .hero-guide::before{content:none!important;display:none!important;background:none!important;opacity:0!important;}
+  .conversation-person__image--student{display:grid!important;place-items:center!important;background:linear-gradient(135deg,#eef3fb,#fff)!important;color:#152a4d!important;font-weight:900!important;font-size:1.45rem!important;}
+  .character-img{filter:drop-shadow(0 12px 18px rgba(21,42,77,.10))!important;}
+  .article-page .article-main{gap:34px!important;}
+  .article-page .article-block{padding:clamp(26px,4.2vw,46px)!important;}
+  .article-page .article-block p{margin-top:.95em!important;margin-bottom:.95em!important;}
+  .article-page .article-block h2{margin-top:0!important;margin-bottom:1.1em!important;}
+  .article-page .article-block h3{margin-top:2em!important;margin-bottom:.85em!important;}
+  .article-infographic--large img{width:100%!important;max-width:none!important;}
+  @media (min-width:901px){.article-page .article-layout{grid-template-columns:minmax(0,780px) 280px!important;justify-content:center!important;}}
+  @media (max-width:640px){
+    .character-img,.hero-character,.small-character,.medium-character{filter:none!important;}
+    .article-page .article-hero-guide{display:none!important;}
+    .article-page .article-hero{padding-top:24px!important;padding-bottom:28px!important;}
+    .article-page .article-main>figure.article-block:first-child{display:none!important;}
+    .article-page .article-layout{padding-top:22px!important;}
+    .article-page h1{font-size:clamp(1.65rem,8vw,2.15rem)!important;line-height:1.42!important;letter-spacing:-.03em!important;}
+    .article-page .article-lead,.article-page .article-block p,.article-page .article-block li{font-size:1.04rem!important;line-height:2!important;}
+    .article-page .article-block{padding:24px 20px!important;border-radius:22px!important;}
+    .article-page .article-block h2{font-size:1.42rem!important;line-height:1.55!important;margin-bottom:1em!important;}
+    .article-page .article-block h3{font-size:1.15rem!important;line-height:1.55!important;margin-top:2.2em!important;}
+    .article-page .article-main{gap:26px!important;}
+    .article-infographic--large{margin-left:-6px!important;margin-right:-6px!important;border-radius:22px!important;}
+    .article-infographic--large img{display:block!important;width:100%!important;min-height:210px!important;object-fit:contain!important;background:#fff!important;}
+    .article-summary-box--compact,.article-remember-box--compact{padding:20px!important;border-radius:22px!important;}
+    .article-service-cta{padding:24px 20px!important;border-radius:22px!important;}
+    .article-service-cta h2{font-size:1.32rem!important;line-height:1.55!important;}
   }
 `;
 document.head.appendChild(visualFixes);
