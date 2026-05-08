@@ -16,7 +16,9 @@ const characterImageReplacements = {
 
 document.querySelectorAll('img').forEach((img) => {
   const currentSrc = img.getAttribute('src');
-  if (currentSrc && characterImageReplacements[currentSrc]) img.src = characterImageReplacements[currentSrc];
+  if (currentSrc && characterImageReplacements[currentSrc]) {
+    img.src = characterImageReplacements[currentSrc];
+  }
 });
 
 if (navToggle && siteNav) {
@@ -35,24 +37,30 @@ if (navToggle && siteNav) {
   });
 }
 
-document.querySelectorAll('img[src="assets/eyecatches/why-50s-men-get-no-likes.svg"]').forEach((img) => {
-  img.src = 'assets/eyecatches/why-50s-men-get-no-likes.png';
-});
-
-function insertAfter(target, element) {
-  if (!target || !target.parentElement || !element) return;
-  target.parentElement.insertBefore(element, target.nextSibling);
-}
-
 function createElementFromHTML(html) {
   const template = document.createElement('template');
   template.innerHTML = html.trim();
   return template.content.firstElementChild;
 }
 
-function createInfographic(src, title, caption) {
+function insertAfter(target, element) {
+  if (!target || !target.parentElement || !element) return;
+  target.parentElement.insertBefore(element, target.nextSibling);
+}
+
+function createBareInfographic(src, alt) {
   return createElementFromHTML(`
-    <figure class="article-infographic article-infographic--large" data-reading-guide="true">
+    <figure class="article-infographic article-infographic--large article-infographic--bare reason-infographic" data-reading-guide="true" data-src="${src}">
+      <a href="${src}" target="_blank" rel="noopener">
+        <img src="${src}" alt="${alt}" loading="lazy" />
+      </a>
+    </figure>
+  `);
+}
+
+function createLabeledInfographic(src, title, caption) {
+  return createElementFromHTML(`
+    <figure class="article-infographic article-infographic--large" data-reading-guide="true" data-src="${src}">
       <div class="article-infographic__body">
         <p class="article-infographic__label">図解</p>
         <h3>${title}</h3>
@@ -65,103 +73,118 @@ function createInfographic(src, title, caption) {
   `);
 }
 
-function createBareInfographic(src, alt) {
-  return createElementFromHTML(`
-    <figure class="article-infographic article-infographic--large article-infographic--bare" data-reading-guide="true">
-      <a href="${src}" target="_blank" rel="noopener">
-        <img src="${src}" alt="${alt}" loading="lazy" />
-      </a>
-    </figure>
-  `);
-}
-
-function createIntroConversation() {
-  return createElementFromHTML(`
-    <section class="article-conversation-block" aria-label="先生と生徒の会話">
-      <h2 class="article-conversation-block__title">先生と生徒の会話で読む</h2>
-      <div class="conversation-row-v2 conversation-row-v2--student">
-        <div class="conversation-person"><div class="conversation-person__image conversation-person__image--student" aria-hidden="true">50</div><span class="conversation-person__label">生徒・50代男性</span></div>
-        <div class="conversation-bubble-v2"><p>マッチングアプリを始めてみたけれど、まったくいいねが来ないんです。</p><p>こちらから送っても、ほとんどマッチしません。</p><p>やっぱり50代男性は、もう恋愛対象として見られないのでしょうか。</p></div>
-      </div>
-      <div class="conversation-row-v2 conversation-row-v2--teacher">
-        <div class="conversation-bubble-v2"><p>そんなふうに感じて、落ち込んでいる50代男性は少なくありません。</p><p>たしかに、マッチングアプリでは年齢が影響する場面があります。20代・30代の男性と同じ土俵で見られれば、50代という年齢が不利に働くこともあります。</p><p>ただし、ここで大事なのは、いいねをもらえない理由を「年齢だけ」で片づけないことです。同じ50代でも、きちんとマッチしている男性はいます。</p><p>派手な若作りをしているわけではなく、写真・清潔感・プロフィール文・メッセージの見せ方を整えて、女性に安心感や魅力が伝わるようにしている人です。</p><p>この記事では、50代男性がマッチングアプリでいいねをもらえない理由と、まず見直すべきポイントを具体的に解説します。</p></div>
-        <div class="conversation-person"><img class="conversation-person__image" src="assets/characters/teacher-new-explain.png" alt="解説する先生キャラクター" /><span class="conversation-person__label">先生</span></div>
-      </div>
-    </section>
-  `);
-}
-
-function createAgeReasonConversation() {
-  return createElementFromHTML(`
-    <section class="article-conversation-block article-conversation-block--section" aria-label="年齢だけが原因ではない理由の会話">
-      <h2 class="article-conversation-block__title">50代男性がマッチングアプリでいいねをもらえないのは「年齢だけ」が原因ではない</h2>
-      <div class="conversation-row-v2 conversation-row-v2--student"><div class="conversation-person"><div class="conversation-person__image conversation-person__image--student" aria-hidden="true">50</div><span class="conversation-person__label">生徒・50代男性</span></div><div class="conversation-bubble-v2"><p>先生、やっぱり50代男性がマッチングアプリで不利になることはあるんですよね。</p><p>女性はプロフィールを見るときに、まず年齢を確認しますよね。</p></div></div>
-      <div class="conversation-row-v2 conversation-row-v2--teacher"><div class="conversation-bubble-v2"><p>はい。そこは率直に言うと、50代男性が不利になる場面はあります。</p><p>年齢差が大きい相手を避ける女性もいますし、アプリによっては利用者層が若く、50代男性がそもそも見られにくいこともあります。</p><p>だから、年齢の影響がゼロだとは言えません。</p></div><div class="conversation-person"><img class="conversation-person__image" src="assets/characters/teacher-new-explain.png" alt="解説する先生キャラクター" /><span class="conversation-person__label">先生</span></div></div>
-      <div class="conversation-row-v2 conversation-row-v2--student"><div class="conversation-person"><div class="conversation-person__image conversation-person__image--student" aria-hidden="true">50</div><span class="conversation-person__label">生徒・50代男性</span></div><div class="conversation-bubble-v2"><p>やっぱりそうなんですね。</p><p>そうなると、「50代だから無理」「おじさんだから相手にされない」と考えてしまいます。</p><p>もう何をしても意味がないのかな、と感じてしまうんです。</p></div></div>
-      <div class="conversation-row-v2 conversation-row-v2--teacher"><div class="conversation-bubble-v2"><p>でも、問題はそこからです。</p><p>いいねをもらえない理由を「年齢だけ」で片づけてしまうと、本当は改善できる部分まで見えなくなってしまいます。</p><p>年齢は変えられませんが、見せ方は変えられます。</p></div><div class="conversation-person"><img class="conversation-person__image" src="assets/characters/teacher-new-explain.png" alt="解説する先生キャラクター" /><span class="conversation-person__label">先生</span></div></div>
-      <div class="conversation-row-v2 conversation-row-v2--student"><div class="conversation-person"><div class="conversation-person__image conversation-person__image--student" aria-hidden="true">50</div><span class="conversation-person__label">生徒・50代男性</span></div><div class="conversation-bubble-v2"><p>見せ方というのは、写真やプロフィールのことですか？</p><p>中身が誠実でも、画面上で伝わっていなければダメということですか？</p></div></div>
-      <div class="conversation-row-v2 conversation-row-v2--teacher"><div class="conversation-bubble-v2"><p>その通りです。</p><p>マッチングアプリでは、女性はあなたの中身をいきなり知ることはできません。</p><p>最初に見るのは、写真・年齢・プロフィール文・雰囲気です。</p><p>つまり、あなた自身の価値というより、画面上でどう見えているかが大きく影響します。</p></div><div class="conversation-person"><img class="conversation-person__image" src="assets/characters/teacher-new-explain.png" alt="解説する先生キャラクター" /><span class="conversation-person__label">先生</span></div></div>
-      <div class="conversation-row-v2 conversation-row-v2--student"><div class="conversation-person"><div class="conversation-person__image conversation-person__image--student" aria-hidden="true">50</div><span class="conversation-person__label">生徒・50代男性</span></div><div class="conversation-bubble-v2"><p>たしかに、現実の自分が誠実でも、写真が暗かったり、服装がくたびれていたり、プロフィール文が雑だったら、伝わらないですよね。</p></div></div>
-      <div class="conversation-row-v2 conversation-row-v2--teacher"><div class="conversation-bubble-v2"><p>はい。逆に、特別なイケメンでなくても、写真・清潔感・文章・距離感が整っていれば、「この人なら話してみてもいいかもしれない」と思われる可能性は十分にあります。</p><p>50代男性に必要なのは、若者の真似ではありません。</p><p>大人の男性として、女性に安心して見てもらえる状態に整えることです。</p></div><div class="conversation-person"><img class="conversation-person__image" src="assets/characters/teacher-new-explain.png" alt="解説する先生キャラクター" /><span class="conversation-person__label">先生</span></div></div>
-    </section>
-  `);
-}
-
-function convertIntroToConversation() {
+function insertReasonInfographics() {
   const articlePage = document.querySelector('.article-page');
-  if (!articlePage || document.querySelector('.article-conversation-block')) return;
-  const articleBlocks = Array.from(document.querySelectorAll('.article-main .article-block'));
-  const introBlock = articleBlocks.find((block) => block.textContent.includes('マッチングアプリを始めてみたけれど') && block.textContent.includes('この記事では、50代男性が'));
-  if (introBlock) introBlock.replaceWith(createIntroConversation());
+  if (!articlePage) return;
+
+  const reasonImages = [
+    {
+      text: '理由1：プロフィール写真で清潔感や安心感が伝わっていない',
+      src: 'assets/infographics/profile-photo-cleanliness.png',
+      alt: '理由1「プロフィール写真で清潔感や安心感が伝わっていない」を説明するインフォグラフィック',
+    },
+    {
+      text: '理由2：自撮り・無表情・生活感の強い写真で損をしている',
+      src: 'assets/infographics/profile_photo_advice_for_men_40s_50s.png',
+      alt: '理由2「自撮り・無表情・生活感の強い写真で損をしている」を説明するインフォグラフィック',
+    },
+    {
+      text: '理由3：プロフィール文が「何者か分からない」内容になっている',
+      src: 'assets/infographics/reason-3-profile-unknown.png',
+      alt: '理由3「プロフィール文が何者か分からない内容になっている」を説明するインフォグラフィック',
+    },
+    {
+      text: '理由4：「若く見られます」「年齢より若いです」と書いて逆効果になっている',
+      src: 'assets/infographics/reason-4-young-appeal-backfire.png',
+      alt: '理由4「若く見られます、年齢より若いですと書いて逆効果になっている」を説明するインフォグラフィック',
+    },
+    {
+      text: '理由5：相手への希望条件が現実とズレている',
+      src: 'assets/infographics/reason-5-unrealistic-conditions.png',
+      alt: '理由5「相手への希望条件が現実とズレている」を説明するインフォグラフィック',
+    },
+    {
+      text: '理由6：メッセージが重い・長い・距離感が近すぎる',
+      src: 'assets/infographics/reason-6-heavy-message.png',
+      alt: '理由6「メッセージが重い・長い・距離感が近すぎる」を説明するインフォグラフィック',
+    },
+    {
+      text: '理由7：会話の前に“おじさんっぽさ”が伝わってしまっている',
+      src: 'assets/infographics/reason-7-ojisan-vibe.png',
+      alt: '理由7「会話の前におじさんっぽさが伝わってしまっている」を説明するインフォグラフィック',
+    },
+  ];
+
+  reasonImages.forEach(({ text, src, alt }) => {
+    if (document.querySelector(`[data-src="${src}"]`)) return;
+    const heading = Array.from(document.querySelectorAll('.article-main h3')).find((h) => h.textContent.trim() === text);
+    if (!heading) return;
+    insertAfter(heading, createBareInfographic(src, alt));
+  });
 }
 
-function convertAgeReasonSectionToConversation() {
+function addSupportingReadingGuides() {
   const articlePage = document.querySelector('.article-page');
-  if (!articlePage || document.querySelector('.article-conversation-block--section')) return;
-  const articleBlocks = Array.from(document.querySelectorAll('.article-main .article-block'));
-  const targetBlock = articleBlocks.find((block) => block.textContent.includes('50代男性がマッチングアプリでいいねをもらえないのは「年齢だけ」が原因ではない'));
-  if (targetBlock) targetBlock.replaceWith(createAgeReasonConversation());
-}
-
-function addArticleReadingLayout() {
-  const articlePage = document.querySelector('.article-page');
-  if (!articlePage || document.querySelector('[data-reading-guide="true"]')) return;
+  if (!articlePage) return;
 
   const articleBlocks = Array.from(document.querySelectorAll('.article-main .article-block'));
   const introBlock = articleBlocks.find((block) => block.textContent.includes('この記事では、50代男性が'));
   const reasonBlock = articleBlocks.find((block) => block.textContent.includes('50代男性がマッチングアプリでいいねをもらえない主な理由'));
   const checklistBlock = articleBlocks.find((block) => block.textContent.includes('50代男性がまず見直すべき5つのポイント'));
   const finalBlock = articleBlocks.find((block) => block.textContent.includes('まとめ｜50代男性がいいねをもらえない理由'));
-  const ctaBlock = document.querySelector('.article-service-cta');
-  const photoReasonHeading = Array.from(document.querySelectorAll('.article-main h3')).find((heading) => heading.textContent.includes('理由1：プロフィール写真で清潔感や安心感が伝わっていない'));
 
-  const topConclusion = createElementFromHTML(`<aside class="article-summary-box article-summary-box--compact" data-reading-guide="true"><p class="article-summary-box__label">この記事の結論</p><h3>まず、ここだけ押さえれば大丈夫です。</h3><ul><li>年齢だけが原因ではない</li><li>写真・清潔感・プロフィールで改善できる</li><li>最初は写真から見直す</li></ul></aside>`);
-  const causeMap = createInfographic('assets/infographics/no-likes-cause-map.svg', 'いいねが来ない原因を、4つに分けて見る', '原因を一つに決めつけず、写真・清潔感・プロフィール文・メッセージに分けて確認します。画像をタップすると大きく開けます。');
-  const photoCleanlinessGraphic = createBareInfographic('assets/infographics/profile-photo-cleanliness.png', 'プロフィール写真で清潔感や安心感が伝わっていない理由を説明する図解');
-  const photoGraphic = createInfographic('assets/infographics/photo-checkpoints.svg', '写真で見られるポイント', '女性は顔立ちだけではなく、清潔感・明るさ・表情・背景から安心できる人かを見ています。画像をタップすると大きく開けます。');
-  const actionGraphic = createInfographic('assets/infographics/action-order.svg', '見直す順番', '全部を一気に直そうとせず、まず写真、次にプロフィール文、最後にメッセージの距離感を整えます。画像をタップすると大きく開けます。');
-  const rememberBox = createElementFromHTML(`<aside class="article-remember-box article-remember-box--compact" data-reading-guide="true"><p class="article-remember-box__label">ここだけ覚える</p><h3>50代だから終わり、ではありません。</h3><ul><li>年齢は変えられない</li><li>でも、写真・清潔感・文章・距離感は変えられる</li><li>見せ方を整えれば、出会いの入口は作れる</li></ul></aside>`);
+  if (introBlock && !document.querySelector('[data-guide="top-conclusion"]')) {
+    insertAfter(introBlock, createElementFromHTML(`
+      <aside class="article-summary-box article-summary-box--compact" data-reading-guide="true" data-guide="top-conclusion">
+        <p class="article-summary-box__label">この記事の結論</p>
+        <h3>まず、ここだけ押さえれば大丈夫です。</h3>
+        <ul><li>年齢だけが原因ではない</li><li>写真・清潔感・プロフィールで改善できる</li><li>最初は写真から見直す</li></ul>
+      </aside>
+    `));
+  }
 
-  insertAfter(introBlock, topConclusion);
-  insertAfter(topConclusion, causeMap);
-  insertAfter(photoReasonHeading, photoCleanlinessGraphic);
-  insertAfter(reasonBlock, photoGraphic);
-  insertAfter(checklistBlock, actionGraphic);
-  insertAfter(finalBlock, rememberBox);
+  const conclusion = document.querySelector('[data-guide="top-conclusion"]');
+  if (conclusion && !document.querySelector('[data-src="assets/infographics/no-likes-cause-map.svg"]')) {
+    insertAfter(conclusion, createLabeledInfographic(
+      'assets/infographics/no-likes-cause-map.svg',
+      'いいねが来ない原因を、4つに分けて見る',
+      '原因を一つに決めつけず、写真・清潔感・プロフィール文・メッセージに分けて確認します。画像をタップすると大きく開けます。'
+    ));
+  }
 
-  if (ctaBlock) {
-    const h2 = ctaBlock.querySelector('h2');
-    const p = ctaBlock.querySelector('p:not(.eyebrow)');
-    const btn = ctaBlock.querySelector('.btn');
-    if (h2) h2.textContent = '自分のプロフィールを見直したい方へ';
-    if (p) p.textContent = '写真・プロフィール文・メッセージのどこで損しているかを整理できます。';
-    if (btn) btn.textContent = 'プロフィールを見直す';
+  if (reasonBlock && !document.querySelector('[data-src="assets/infographics/photo-checkpoints.svg"]')) {
+    insertAfter(reasonBlock, createLabeledInfographic(
+      'assets/infographics/photo-checkpoints.svg',
+      '写真で見られるポイント',
+      '女性は顔立ちだけではなく、清潔感・明るさ・表情・背景から安心できる人かを見ています。画像をタップすると大きく開けます。'
+    ));
+  }
+
+  if (checklistBlock && !document.querySelector('[data-src="assets/infographics/action-order.svg"]')) {
+    insertAfter(checklistBlock, createLabeledInfographic(
+      'assets/infographics/action-order.svg',
+      '見直す順番',
+      '全部を一気に直そうとせず、まず写真、次にプロフィール文、最後にメッセージの距離感を整えます。画像をタップすると大きく開けます。'
+    ));
+  }
+
+  if (finalBlock && !document.querySelector('[data-guide="remember"]')) {
+    insertAfter(finalBlock, createElementFromHTML(`
+      <aside class="article-remember-box article-remember-box--compact" data-reading-guide="true" data-guide="remember">
+        <p class="article-remember-box__label">ここだけ覚える</p>
+        <h3>50代だから終わり、ではありません。</h3>
+        <ul><li>年齢は変えられない</li><li>でも、写真・清潔感・文章・距離感は変えられる</li><li>見せ方を整えれば、出会いの入口は作れる</li></ul>
+      </aside>
+    `));
   }
 }
 
-addArticleReadingLayout();
-convertIntroToConversation();
-convertAgeReasonSectionToConversation();
+document.querySelectorAll('img[src="assets/eyecatches/why-50s-men-get-no-likes.svg"]').forEach((img) => {
+  img.src = 'assets/eyecatches/why-50s-men-get-no-likes.png';
+});
+
+addSupportingReadingGuides();
+insertReasonInfographics();
 
 const visualFixes = document.createElement('style');
 visualFixes.textContent = `
@@ -174,7 +197,7 @@ visualFixes.textContent = `
   .article-page .article-block h2{margin-top:0!important;margin-bottom:1.1em!important;}
   .article-page .article-block h3{margin-top:2em!important;margin-bottom:.85em!important;}
   .article-infographic--large img{width:100%!important;max-width:none!important;}
-  .article-infographic--bare{padding:0!important;margin-top:14px!important;}
+  .article-infographic--bare{padding:0!important;margin-top:14px!important;margin-bottom:22px!important;overflow:hidden!important;background:#fff!important;}
   .article-infographic--bare a{display:block!important;}
   .article-infographic--bare img{display:block!important;width:100%!important;height:auto!important;border-radius:18px!important;}
   @media (min-width:901px){.article-page .article-layout{grid-template-columns:minmax(0,780px) 280px!important;justify-content:center!important;}}
