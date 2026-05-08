@@ -79,7 +79,7 @@ function createIntroConversation() {
           <p>この記事では、50代男性がマッチングアプリでいいねをもらえない理由と、まず見直すべきポイントを具体的に解説します。</p>
         </div>
         <div class="conversation-person">
-          <img class="conversation-person__image" src="assets/characters/03_ok_explain.png" alt="解説する先生キャラクター" />
+          <img class="conversation-person__image" src="assets/characters/teacher-new-explain.png" alt="解説する先生キャラクター" />
           <span class="conversation-person__label">先生</span>
         </div>
       </div>
