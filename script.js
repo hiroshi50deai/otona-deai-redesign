@@ -169,7 +169,7 @@ function addArticleReadingLayout() {
 
   const topConclusion = createElementFromHTML(`<aside class="article-summary-box article-summary-box--compact" data-reading-guide="true"><p class="article-summary-box__label">この記事の結論</p><h3>まず、ここだけ押さえれば大丈夫です。</h3><ul><li>年齢だけが原因ではない</li><li>写真・清潔感・プロフィールで改善できる</li><li>最初は写真から見直す</li></ul></aside>`);
   const causeMap = createInfographic('assets/infographics/no-likes-cause-map.svg', 'いいねが来ない原因を、4つに分けて見る', '原因を一つに決めつけず、写真・清潔感・プロフィール文・メッセージに分けて確認します。画像をタップすると大きく開けます。');
-  const photoCleanlinessGraphic = createInfographic('assets/infographics/profile-photo-cleanliness.svg', 'プロフィール写真で清潔感や安心感が伝わっていない理由', '写真の数秒で、清潔感・安心感・話しかけやすさが判断されます。画像をタップすると大きく開けます。');
+  const photoCleanlinessGraphic = createInfographic('assets/infographics/profile-photo-cleanliness.png', 'プロフィール写真で清潔感や安心感が伝わっていない理由', '写真の数秒で、清潔感・安心感・話しかけやすさが判断されます。画像をタップすると大きく開けます。');
   const photoGraphic = createInfographic('assets/infographics/photo-checkpoints.svg', '写真で見られるポイント', '女性は顔立ちだけではなく、清潔感・明るさ・表情・背景から安心できる人かを見ています。画像をタップすると大きく開けます。');
   const actionGraphic = createInfographic('assets/infographics/action-order.svg', '見直す順番', '全部を一気に直そうとせず、まず写真、次にプロフィール文、最後にメッセージの距離感を整えます。画像をタップすると大きく開けます。');
   const rememberBox = createElementFromHTML(`<aside class="article-remember-box article-remember-box--compact" data-reading-guide="true"><p class="article-remember-box__label">ここだけ覚える</p><h3>50代だから終わり、ではありません。</h3><ul><li>年齢は変えられない</li><li>でも、写真・清潔感・文章・距離感は変えられる</li><li>見せ方を整えれば、出会いの入口は作れる</li></ul></aside>`);
