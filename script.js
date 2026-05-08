@@ -103,6 +103,107 @@ function createIntroConversation() {
   `);
 }
 
+function createAgeReasonConversation() {
+  return createElementFromHTML(`
+    <section class="article-conversation-block article-conversation-block--section" aria-label="年齢だけが原因ではない理由の会話">
+      <h2 class="article-conversation-block__title">50代男性がマッチングアプリでいいねをもらえないのは「年齢だけ」が原因ではない</h2>
+
+      <div class="conversation-row-v2 conversation-row-v2--student">
+        <div class="conversation-person">
+          <div class="conversation-person__image conversation-person__image--student" aria-hidden="true">50</div>
+          <span class="conversation-person__label">生徒・50代男性</span>
+        </div>
+        <div class="conversation-bubble-v2">
+          <p>先生、やっぱり50代男性がマッチングアプリで不利になることはあるんですよね。</p>
+          <p>女性はプロフィールを見るときに、まず年齢を確認しますよね。</p>
+        </div>
+      </div>
+
+      <div class="conversation-row-v2 conversation-row-v2--teacher">
+        <div class="conversation-bubble-v2">
+          <p>はい。そこは率直に言うと、50代男性が不利になる場面はあります。</p>
+          <p>年齢差が大きい相手を避ける女性もいますし、アプリによっては利用者層が若く、50代男性がそもそも見られにくいこともあります。</p>
+          <p>だから、年齢の影響がゼロだとは言えません。</p>
+        </div>
+        <div class="conversation-person">
+          <img class="conversation-person__image" src="assets/characters/teacher-new-explain.png" alt="解説する先生キャラクター" />
+          <span class="conversation-person__label">先生</span>
+        </div>
+      </div>
+
+      <div class="conversation-row-v2 conversation-row-v2--student">
+        <div class="conversation-person">
+          <div class="conversation-person__image conversation-person__image--student" aria-hidden="true">50</div>
+          <span class="conversation-person__label">生徒・50代男性</span>
+        </div>
+        <div class="conversation-bubble-v2">
+          <p>やっぱりそうなんですね。</p>
+          <p>そうなると、「50代だから無理」「おじさんだから相手にされない」と考えてしまいます。</p>
+          <p>もう何をしても意味がないのかな、と感じてしまうんです。</p>
+        </div>
+      </div>
+
+      <div class="conversation-row-v2 conversation-row-v2--teacher">
+        <div class="conversation-bubble-v2">
+          <p>でも、問題はそこからです。</p>
+          <p>いいねをもらえない理由を「年齢だけ」で片づけてしまうと、本当は改善できる部分まで見えなくなってしまいます。</p>
+          <p>年齢は変えられませんが、見せ方は変えられます。</p>
+        </div>
+        <div class="conversation-person">
+          <img class="conversation-person__image" src="assets/characters/teacher-new-explain.png" alt="解説する先生キャラクター" />
+          <span class="conversation-person__label">先生</span>
+        </div>
+      </div>
+
+      <div class="conversation-row-v2 conversation-row-v2--student">
+        <div class="conversation-person">
+          <div class="conversation-person__image conversation-person__image--student" aria-hidden="true">50</div>
+          <span class="conversation-person__label">生徒・50代男性</span>
+        </div>
+        <div class="conversation-bubble-v2">
+          <p>見せ方というのは、写真やプロフィールのことですか？</p>
+          <p>中身が誠実でも、画面上で伝わっていなければダメということですか？</p>
+        </div>
+      </div>
+
+      <div class="conversation-row-v2 conversation-row-v2--teacher">
+        <div class="conversation-bubble-v2">
+          <p>その通りです。</p>
+          <p>マッチングアプリでは、女性はあなたの中身をいきなり知ることはできません。</p>
+          <p>最初に見るのは、写真・年齢・プロフィール文・雰囲気です。</p>
+          <p>つまり、あなた自身の価値というより、画面上でどう見えているかが大きく影響します。</p>
+        </div>
+        <div class="conversation-person">
+          <img class="conversation-person__image" src="assets/characters/teacher-new-explain.png" alt="解説する先生キャラクター" />
+          <span class="conversation-person__label">先生</span>
+        </div>
+      </div>
+
+      <div class="conversation-row-v2 conversation-row-v2--student">
+        <div class="conversation-person">
+          <div class="conversation-person__image conversation-person__image--student" aria-hidden="true">50</div>
+          <span class="conversation-person__label">生徒・50代男性</span>
+        </div>
+        <div class="conversation-bubble-v2">
+          <p>たしかに、現実の自分が誠実でも、写真が暗かったり、服装がくたびれていたり、プロフィール文が雑だったら、伝わらないですよね。</p>
+        </div>
+      </div>
+
+      <div class="conversation-row-v2 conversation-row-v2--teacher">
+        <div class="conversation-bubble-v2">
+          <p>はい。逆に、特別なイケメンでなくても、写真・清潔感・文章・距離感が整っていれば、「この人なら話してみてもいいかもしれない」と思われる可能性は十分にあります。</p>
+          <p>50代男性に必要なのは、若者の真似ではありません。</p>
+          <p>大人の男性として、女性に安心して見てもらえる状態に整えることです。</p>
+        </div>
+        <div class="conversation-person">
+          <img class="conversation-person__image" src="assets/characters/teacher-new-explain.png" alt="解説する先生キャラクター" />
+          <span class="conversation-person__label">先生</span>
+        </div>
+      </div>
+    </section>
+  `);
+}
+
 function convertIntroToConversation() {
   const articlePage = document.querySelector('.article-page');
   if (!articlePage || document.querySelector('.article-conversation-block')) return;
@@ -112,6 +213,17 @@ function convertIntroToConversation() {
   if (!introBlock) return;
 
   introBlock.replaceWith(createIntroConversation());
+}
+
+function convertAgeReasonSectionToConversation() {
+  const articlePage = document.querySelector('.article-page');
+  if (!articlePage || document.querySelector('.article-conversation-block--section')) return;
+
+  const articleBlocks = Array.from(document.querySelectorAll('.article-main .article-block'));
+  const targetBlock = articleBlocks.find((block) => block.textContent.includes('50代男性がマッチングアプリでいいねをもらえないのは「年齢だけ」が原因ではない'));
+  if (!targetBlock) return;
+
+  targetBlock.replaceWith(createAgeReasonConversation());
 }
 
 function addArticleReadingLayout() {
@@ -185,6 +297,7 @@ function addArticleReadingLayout() {
 
 addArticleReadingLayout();
 convertIntroToConversation();
+convertAgeReasonSectionToConversation();
 
 const visualFixes = document.createElement('style');
 visualFixes.textContent = `
