@@ -298,8 +298,8 @@ const visualFixes = document.createElement('style');
 visualFixes.textContent = `
   .hero-guide::before{content:none!important;display:none!important;background:none!important;opacity:0!important;}
   .conversation-person__image--student{display:grid!important;place-items:center!important;background:linear-gradient(135deg,#eef3fb,#fff)!important;color:#152a4d!important;font-weight:900!important;font-size:1.45rem!important;}
-  .conversation-person__image--student-character{display:block!important;background:transparent!important;border-radius:0!important;box-shadow:none!important;overflow:visible!important;color:transparent!important;}
-  .conversation-person__image--student-character img{display:block!important;width:88px!important;height:88px!important;max-width:none!important;object-fit:contain!important;filter:drop-shadow(0 8px 12px rgba(21,42,77,.12))!important;}
+  .conversation-person__image--student-character{display:flex!important;align-items:center!important;justify-content:center!important;width:56px!important;height:72px!important;box-sizing:border-box!important;background:#fff!important;border:2px solid #f3b7c4!important;border-radius:14px!important;box-shadow:none!important;overflow:hidden!important;color:transparent!important;}
+  .conversation-person__image--student-character img{display:block!important;width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;object-fit:contain!important;object-position:center bottom!important;filter:none!important;}
   .character-img{filter:drop-shadow(0 12px 18px rgba(21,42,77,.10))!important;}
   .article-page .article-main{gap:34px!important;}
   .article-page .article-block{padding:clamp(26px,4.2vw,46px)!important;}
@@ -313,7 +313,10 @@ visualFixes.textContent = `
   @media (min-width:901px){.article-page .article-layout{grid-template-columns:minmax(0,780px) 280px!important;justify-content:center!important;}}
   @media (max-width:640px){
     .character-img,.hero-character,.small-character,.medium-character{filter:none!important;}
-    .conversation-person__image--student-character img{width:70px!important;height:70px!important;filter:none!important;}
+    .conversation-person{min-width:58px!important;max-width:58px!important;align-items:center!important;}
+    .conversation-person__image--student-character{width:48px!important;height:62px!important;border-radius:12px!important;overflow:hidden!important;}
+    .conversation-person__image--student-character img{width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;object-fit:contain!important;object-position:center bottom!important;transform:none!important;margin:0!important;}
+    .conversation-person__label{font-size:10px!important;line-height:1.2!important;padding:4px 5px!important;max-width:58px!important;white-space:normal!important;}
     .article-page .article-hero-guide{display:none!important;}
     .article-page .article-hero{padding-top:24px!important;padding-bottom:28px!important;}
     .article-page .article-main>figure.article-block:first-child{display:none!important;}
