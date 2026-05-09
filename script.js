@@ -52,7 +52,67 @@ function normalizeCharacterImages() {
   });
 }
 
+function chooseStudentAvatar(bubbleText) {
+  const text = bubbleText || '';
+
+  if (/ひえ|不安|焦|困|悩|無理|相手にされない|いいねが来ない|マッチしません|意味がない|心当たり/.test(text)) {
+    return 'assets/characters/student-male-60s-worried.png';
+  }
+
+  if (/落ち込|ダメ|全部やって|反応しづら|損/.test(text)) {
+    return 'assets/characters/student-male-60s-depressed.png';
+  }
+
+  if (/でしょうか|ですか|なんですか|？|\?/.test(text)) {
+    return 'assets/characters/student-male-60s-question.png';
+  }
+
+  if (/ふむふむ|なるほど|たしかに|納得|分かりました|現実的|大事なんですね|そういうこと/.test(text)) {
+    return 'assets/characters/student-male-60s-understanding.png';
+  }
+
+  if (/安心|よかった|少し楽|ほっと|大丈夫/.test(text)) {
+    return 'assets/characters/student-male-60s-relieved.png';
+  }
+
+  if (/やってみ|頑張|前向き|変えてみ|整え|改善できそう|見直してみ/.test(text)) {
+    return 'assets/characters/student-male-60s-motivated.png';
+  }
+
+  return 'assets/characters/student-male-60s-question.png';
+}
+
+function enhanceStudentAvatars() {
+  document.querySelectorAll('.conversation-row-v2 .conversation-person').forEach((person) => {
+    const label = person.querySelector('.conversation-person__label');
+    if (!label || !label.textContent.includes('生徒')) return;
+
+    const avatar = person.querySelector('.conversation-person__image--student');
+    if (!avatar || avatar.querySelector('img')) return;
+
+    const row = person.closest('.conversation-row-v2');
+    const bubbleText = row?.querySelector('.conversation-bubble-v2')?.textContent || '';
+    const src = chooseStudentAvatar(bubbleText);
+    const fallbackText = avatar.textContent.trim() || '50';
+
+    avatar.textContent = '';
+    avatar.classList.add('conversation-person__image--student-character');
+
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = '生徒・50代男性';
+    img.loading = 'lazy';
+    img.addEventListener('error', () => {
+      avatar.classList.remove('conversation-person__image--student-character');
+      avatar.textContent = fallbackText;
+    }, { once: true });
+
+    avatar.appendChild(img);
+  });
+}
+
 normalizeCharacterImages();
+enhanceStudentAvatars();
 
 if (navToggle && siteNav) {
   navToggle.addEventListener('click', () => {
@@ -232,11 +292,14 @@ document.querySelectorAll('img[src="assets/eyecatches/why-50s-men-get-no-likes.s
 addSupportingReadingGuides();
 insertReasonInfographics();
 normalizeCharacterImages();
+enhanceStudentAvatars();
 
 const visualFixes = document.createElement('style');
 visualFixes.textContent = `
   .hero-guide::before{content:none!important;display:none!important;background:none!important;opacity:0!important;}
   .conversation-person__image--student{display:grid!important;place-items:center!important;background:linear-gradient(135deg,#eef3fb,#fff)!important;color:#152a4d!important;font-weight:900!important;font-size:1.45rem!important;}
+  .conversation-person__image--student-character{display:block!important;background:transparent!important;border-radius:0!important;box-shadow:none!important;overflow:visible!important;color:transparent!important;}
+  .conversation-person__image--student-character img{display:block!important;width:88px!important;height:88px!important;max-width:none!important;object-fit:contain!important;filter:drop-shadow(0 8px 12px rgba(21,42,77,.12))!important;}
   .character-img{filter:drop-shadow(0 12px 18px rgba(21,42,77,.10))!important;}
   .article-page .article-main{gap:34px!important;}
   .article-page .article-block{padding:clamp(26px,4.2vw,46px)!important;}
@@ -250,6 +313,7 @@ visualFixes.textContent = `
   @media (min-width:901px){.article-page .article-layout{grid-template-columns:minmax(0,780px) 280px!important;justify-content:center!important;}}
   @media (max-width:640px){
     .character-img,.hero-character,.small-character,.medium-character{filter:none!important;}
+    .conversation-person__image--student-character img{width:70px!important;height:70px!important;filter:none!important;}
     .article-page .article-hero-guide{display:none!important;}
     .article-page .article-hero{padding-top:24px!important;padding-bottom:28px!important;}
     .article-page .article-main>figure.article-block:first-child{display:none!important;}
