@@ -90,7 +90,7 @@ function insertReasonInfographics() {
     },
     {
       text: '理由3：プロフィール文が「何者か分からない」内容になっている',
-      src: 'assets/infographics/reason-3-profile-unknown.png',
+      src: 'assets/infographics/reason-7-ojisan-vibe.png',
       alt: '理由3「プロフィール文が何者か分からない内容になっている」を説明するインフォグラフィック',
     },
     {
@@ -105,20 +105,33 @@ function insertReasonInfographics() {
     },
     {
       text: '理由6：メッセージが重い・長い・距離感が近すぎる',
-      src: 'assets/infographics/reason-6-heavy-message.png',
+      src: 'assets/infographics/reason-3-profile-unknown.png',
       alt: '理由6「メッセージが重い・長い・距離感が近すぎる」を説明するインフォグラフィック',
     },
     {
       text: '理由7：会話の前に“おじさんっぽさ”が伝わってしまっている',
-      src: 'assets/infographics/reason-7-ojisan-vibe.png',
+      src: 'assets/infographics/reason-6-heavy-message.png',
       alt: '理由7「会話の前におじさんっぽさが伝わってしまっている」を説明するインフォグラフィック',
     },
   ];
 
   reasonImages.forEach(({ text, src, alt }) => {
-    if (document.querySelector(`[data-src="${src}"]`)) return;
     const heading = Array.from(document.querySelectorAll('.article-main h3')).find((h) => h.textContent.trim() === text);
     if (!heading) return;
+
+    const next = heading.nextElementSibling;
+    if (next && next.classList && next.classList.contains('reason-infographic')) {
+      const link = next.querySelector('a');
+      const img = next.querySelector('img');
+      if (link) link.href = src;
+      if (img) {
+        img.src = src;
+        img.alt = alt;
+      }
+      next.dataset.src = src;
+      return;
+    }
+
     insertAfter(heading, createBareInfographic(src, alt));
   });
 }
