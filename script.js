@@ -12,14 +12,47 @@ const characterImageReplacements = {
   'assets/characters/02_worry.png': 'assets/characters/teacher-new-worry.png',
   'assets/characters/03_ok_explain.png': 'assets/characters/teacher-new-explain.png',
   'assets/characters/04_gentle_cta.png': 'assets/characters/teacher-new-cta.png',
+
+  // Sakura assistant assets: normalize older or guessed names to existing files.
+  'assets/characters/sakura-worry.png': 'assets/characters/sakura-think.png',
+  'assets/characters/sakura-thought.png': 'assets/characters/sakura-think.png',
+  'assets/characters/sakura-listen.png': 'assets/characters/sakura-support.png',
+  'assets/characters/sakura-guide.png': 'assets/characters/sakura-point.png',
+
+  // Teacher aliases used in some draft conversation blocks.
+  'assets/characters/teacher-point.png': 'assets/characters/teacher-new-explain.png',
+  'assets/characters/teacher-explain.png': 'assets/characters/teacher-new-explain.png',
+  'assets/characters/teacher-calm.png': 'assets/characters/teacher-new-explain.png',
+  'assets/characters/teacher-smile.png': 'assets/characters/teacher-new-explain.png',
 };
 
-document.querySelectorAll('img').forEach((img) => {
-  const currentSrc = img.getAttribute('src');
-  if (currentSrc && characterImageReplacements[currentSrc]) {
-    img.src = characterImageReplacements[currentSrc];
-  }
-});
+function normalizeCharacterImages() {
+  document.querySelectorAll('img').forEach((img) => {
+    const currentSrc = img.getAttribute('src');
+    if (currentSrc && characterImageReplacements[currentSrc]) {
+      img.src = characterImageReplacements[currentSrc];
+    }
+
+    img.addEventListener('error', () => {
+      const failedSrc = img.getAttribute('src');
+      if (failedSrc && characterImageReplacements[failedSrc]) {
+        img.src = characterImageReplacements[failedSrc];
+        return;
+      }
+
+      if (failedSrc && failedSrc.includes('sakura-')) {
+        img.src = 'assets/characters/sakura-think.png';
+        return;
+      }
+
+      if (failedSrc && failedSrc.includes('teacher')) {
+        img.src = 'assets/characters/teacher-new-explain.png';
+      }
+    }, { once: true });
+  });
+}
+
+normalizeCharacterImages();
 
 if (navToggle && siteNav) {
   navToggle.addEventListener('click', () => {
@@ -198,6 +231,7 @@ document.querySelectorAll('img[src="assets/eyecatches/why-50s-men-get-no-likes.s
 
 addSupportingReadingGuides();
 insertReasonInfographics();
+normalizeCharacterImages();
 
 const visualFixes = document.createElement('style');
 visualFixes.textContent = `
