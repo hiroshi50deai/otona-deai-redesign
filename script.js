@@ -101,61 +101,10 @@ if (navToggle && siteNav) {
   });
 }
 
-function createElementFromHTML(html) {
-  const template = document.createElement('template');
-  template.innerHTML = html.trim();
-  return template.content.firstElementChild;
-}
-
-function insertAfter(target, element) {
-  if (!target || !target.parentElement || !element) return;
-  target.parentElement.insertBefore(element, target.nextSibling);
-}
-
-function createBareInfographic(src, alt, extraClass = '') {
-  return createElementFromHTML(`<figure class="article-infographic article-infographic--large article-infographic--bare ${extraClass}" data-reading-guide="true" data-src="${src}"><a href="${src}" target="_blank" rel="noopener"><img src="${src}" alt="${alt}" loading="lazy" /></a></figure>`);
-}
-
-function insertReasonInfographics() {
-  const articlePage = document.querySelector('.article-page');
-  if (!articlePage) return;
-
-  const reasonImages = [
-    ['理由1：プロフィール写真で清潔感や安心感が伝わっていない', 'assets/infographics/profile-photo-cleanliness.png', '理由1「プロフィール写真で清潔感や安心感が伝わっていない」を説明するインフォグラフィック'],
-    ['理由2：自撮り・無表情・生活感の強い写真で損をしている', 'assets/infographics/profile_photo_advice_for_men_40s_50s.png', '理由2「自撮り・無表情・生活感の強い写真で損をしている」を説明するインフォグラフィック'],
-    ['理由3：プロフィール文が「何者か分からない」内容になっている', 'assets/infographics/reason-7-ojisan-vibe.png', '理由3「プロフィール文が何者か分からない内容になっている」を説明するインフォグラフィック'],
-    ['理由4：「若く見られます」「年齢より若いです」と書いて逆効果になっている', 'assets/infographics/reason-4-young-appeal-backfire.png', '理由4「若く見られます、年齢より若いですと書いて逆効果になっている」を説明するインフォグラフィック'],
-    ['理由5：相手への希望条件が現実とズレている', 'assets/infographics/reason-5-unrealistic-conditions.png', '理由5「相手への希望条件が現実とズレている」を説明するインフォグラフィック'],
-    ['理由6：メッセージが重い・長い・距離感が近すぎる', 'assets/infographics/reason-3-profile-unknown.png', '理由6「メッセージが重い・長い・距離感が近すぎる」を説明するインフォグラフィック'],
-    ['理由7：会話の前に“おじさんっぽさ”が伝わってしまっている', 'assets/infographics/reason-6-heavy-message.png', '理由7「会話の前におじさんっぽさが伝わってしまっている」を説明するインフォグラフィック'],
-  ];
-
-  reasonImages.forEach(([text, src, alt]) => {
-    const heading = Array.from(document.querySelectorAll('.article-main h3')).find((h) => h.textContent.trim() === text);
-    if (!heading) return;
-
-    const next = heading.nextElementSibling;
-    if (next && next.classList && next.classList.contains('reason-infographic')) {
-      const link = next.querySelector('a');
-      const img = next.querySelector('img');
-      if (link) link.href = src;
-      if (img) {
-        img.src = src;
-        img.alt = alt;
-      }
-      next.dataset.src = src;
-      return;
-    }
-
-    insertAfter(heading, createBareInfographic(src, alt, 'reason-infographic'));
-  });
-}
-
 document.querySelectorAll('img[src="assets/eyecatches/why-50s-men-get-no-likes.svg"]').forEach((img) => {
   img.src = 'assets/eyecatches/why-50s-men-get-no-likes.png';
 });
 
-insertReasonInfographics();
 normalizeCharacterImages();
 enhanceStudentAvatars();
 
