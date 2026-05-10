@@ -123,6 +123,9 @@ markSakuraSpeakers();
 const visualFixes = document.createElement('style');
 visualFixes.textContent = `
   .hero-guide::before{content:none!important;display:none!important;background:none!important;opacity:0!important;}
+  .conversation-row-v2--teacher:not(.conversation-row-v2--sakura) .conversation-person__label{background:#b99a5b!important;color:#fff!important;}
+  .conversation-row-v2--teacher:not(.conversation-row-v2--sakura) .conversation-person__image{border-color:rgba(185,154,91,.42)!important;}
+  .conversation-row-v2--teacher:not(.conversation-row-v2--sakura) .conversation-bubble-v2{background:#fff8ea!important;border-color:rgba(185,154,91,.24)!important;}
   .conversation-person--sakura .conversation-person__label{background:#e87aa4!important;color:#fff!important;}
   .conversation-row-v2--sakura .conversation-person__image{border-color:rgba(232,122,164,.42)!important;}
   .conversation-row-v2--sakura .conversation-bubble-v2{background:#fff7fb!important;border-color:rgba(232,122,164,.24)!important;}
