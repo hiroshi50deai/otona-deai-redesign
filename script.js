@@ -86,6 +86,17 @@ function enhanceStudentAvatars() {
   });
 }
 
+function markSakuraSpeakers() {
+  document.querySelectorAll('.conversation-row-v2 .conversation-person').forEach((person) => {
+    const label = person.querySelector('.conversation-person__label');
+    if (!label || label.textContent.trim() !== 'さくら') return;
+
+    person.classList.add('conversation-person--sakura');
+    const row = person.closest('.conversation-row-v2');
+    if (row) row.classList.add('conversation-row-v2--sakura');
+  });
+}
+
 if (navToggle && siteNav) {
   navToggle.addEventListener('click', () => {
     const isOpen = siteNav.classList.toggle('is-open');
@@ -107,10 +118,14 @@ document.querySelectorAll('img[src="assets/eyecatches/why-50s-men-get-no-likes.s
 
 normalizeCharacterImages();
 enhanceStudentAvatars();
+markSakuraSpeakers();
 
 const visualFixes = document.createElement('style');
 visualFixes.textContent = `
   .hero-guide::before{content:none!important;display:none!important;background:none!important;opacity:0!important;}
+  .conversation-person--sakura .conversation-person__label{background:#e87aa4!important;color:#fff!important;}
+  .conversation-row-v2--sakura .conversation-person__image{border-color:rgba(232,122,164,.42)!important;}
+  .conversation-row-v2--sakura .conversation-bubble-v2{background:#fff7fb!important;border-color:rgba(232,122,164,.24)!important;}
   .conversation-person__image--student{display:grid!important;place-items:center!important;background:transparent!important;color:#152a4d!important;font-weight:900!important;font-size:1.45rem!important;border:0!important;box-shadow:none!important;}
   .conversation-person__image--student-character{display:flex!important;align-items:center!important;justify-content:center!important;width:72px!important;height:82px!important;box-sizing:border-box!important;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;overflow:visible!important;color:transparent!important;}
   .conversation-person__image--student-character img{display:block!important;width:72px!important;height:82px!important;max-width:none!important;max-height:none!important;object-fit:contain!important;object-position:center bottom!important;filter:none!important;background:transparent!important;border:0!important;box-shadow:none!important;border-radius:0!important;}
