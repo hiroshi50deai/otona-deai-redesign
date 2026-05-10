@@ -160,23 +160,12 @@ function addSupportingReadingGuides() {
   const reasonBlock = articleBlocks.find((block) => block.textContent.includes('50代男性がマッチングアプリでいいねをもらえない主な理由'));
   const checklistBlock = articleBlocks.find((block) => block.textContent.includes('50代男性がまず見直すべき5つのポイント'));
   const finalBlock = articleBlocks.find((block) => block.textContent.includes('まとめ｜50代男性がいいねをもらえない理由'));
-
-  if (introBlock && !document.querySelector('[data-guide="top-conclusion"]')) {
-    insertAfter(introBlock, createElementFromHTML(`<aside class="article-summary-box article-summary-box--compact" data-reading-guide="true" data-guide="top-conclusion"><p class="article-summary-box__label">この記事の結論</p><h3>まず、ここだけ押さえれば大丈夫です。</h3><ul><li>年齢だけが原因ではない</li><li>写真・清潔感・プロフィールで改善できる</li><li>最初は写真から見直す</li></ul></aside>`));
-  }
+  if (introBlock && !document.querySelector('[data-guide="top-conclusion"]')) insertAfter(introBlock, createElementFromHTML(`<aside class="article-summary-box article-summary-box--compact" data-reading-guide="true" data-guide="top-conclusion"><p class="article-summary-box__label">この記事の結論</p><h3>まず、ここだけ押さえれば大丈夫です。</h3><ul><li>年齢だけが原因ではない</li><li>写真・清潔感・プロフィールで改善できる</li><li>最初は写真から見直す</li></ul></aside>`));
   const conclusion = document.querySelector('[data-guide="top-conclusion"]');
-  if (conclusion && !document.querySelector('[data-src="assets/infographics/no-likes-cause-map.svg"]')) {
-    insertAfter(conclusion, createLabeledInfographic('assets/infographics/no-likes-cause-map.svg', 'いいねが来ない原因を、4つに分けて見る', '原因を一つに決めつけず、写真・清潔感・プロフィール文・メッセージに分けて確認します。画像をタップすると大きく開けます。'));
-  }
-  if (reasonBlock && !document.querySelector('[data-src="assets/infographics/photo-checkpoints.svg"]')) {
-    insertAfter(reasonBlock, createLabeledInfographic('assets/infographics/photo-checkpoints.svg', '写真で見られるポイント', '女性は顔立ちだけではなく、清潔感・明るさ・表情・背景から安心できる人かを見ています。画像をタップすると大きく開けます。'));
-  }
-  if (checklistBlock && !document.querySelector('[data-src="assets/infographics/action-order.svg"]')) {
-    insertAfter(checklistBlock, createLabeledInfographic('assets/infographics/action-order.svg', '見直す順番', '全部を一気に直そうとせず、まず写真、次にプロフィール文、最後にメッセージの距離感を整えます。画像をタップすると大きく開けます。'));
-  }
-  if (finalBlock && !document.querySelector('[data-guide="remember"]')) {
-    insertAfter(finalBlock, createElementFromHTML(`<aside class="article-remember-box article-remember-box--compact" data-reading-guide="true" data-guide="remember"><p class="article-remember-box__label">ここだけ覚える</p><h3>50代だから終わり、ではありません。</h3><ul><li>年齢は変えられない</li><li>でも、写真・清潔感・文章・距離感は変えられる</li><li>見せ方を整えれば、出会いの入口は作れる</li></ul></aside>`));
-  }
+  if (conclusion && !document.querySelector('[data-src="assets/infographics/no-likes-cause-map.svg"]')) insertAfter(conclusion, createLabeledInfographic('assets/infographics/no-likes-cause-map.svg', 'いいねが来ない原因を、4つに分けて見る', '原因を一つに決めつけず、写真・清潔感・プロフィール文・メッセージに分けて確認します。画像をタップすると大きく開けます。'));
+  if (reasonBlock && !document.querySelector('[data-src="assets/infographics/photo-checkpoints.svg"]')) insertAfter(reasonBlock, createLabeledInfographic('assets/infographics/photo-checkpoints.svg', '写真で見られるポイント', '女性は顔立ちだけではなく、清潔感・明るさ・表情・背景から安心できる人かを見ています。画像をタップすると大きく開けます。'));
+  if (checklistBlock && !document.querySelector('[data-src="assets/infographics/action-order.svg"]')) insertAfter(checklistBlock, createLabeledInfographic('assets/infographics/action-order.svg', '見直す順番', '全部を一気に直そうとせず、まず写真、次にプロフィール文、最後にメッセージの距離感を整えます。画像をタップすると大きく開けます。'));
+  if (finalBlock && !document.querySelector('[data-guide="remember"]')) insertAfter(finalBlock, createElementFromHTML(`<aside class="article-remember-box article-remember-box--compact" data-reading-guide="true" data-guide="remember"><p class="article-remember-box__label">ここだけ覚える</p><h3>50代だから終わり、ではありません。</h3><ul><li>年齢は変えられない</li><li>でも、写真・清潔感・文章・距離感は変えられる</li><li>見せ方を整えれば、出会いの入口は作れる</li></ul></aside>`));
 }
 
 function checklistTextList(items) {
@@ -187,29 +176,29 @@ function checklistFigure(src, alt) {
   return `<figure class="article-infographic article-infographic--large article-infographic--bare checklist-infographic" data-reading-guide="true" data-src="${src}"><a href="${src}" target="_blank" rel="noopener"><img src="${src}" alt="${alt}" loading="lazy" /></a></figure>`;
 }
 
+function removeImageLessChecklistDuplicates() {
+  const checklistTitle = 'いいねが来ないときに、年齢のせいにする前に確認したいチェックリスト';
+  document.querySelectorAll('.article-main .article-block').forEach((block) => {
+    const h2 = block.querySelector('h2');
+    if (!h2 || h2.textContent.trim() !== checklistTitle) return;
+    const hasChecklistImage = block.querySelector('img[src*="profile-photo-checklist-50s-men"], img[src*="cleanliness-checklist-50s-men"], img[src*="profile-text-checklist-50s-men"], img[src*="message-checklist-50s-men"]');
+    if (!hasChecklistImage) block.remove();
+  });
+}
+
 function insertChecklistInfographics() {
   const articlePage = document.querySelector('.article-page');
-  if (!articlePage || document.querySelector('[data-guide="checklist-infographics-section"]')) return;
-
+  if (!articlePage) return;
+  removeImageLessChecklistDuplicates();
+  if (document.querySelector('[data-guide="checklist-infographics-section"]')) return;
   const finalBlock = Array.from(document.querySelectorAll('.article-main .article-block')).find((block) => block.textContent.includes('まとめ｜50代男性がいいねをもらえない理由'));
   const serviceCta = document.querySelector('.article-service-cta');
   const anchor = finalBlock || serviceCta || document.querySelector('.article-main .article-block:last-of-type');
-
   const photoText = checklistTextList(['メイン写真は明るい場所で撮れているか', '顔がはっきり分かるか', '無表情で怖く見えていないか', '服装に清潔感があるか', '自撮り感が強すぎないか', '昔の写真を使っていないか', 'サブ写真が3〜5枚入っているか']);
   const cleanText = checklistTextList(['髪型は整っているか', '眉やひげが放置されていないか', '服がヨレていないか', '靴やバッグがくたびれていないか', '肌が脂っぽく見えていないか', '姿勢が悪く見えていないか']);
   const profileText = checklistTextList(['自分がどんな人か伝わるか', '休日の過ごし方が書かれているか', '会話のきっかけがあるか', '自虐が入っていないか', '若く見られるアピールをしすぎていないか', '相手への条件ばかり書いていないか']);
   const messageText = checklistTextList(['最初から長文になっていないか', 'いきなり会おうとしていないか', '褒め方が外見に偏っていないか', '説教や自分語りになっていないか', '相手が返信しやすい質問になっているか']);
-
-  const section = createElementFromHTML(`
-    <section class="article-block article-checklist-infographics" data-guide="checklist-infographics-section">
-      <h2>いいねが来ないときに、年齢のせいにする前に確認したいチェックリスト</h2>
-      <p>写真・清潔感・プロフィール文・メッセージの4つを順番に見直すと、改善すべきポイントが分かりやすくなります。画像だけで終わらせず、実際に確認できる項目も本文として整理しました。</p>
-      <h3>写真のチェック</h3>${photoText}${checklistFigure('assets/infographics/profile-photo-checklist-50s-men.png', '50代男性向けプロフィール写真のチェック項目をまとめたインフォグラフィック')}
-      <h3>清潔感のチェック</h3>${cleanText}${checklistFigure('assets/infographics/cleanliness-checklist-50s-men.png', '50代男性向け清潔感のチェック項目をまとめたインフォグラフィック')}
-      <h3>プロフィール文のチェック</h3>${profileText}${checklistFigure('assets/infographics/profile-text-checklist-50s-men.png', '50代男性向けプロフィール文のチェック項目をまとめたインフォグラフィック')}
-      <h3>メッセージのチェック</h3>${messageText}${checklistFigure('assets/infographics/message-checklist-50s-men.png', '50代男性向けメッセージのチェック項目をまとめたインフォグラフィック')}
-    </section>
-  `);
+  const section = createElementFromHTML(`<section class="article-block article-checklist-infographics" data-guide="checklist-infographics-section"><h2>いいねが来ないときに、年齢のせいにする前に確認したいチェックリスト</h2><p>写真・清潔感・プロフィール文・メッセージの4つを順番に見直すと、改善すべきポイントが分かりやすくなります。画像だけで終わらせず、実際に確認できる項目も本文として整理しました。</p><h3>写真のチェック</h3>${photoText}${checklistFigure('assets/infographics/profile-photo-checklist-50s-men.png', '50代男性向けプロフィール写真のチェック項目をまとめたインフォグラフィック')}<h3>清潔感のチェック</h3>${cleanText}${checklistFigure('assets/infographics/cleanliness-checklist-50s-men.png', '50代男性向け清潔感のチェック項目をまとめたインフォグラフィック')}<h3>プロフィール文のチェック</h3>${profileText}${checklistFigure('assets/infographics/profile-text-checklist-50s-men.png', '50代男性向けプロフィール文のチェック項目をまとめたインフォグラフィック')}<h3>メッセージのチェック</h3>${messageText}${checklistFigure('assets/infographics/message-checklist-50s-men.png', '50代男性向けメッセージのチェック項目をまとめたインフォグラフィック')}</section>`);
   if (anchor && anchor.parentElement) anchor.parentElement.insertBefore(section, anchor);
 }
 
@@ -222,6 +211,7 @@ insertReasonInfographics();
 insertChecklistInfographics();
 normalizeCharacterImages();
 enhanceStudentAvatars();
+removeImageLessChecklistDuplicates();
 
 const visualFixes = document.createElement('style');
 visualFixes.textContent = `
