@@ -100,28 +100,7 @@ function insertAfter(target, element) {
 }
 
 function createBareInfographic(src, alt, extraClass = '') {
-  return createElementFromHTML(`
-    <figure class="article-infographic article-infographic--large article-infographic--bare ${extraClass}" data-reading-guide="true" data-src="${src}">
-      <a href="${src}" target="_blank" rel="noopener">
-        <img src="${src}" alt="${alt}" loading="lazy" />
-      </a>
-    </figure>
-  `);
-}
-
-function createLabeledInfographic(src, title, caption) {
-  return createElementFromHTML(`
-    <figure class="article-infographic article-infographic--large" data-reading-guide="true" data-src="${src}">
-      <div class="article-infographic__body">
-        <p class="article-infographic__label">図解</p>
-        <h3>${title}</h3>
-      </div>
-      <a href="${src}" target="_blank" rel="noopener">
-        <img src="${src}" alt="${title}" loading="lazy" />
-      </a>
-      <figcaption>${caption}</figcaption>
-    </figure>
-  `);
+  return createElementFromHTML(`<figure class="article-infographic article-infographic--large article-infographic--bare ${extraClass}" data-reading-guide="true" data-src="${src}"><a href="${src}" target="_blank" rel="noopener"><img src="${src}" alt="${alt}" loading="lazy" /></a></figure>`);
 }
 
 function insertReasonInfographics() {
@@ -150,22 +129,6 @@ function insertReasonInfographics() {
     }
     insertAfter(heading, createBareInfographic(src, alt, 'reason-infographic'));
   });
-}
-
-function addSupportingReadingGuides() {
-  const articlePage = document.querySelector('.article-page');
-  if (!articlePage) return;
-  const articleBlocks = Array.from(document.querySelectorAll('.article-main .article-block'));
-  const introBlock = articleBlocks.find((block) => block.textContent.includes('この記事では、50代男性が'));
-  const reasonBlock = articleBlocks.find((block) => block.textContent.includes('50代男性がマッチングアプリでいいねをもらえない主な理由'));
-  const checklistBlock = articleBlocks.find((block) => block.textContent.includes('50代男性がまず見直すべき5つのポイント'));
-  const finalBlock = articleBlocks.find((block) => block.textContent.includes('まとめ｜50代男性がいいねをもらえない理由'));
-  if (introBlock && !document.querySelector('[data-guide="top-conclusion"]')) insertAfter(introBlock, createElementFromHTML(`<aside class="article-summary-box article-summary-box--compact" data-reading-guide="true" data-guide="top-conclusion"><p class="article-summary-box__label">この記事の結論</p><h3>まず、ここだけ押さえれば大丈夫です。</h3><ul><li>年齢だけが原因ではない</li><li>写真・清潔感・プロフィールで改善できる</li><li>最初は写真から見直す</li></ul></aside>`));
-  const conclusion = document.querySelector('[data-guide="top-conclusion"]');
-  if (conclusion && !document.querySelector('[data-src="assets/infographics/no-likes-cause-map.svg"]')) insertAfter(conclusion, createLabeledInfographic('assets/infographics/no-likes-cause-map.svg', 'いいねが来ない原因を、4つに分けて見る', '原因を一つに決めつけず、写真・清潔感・プロフィール文・メッセージに分けて確認します。画像をタップすると大きく開けます。'));
-  if (reasonBlock && !document.querySelector('[data-src="assets/infographics/photo-checkpoints.svg"]')) insertAfter(reasonBlock, createLabeledInfographic('assets/infographics/photo-checkpoints.svg', '写真で見られるポイント', '女性は顔立ちだけではなく、清潔感・明るさ・表情・背景から安心できる人かを見ています。画像をタップすると大きく開けます。'));
-  if (checklistBlock && !document.querySelector('[data-src="assets/infographics/action-order.svg"]')) insertAfter(checklistBlock, createLabeledInfographic('assets/infographics/action-order.svg', '見直す順番', '全部を一気に直そうとせず、まず写真、次にプロフィール文、最後にメッセージの距離感を整えます。画像をタップすると大きく開けます。'));
-  if (finalBlock && !document.querySelector('[data-guide="remember"]')) insertAfter(finalBlock, createElementFromHTML(`<aside class="article-remember-box article-remember-box--compact" data-reading-guide="true" data-guide="remember"><p class="article-remember-box__label">ここだけ覚える</p><h3>50代だから終わり、ではありません。</h3><ul><li>年齢は変えられない</li><li>でも、写真・清潔感・文章・距離感は変えられる</li><li>見せ方を整えれば、出会いの入口は作れる</li></ul></aside>`));
 }
 
 function checklistTextList(items) {
@@ -206,7 +169,6 @@ document.querySelectorAll('img[src="assets/eyecatches/why-50s-men-get-no-likes.s
   img.src = 'assets/eyecatches/why-50s-men-get-no-likes.png';
 });
 
-addSupportingReadingGuides();
 insertReasonInfographics();
 insertChecklistInfographics();
 normalizeCharacterImages();
