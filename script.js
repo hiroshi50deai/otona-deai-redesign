@@ -26,7 +26,6 @@ function normalizeCharacterImages() {
   document.querySelectorAll('img').forEach((img) => {
     const currentSrc = img.getAttribute('src');
     if (currentSrc && characterImageReplacements[currentSrc]) img.src = characterImageReplacements[currentSrc];
-
     img.addEventListener('error', () => {
       const failedSrc = img.getAttribute('src');
       if (failedSrc && characterImageReplacements[failedSrc]) {
@@ -56,15 +55,12 @@ function enhanceStudentAvatars() {
     if (!label || !label.textContent.includes('生徒')) return;
     const avatar = person.querySelector('.conversation-person__image--student');
     if (!avatar || avatar.querySelector('img')) return;
-
     const row = person.closest('.conversation-row-v2');
     const bubbleText = row?.querySelector('.conversation-bubble-v2')?.textContent || '';
     const src = chooseStudentAvatar(bubbleText);
     const fallbackText = avatar.textContent.trim() || '50';
-
     avatar.textContent = '';
     avatar.classList.add('conversation-person__image--student-character');
-
     const img = document.createElement('img');
     img.src = src;
     img.alt = '生徒・50代男性';
@@ -83,7 +79,6 @@ if (navToggle && siteNav) {
     navToggle.setAttribute('aria-expanded', String(isOpen));
     navToggle.textContent = isOpen ? '×' : '☰';
   });
-
   siteNav.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {
       siteNav.classList.remove('is-open');
@@ -132,7 +127,6 @@ function createLabeledInfographic(src, title, caption) {
 function insertReasonInfographics() {
   const articlePage = document.querySelector('.article-page');
   if (!articlePage) return;
-
   const reasonImages = [
     ['理由1：プロフィール写真で清潔感や安心感が伝わっていない', 'assets/infographics/profile-photo-cleanliness.png', '理由1「プロフィール写真で清潔感や安心感が伝わっていない」を説明するインフォグラフィック'],
     ['理由2：自撮り・無表情・生活感の強い写真で損をしている', 'assets/infographics/profile_photo_advice_for_men_40s_50s.png', '理由2「自撮り・無表情・生活感の強い写真で損をしている」を説明するインフォグラフィック'],
@@ -142,7 +136,6 @@ function insertReasonInfographics() {
     ['理由6：メッセージが重い・長い・距離感が近すぎる', 'assets/infographics/reason-3-profile-unknown.png', '理由6「メッセージが重い・長い・距離感が近すぎる」を説明するインフォグラフィック'],
     ['理由7：会話の前に“おじさんっぽさ”が伝わってしまっている', 'assets/infographics/reason-6-heavy-message.png', '理由7「会話の前におじさんっぽさが伝わってしまっている」を説明するインフォグラフィック'],
   ];
-
   reasonImages.forEach(([text, src, alt]) => {
     const heading = Array.from(document.querySelectorAll('.article-main h3')).find((h) => h.textContent.trim() === text);
     if (!heading) return;
@@ -162,7 +155,6 @@ function insertReasonInfographics() {
 function addSupportingReadingGuides() {
   const articlePage = document.querySelector('.article-page');
   if (!articlePage) return;
-
   const articleBlocks = Array.from(document.querySelectorAll('.article-main .article-block'));
   const introBlock = articleBlocks.find((block) => block.textContent.includes('この記事では、50代男性が'));
   const reasonBlock = articleBlocks.find((block) => block.textContent.includes('50代男性がマッチングアプリでいいねをもらえない主な理由'));
@@ -170,84 +162,54 @@ function addSupportingReadingGuides() {
   const finalBlock = articleBlocks.find((block) => block.textContent.includes('まとめ｜50代男性がいいねをもらえない理由'));
 
   if (introBlock && !document.querySelector('[data-guide="top-conclusion"]')) {
-    insertAfter(introBlock, createElementFromHTML(`
-      <aside class="article-summary-box article-summary-box--compact" data-reading-guide="true" data-guide="top-conclusion">
-        <p class="article-summary-box__label">この記事の結論</p>
-        <h3>まず、ここだけ押さえれば大丈夫です。</h3>
-        <ul><li>年齢だけが原因ではない</li><li>写真・清潔感・プロフィールで改善できる</li><li>最初は写真から見直す</li></ul>
-      </aside>
-    `));
+    insertAfter(introBlock, createElementFromHTML(`<aside class="article-summary-box article-summary-box--compact" data-reading-guide="true" data-guide="top-conclusion"><p class="article-summary-box__label">この記事の結論</p><h3>まず、ここだけ押さえれば大丈夫です。</h3><ul><li>年齢だけが原因ではない</li><li>写真・清潔感・プロフィールで改善できる</li><li>最初は写真から見直す</li></ul></aside>`));
   }
-
   const conclusion = document.querySelector('[data-guide="top-conclusion"]');
   if (conclusion && !document.querySelector('[data-src="assets/infographics/no-likes-cause-map.svg"]')) {
     insertAfter(conclusion, createLabeledInfographic('assets/infographics/no-likes-cause-map.svg', 'いいねが来ない原因を、4つに分けて見る', '原因を一つに決めつけず、写真・清潔感・プロフィール文・メッセージに分けて確認します。画像をタップすると大きく開けます。'));
   }
-
   if (reasonBlock && !document.querySelector('[data-src="assets/infographics/photo-checkpoints.svg"]')) {
     insertAfter(reasonBlock, createLabeledInfographic('assets/infographics/photo-checkpoints.svg', '写真で見られるポイント', '女性は顔立ちだけではなく、清潔感・明るさ・表情・背景から安心できる人かを見ています。画像をタップすると大きく開けます。'));
   }
-
   if (checklistBlock && !document.querySelector('[data-src="assets/infographics/action-order.svg"]')) {
     insertAfter(checklistBlock, createLabeledInfographic('assets/infographics/action-order.svg', '見直す順番', '全部を一気に直そうとせず、まず写真、次にプロフィール文、最後にメッセージの距離感を整えます。画像をタップすると大きく開けます。'));
   }
-
   if (finalBlock && !document.querySelector('[data-guide="remember"]')) {
-    insertAfter(finalBlock, createElementFromHTML(`
-      <aside class="article-remember-box article-remember-box--compact" data-reading-guide="true" data-guide="remember">
-        <p class="article-remember-box__label">ここだけ覚える</p>
-        <h3>50代だから終わり、ではありません。</h3>
-        <ul><li>年齢は変えられない</li><li>でも、写真・清潔感・文章・距離感は変えられる</li><li>見せ方を整えれば、出会いの入口は作れる</li></ul>
-      </aside>
-    `));
+    insertAfter(finalBlock, createElementFromHTML(`<aside class="article-remember-box article-remember-box--compact" data-reading-guide="true" data-guide="remember"><p class="article-remember-box__label">ここだけ覚える</p><h3>50代だから終わり、ではありません。</h3><ul><li>年齢は変えられない</li><li>でも、写真・清潔感・文章・距離感は変えられる</li><li>見せ方を整えれば、出会いの入口は作れる</li></ul></aside>`));
   }
+}
+
+function checklistTextList(items) {
+  return `<ul class="article-check-list checklist-text">${items.map((item) => `<li>${item}</li>`).join('')}</ul>`;
+}
+
+function checklistFigure(src, alt) {
+  return `<figure class="article-infographic article-infographic--large article-infographic--bare checklist-infographic" data-reading-guide="true" data-src="${src}"><a href="${src}" target="_blank" rel="noopener"><img src="${src}" alt="${alt}" loading="lazy" /></a></figure>`;
 }
 
 function insertChecklistInfographics() {
   const articlePage = document.querySelector('.article-page');
   if (!articlePage || document.querySelector('[data-guide="checklist-infographics-section"]')) return;
 
-  const finalBlock = Array.from(document.querySelectorAll('.article-main .article-block')).find((block) =>
-    block.textContent.includes('まとめ｜50代男性がいいねをもらえない理由')
-  );
+  const finalBlock = Array.from(document.querySelectorAll('.article-main .article-block')).find((block) => block.textContent.includes('まとめ｜50代男性がいいねをもらえない理由'));
   const serviceCta = document.querySelector('.article-service-cta');
   const anchor = finalBlock || serviceCta || document.querySelector('.article-main .article-block:last-of-type');
+
+  const photoText = checklistTextList(['メイン写真は明るい場所で撮れているか', '顔がはっきり分かるか', '無表情で怖く見えていないか', '服装に清潔感があるか', '自撮り感が強すぎないか', '昔の写真を使っていないか', 'サブ写真が3〜5枚入っているか']);
+  const cleanText = checklistTextList(['髪型は整っているか', '眉やひげが放置されていないか', '服がヨレていないか', '靴やバッグがくたびれていないか', '肌が脂っぽく見えていないか', '姿勢が悪く見えていないか']);
+  const profileText = checklistTextList(['自分がどんな人か伝わるか', '休日の過ごし方が書かれているか', '会話のきっかけがあるか', '自虐が入っていないか', '若く見られるアピールをしすぎていないか', '相手への条件ばかり書いていないか']);
+  const messageText = checklistTextList(['最初から長文になっていないか', 'いきなり会おうとしていないか', '褒め方が外見に偏っていないか', '説教や自分語りになっていないか', '相手が返信しやすい質問になっているか']);
 
   const section = createElementFromHTML(`
     <section class="article-block article-checklist-infographics" data-guide="checklist-infographics-section">
       <h2>いいねが来ないときに、年齢のせいにする前に確認したいチェックリスト</h2>
-      <p>写真・清潔感・プロフィール文・メッセージの4つを順番に見直すと、改善すべきポイントが分かりやすくなります。</p>
-
-      <h3>写真のチェック</h3>
-      <figure class="article-infographic article-infographic--large article-infographic--bare checklist-infographic" data-reading-guide="true" data-src="assets/infographics/profile-photo-checklist-50s-men.png">
-        <a href="assets/infographics/profile-photo-checklist-50s-men.png" target="_blank" rel="noopener">
-          <img src="assets/infographics/profile-photo-checklist-50s-men.png" alt="50代男性向けプロフィール写真のチェック項目をまとめたインフォグラフィック" loading="lazy" />
-        </a>
-      </figure>
-
-      <h3>清潔感のチェック</h3>
-      <figure class="article-infographic article-infographic--large article-infographic--bare checklist-infographic" data-reading-guide="true" data-src="assets/infographics/cleanliness-checklist-50s-men.png">
-        <a href="assets/infographics/cleanliness-checklist-50s-men.png" target="_blank" rel="noopener">
-          <img src="assets/infographics/cleanliness-checklist-50s-men.png" alt="50代男性向け清潔感のチェック項目をまとめたインフォグラフィック" loading="lazy" />
-        </a>
-      </figure>
-
-      <h3>プロフィール文のチェック</h3>
-      <figure class="article-infographic article-infographic--large article-infographic--bare checklist-infographic" data-reading-guide="true" data-src="assets/infographics/profile-text-checklist-50s-men.png">
-        <a href="assets/infographics/profile-text-checklist-50s-men.png" target="_blank" rel="noopener">
-          <img src="assets/infographics/profile-text-checklist-50s-men.png" alt="50代男性向けプロフィール文のチェック項目をまとめたインフォグラフィック" loading="lazy" />
-        </a>
-      </figure>
-
-      <h3>メッセージのチェック</h3>
-      <figure class="article-infographic article-infographic--large article-infographic--bare checklist-infographic" data-reading-guide="true" data-src="assets/infographics/message-checklist-50s-men.png">
-        <a href="assets/infographics/message-checklist-50s-men.png" target="_blank" rel="noopener">
-          <img src="assets/infographics/message-checklist-50s-men.png" alt="50代男性向けメッセージのチェック項目をまとめたインフォグラフィック" loading="lazy" />
-        </a>
-      </figure>
+      <p>写真・清潔感・プロフィール文・メッセージの4つを順番に見直すと、改善すべきポイントが分かりやすくなります。画像だけで終わらせず、実際に確認できる項目も本文として整理しました。</p>
+      <h3>写真のチェック</h3>${photoText}${checklistFigure('assets/infographics/profile-photo-checklist-50s-men.png', '50代男性向けプロフィール写真のチェック項目をまとめたインフォグラフィック')}
+      <h3>清潔感のチェック</h3>${cleanText}${checklistFigure('assets/infographics/cleanliness-checklist-50s-men.png', '50代男性向け清潔感のチェック項目をまとめたインフォグラフィック')}
+      <h3>プロフィール文のチェック</h3>${profileText}${checklistFigure('assets/infographics/profile-text-checklist-50s-men.png', '50代男性向けプロフィール文のチェック項目をまとめたインフォグラフィック')}
+      <h3>メッセージのチェック</h3>${messageText}${checklistFigure('assets/infographics/message-checklist-50s-men.png', '50代男性向けメッセージのチェック項目をまとめたインフォグラフィック')}
     </section>
   `);
-
   if (anchor && anchor.parentElement) anchor.parentElement.insertBefore(section, anchor);
 }
 
@@ -278,6 +240,7 @@ visualFixes.textContent = `
   .article-infographic--bare a{display:block!important;}
   .article-infographic--bare img{display:block!important;width:100%!important;height:auto!important;border-radius:18px!important;}
   .article-checklist-infographics h3{margin-top:2.4em!important;}
+  .article-checklist-infographics .checklist-text{margin-top:10px!important;margin-bottom:18px!important;}
   @media (min-width:901px){.article-page .article-layout{grid-template-columns:minmax(0,780px) 280px!important;justify-content:center!important;}}
   @media (max-width:640px){
     .character-img,.hero-character,.small-character,.medium-character{filter:none!important;}
