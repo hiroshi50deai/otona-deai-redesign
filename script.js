@@ -12,14 +12,10 @@ const characterImageReplacements = {
   'assets/characters/02_worry.png': 'assets/characters/teacher-new-worry.png',
   'assets/characters/03_ok_explain.png': 'assets/characters/teacher-new-explain.png',
   'assets/characters/04_gentle_cta.png': 'assets/characters/teacher-new-cta.png',
-
-  // Sakura assistant assets: normalize older or guessed names to existing files.
   'assets/characters/sakura-worry.png': 'assets/characters/sakura-think.png',
   'assets/characters/sakura-thought.png': 'assets/characters/sakura-think.png',
   'assets/characters/sakura-listen.png': 'assets/characters/sakura-support.png',
   'assets/characters/sakura-guide.png': 'assets/characters/sakura-point.png',
-
-  // Teacher aliases used in some draft conversation blocks.
   'assets/characters/teacher-point.png': 'assets/characters/teacher-new-explain.png',
   'assets/characters/teacher-explain.png': 'assets/characters/teacher-new-explain.png',
   'assets/characters/teacher-calm.png': 'assets/characters/teacher-new-explain.png',
@@ -29,9 +25,7 @@ const characterImageReplacements = {
 function normalizeCharacterImages() {
   document.querySelectorAll('img').forEach((img) => {
     const currentSrc = img.getAttribute('src');
-    if (currentSrc && characterImageReplacements[currentSrc]) {
-      img.src = characterImageReplacements[currentSrc];
-    }
+    if (currentSrc && characterImageReplacements[currentSrc]) img.src = characterImageReplacements[currentSrc];
 
     img.addEventListener('error', () => {
       const failedSrc = img.getAttribute('src');
@@ -39,46 +33,20 @@ function normalizeCharacterImages() {
         img.src = characterImageReplacements[failedSrc];
         return;
       }
-
-      if (failedSrc && failedSrc.includes('sakura-')) {
-        img.src = 'assets/characters/sakura-think.png';
-        return;
-      }
-
-      if (failedSrc && failedSrc.includes('teacher')) {
-        img.src = 'assets/characters/teacher-new-explain.png';
-      }
+      if (failedSrc && failedSrc.includes('sakura-')) img.src = 'assets/characters/sakura-think.png';
+      if (failedSrc && failedSrc.includes('teacher')) img.src = 'assets/characters/teacher-new-explain.png';
     }, { once: true });
   });
 }
 
 function chooseStudentAvatar(bubbleText) {
   const text = bubbleText || '';
-
-  if (/ひえ|不安|焦|困|悩|無理|相手にされない|いいねが来ない|マッチしません|意味がない|心当たり/.test(text)) {
-    return 'assets/characters/student-male-60s-worried.png';
-  }
-
-  if (/落ち込|ダメ|全部やって|反応しづら|損/.test(text)) {
-    return 'assets/characters/student-male-60s-depressed.png';
-  }
-
-  if (/でしょうか|ですか|なんですか|？|\?/.test(text)) {
-    return 'assets/characters/student-male-60s-question.png';
-  }
-
-  if (/ふむふむ|なるほど|たしかに|納得|分かりました|現実的|大事なんですね|そういうこと/.test(text)) {
-    return 'assets/characters/student-male-60s-understanding.png';
-  }
-
-  if (/安心|よかった|少し楽|ほっと|大丈夫/.test(text)) {
-    return 'assets/characters/student-male-60s-relieved.png';
-  }
-
-  if (/やってみ|頑張|前向き|変えてみ|整え|改善できそう|見直してみ/.test(text)) {
-    return 'assets/characters/student-male-60s-motivated.png';
-  }
-
+  if (/ひえ|不安|焦|困|悩|無理|相手にされない|いいねが来ない|マッチしません|意味がない|心当たり/.test(text)) return 'assets/characters/student-male-60s-worried.png';
+  if (/落ち込|ダメ|全部やって|反応しづら|損/.test(text)) return 'assets/characters/student-male-60s-depressed.png';
+  if (/でしょうか|ですか|なんですか|？|\?/.test(text)) return 'assets/characters/student-male-60s-question.png';
+  if (/ふむふむ|なるほど|たしかに|納得|分かりました|現実的|大事なんですね|そういうこと/.test(text)) return 'assets/characters/student-male-60s-understanding.png';
+  if (/安心|よかった|少し楽|ほっと|大丈夫/.test(text)) return 'assets/characters/student-male-60s-relieved.png';
+  if (/やってみ|頑張|前向き|変えてみ|整え|改善できそう|見直してみ/.test(text)) return 'assets/characters/student-male-60s-motivated.png';
   return 'assets/characters/student-male-60s-question.png';
 }
 
@@ -86,7 +54,6 @@ function enhanceStudentAvatars() {
   document.querySelectorAll('.conversation-row-v2 .conversation-person').forEach((person) => {
     const label = person.querySelector('.conversation-person__label');
     if (!label || !label.textContent.includes('生徒')) return;
-
     const avatar = person.querySelector('.conversation-person__image--student');
     if (!avatar || avatar.querySelector('img')) return;
 
@@ -106,13 +73,9 @@ function enhanceStudentAvatars() {
       avatar.classList.remove('conversation-person__image--student-character');
       avatar.textContent = fallbackText;
     }, { once: true });
-
     avatar.appendChild(img);
   });
 }
-
-normalizeCharacterImages();
-enhanceStudentAvatars();
 
 if (navToggle && siteNav) {
   navToggle.addEventListener('click', () => {
@@ -141,9 +104,9 @@ function insertAfter(target, element) {
   target.parentElement.insertBefore(element, target.nextSibling);
 }
 
-function createBareInfographic(src, alt) {
+function createBareInfographic(src, alt, extraClass = '') {
   return createElementFromHTML(`
-    <figure class="article-infographic article-infographic--large article-infographic--bare reason-infographic" data-reading-guide="true" data-src="${src}">
+    <figure class="article-infographic article-infographic--large article-infographic--bare ${extraClass}" data-reading-guide="true" data-src="${src}">
       <a href="${src}" target="_blank" rel="noopener">
         <img src="${src}" alt="${alt}" loading="lazy" />
       </a>
@@ -171,61 +134,28 @@ function insertReasonInfographics() {
   if (!articlePage) return;
 
   const reasonImages = [
-    {
-      text: '理由1：プロフィール写真で清潔感や安心感が伝わっていない',
-      src: 'assets/infographics/profile-photo-cleanliness.png',
-      alt: '理由1「プロフィール写真で清潔感や安心感が伝わっていない」を説明するインフォグラフィック',
-    },
-    {
-      text: '理由2：自撮り・無表情・生活感の強い写真で損をしている',
-      src: 'assets/infographics/profile_photo_advice_for_men_40s_50s.png',
-      alt: '理由2「自撮り・無表情・生活感の強い写真で損をしている」を説明するインフォグラフィック',
-    },
-    {
-      text: '理由3：プロフィール文が「何者か分からない」内容になっている',
-      src: 'assets/infographics/reason-7-ojisan-vibe.png',
-      alt: '理由3「プロフィール文が何者か分からない内容になっている」を説明するインフォグラフィック',
-    },
-    {
-      text: '理由4：「若く見られます」「年齢より若いです」と書いて逆効果になっている',
-      src: 'assets/infographics/reason-4-young-appeal-backfire.png',
-      alt: '理由4「若く見られます、年齢より若いですと書いて逆効果になっている」を説明するインフォグラフィック',
-    },
-    {
-      text: '理由5：相手への希望条件が現実とズレている',
-      src: 'assets/infographics/reason-5-unrealistic-conditions.png',
-      alt: '理由5「相手への希望条件が現実とズレている」を説明するインフォグラフィック',
-    },
-    {
-      text: '理由6：メッセージが重い・長い・距離感が近すぎる',
-      src: 'assets/infographics/reason-3-profile-unknown.png',
-      alt: '理由6「メッセージが重い・長い・距離感が近すぎる」を説明するインフォグラフィック',
-    },
-    {
-      text: '理由7：会話の前に“おじさんっぽさ”が伝わってしまっている',
-      src: 'assets/infographics/reason-6-heavy-message.png',
-      alt: '理由7「会話の前におじさんっぽさが伝わってしまっている」を説明するインフォグラフィック',
-    },
+    ['理由1：プロフィール写真で清潔感や安心感が伝わっていない', 'assets/infographics/profile-photo-cleanliness.png', '理由1「プロフィール写真で清潔感や安心感が伝わっていない」を説明するインフォグラフィック'],
+    ['理由2：自撮り・無表情・生活感の強い写真で損をしている', 'assets/infographics/profile_photo_advice_for_men_40s_50s.png', '理由2「自撮り・無表情・生活感の強い写真で損をしている」を説明するインフォグラフィック'],
+    ['理由3：プロフィール文が「何者か分からない」内容になっている', 'assets/infographics/reason-7-ojisan-vibe.png', '理由3「プロフィール文が何者か分からない内容になっている」を説明するインフォグラフィック'],
+    ['理由4：「若く見られます」「年齢より若いです」と書いて逆効果になっている', 'assets/infographics/reason-4-young-appeal-backfire.png', '理由4「若く見られます、年齢より若いですと書いて逆効果になっている」を説明するインフォグラフィック'],
+    ['理由5：相手への希望条件が現実とズレている', 'assets/infographics/reason-5-unrealistic-conditions.png', '理由5「相手への希望条件が現実とズレている」を説明するインフォグラフィック'],
+    ['理由6：メッセージが重い・長い・距離感が近すぎる', 'assets/infographics/reason-3-profile-unknown.png', '理由6「メッセージが重い・長い・距離感が近すぎる」を説明するインフォグラフィック'],
+    ['理由7：会話の前に“おじさんっぽさ”が伝わってしまっている', 'assets/infographics/reason-6-heavy-message.png', '理由7「会話の前におじさんっぽさが伝わってしまっている」を説明するインフォグラフィック'],
   ];
 
-  reasonImages.forEach(({ text, src, alt }) => {
+  reasonImages.forEach(([text, src, alt]) => {
     const heading = Array.from(document.querySelectorAll('.article-main h3')).find((h) => h.textContent.trim() === text);
     if (!heading) return;
-
     const next = heading.nextElementSibling;
     if (next && next.classList && next.classList.contains('reason-infographic')) {
       const link = next.querySelector('a');
       const img = next.querySelector('img');
       if (link) link.href = src;
-      if (img) {
-        img.src = src;
-        img.alt = alt;
-      }
+      if (img) { img.src = src; img.alt = alt; }
       next.dataset.src = src;
       return;
     }
-
-    insertAfter(heading, createBareInfographic(src, alt));
+    insertAfter(heading, createBareInfographic(src, alt, 'reason-infographic'));
   });
 }
 
@@ -251,27 +181,15 @@ function addSupportingReadingGuides() {
 
   const conclusion = document.querySelector('[data-guide="top-conclusion"]');
   if (conclusion && !document.querySelector('[data-src="assets/infographics/no-likes-cause-map.svg"]')) {
-    insertAfter(conclusion, createLabeledInfographic(
-      'assets/infographics/no-likes-cause-map.svg',
-      'いいねが来ない原因を、4つに分けて見る',
-      '原因を一つに決めつけず、写真・清潔感・プロフィール文・メッセージに分けて確認します。画像をタップすると大きく開けます。'
-    ));
+    insertAfter(conclusion, createLabeledInfographic('assets/infographics/no-likes-cause-map.svg', 'いいねが来ない原因を、4つに分けて見る', '原因を一つに決めつけず、写真・清潔感・プロフィール文・メッセージに分けて確認します。画像をタップすると大きく開けます。'));
   }
 
   if (reasonBlock && !document.querySelector('[data-src="assets/infographics/photo-checkpoints.svg"]')) {
-    insertAfter(reasonBlock, createLabeledInfographic(
-      'assets/infographics/photo-checkpoints.svg',
-      '写真で見られるポイント',
-      '女性は顔立ちだけではなく、清潔感・明るさ・表情・背景から安心できる人かを見ています。画像をタップすると大きく開けます。'
-    ));
+    insertAfter(reasonBlock, createLabeledInfographic('assets/infographics/photo-checkpoints.svg', '写真で見られるポイント', '女性は顔立ちだけではなく、清潔感・明るさ・表情・背景から安心できる人かを見ています。画像をタップすると大きく開けます。'));
   }
 
   if (checklistBlock && !document.querySelector('[data-src="assets/infographics/action-order.svg"]')) {
-    insertAfter(checklistBlock, createLabeledInfographic(
-      'assets/infographics/action-order.svg',
-      '見直す順番',
-      '全部を一気に直そうとせず、まず写真、次にプロフィール文、最後にメッセージの距離感を整えます。画像をタップすると大きく開けます。'
-    ));
+    insertAfter(checklistBlock, createLabeledInfographic('assets/infographics/action-order.svg', '見直す順番', '全部を一気に直そうとせず、まず写真、次にプロフィール文、最後にメッセージの距離感を整えます。画像をタップすると大きく開けます。'));
   }
 
   if (finalBlock && !document.querySelector('[data-guide="remember"]')) {
@@ -285,12 +203,61 @@ function addSupportingReadingGuides() {
   }
 }
 
+function insertChecklistInfographics() {
+  const articlePage = document.querySelector('.article-page');
+  if (!articlePage || document.querySelector('[data-guide="checklist-infographics-section"]')) return;
+
+  const finalBlock = Array.from(document.querySelectorAll('.article-main .article-block')).find((block) =>
+    block.textContent.includes('まとめ｜50代男性がいいねをもらえない理由')
+  );
+  const serviceCta = document.querySelector('.article-service-cta');
+  const anchor = finalBlock || serviceCta || document.querySelector('.article-main .article-block:last-of-type');
+
+  const section = createElementFromHTML(`
+    <section class="article-block article-checklist-infographics" data-guide="checklist-infographics-section">
+      <h2>いいねが来ないときに、年齢のせいにする前に確認したいチェックリスト</h2>
+      <p>写真・清潔感・プロフィール文・メッセージの4つを順番に見直すと、改善すべきポイントが分かりやすくなります。</p>
+
+      <h3>写真のチェック</h3>
+      <figure class="article-infographic article-infographic--large article-infographic--bare checklist-infographic" data-reading-guide="true" data-src="assets/infographics/profile-photo-checklist-50s-men.png">
+        <a href="assets/infographics/profile-photo-checklist-50s-men.png" target="_blank" rel="noopener">
+          <img src="assets/infographics/profile-photo-checklist-50s-men.png" alt="50代男性向けプロフィール写真のチェック項目をまとめたインフォグラフィック" loading="lazy" />
+        </a>
+      </figure>
+
+      <h3>清潔感のチェック</h3>
+      <figure class="article-infographic article-infographic--large article-infographic--bare checklist-infographic" data-reading-guide="true" data-src="assets/infographics/cleanliness-checklist-50s-men.png">
+        <a href="assets/infographics/cleanliness-checklist-50s-men.png" target="_blank" rel="noopener">
+          <img src="assets/infographics/cleanliness-checklist-50s-men.png" alt="50代男性向け清潔感のチェック項目をまとめたインフォグラフィック" loading="lazy" />
+        </a>
+      </figure>
+
+      <h3>プロフィール文のチェック</h3>
+      <figure class="article-infographic article-infographic--large article-infographic--bare checklist-infographic" data-reading-guide="true" data-src="assets/infographics/profile-text-checklist-50s-men.png">
+        <a href="assets/infographics/profile-text-checklist-50s-men.png" target="_blank" rel="noopener">
+          <img src="assets/infographics/profile-text-checklist-50s-men.png" alt="50代男性向けプロフィール文のチェック項目をまとめたインフォグラフィック" loading="lazy" />
+        </a>
+      </figure>
+
+      <h3>メッセージのチェック</h3>
+      <figure class="article-infographic article-infographic--large article-infographic--bare checklist-infographic" data-reading-guide="true" data-src="assets/infographics/message-checklist-50s-men.png">
+        <a href="assets/infographics/message-checklist-50s-men.png" target="_blank" rel="noopener">
+          <img src="assets/infographics/message-checklist-50s-men.png" alt="50代男性向けメッセージのチェック項目をまとめたインフォグラフィック" loading="lazy" />
+        </a>
+      </figure>
+    </section>
+  `);
+
+  if (anchor && anchor.parentElement) anchor.parentElement.insertBefore(section, anchor);
+}
+
 document.querySelectorAll('img[src="assets/eyecatches/why-50s-men-get-no-likes.svg"]').forEach((img) => {
   img.src = 'assets/eyecatches/why-50s-men-get-no-likes.png';
 });
 
 addSupportingReadingGuides();
 insertReasonInfographics();
+insertChecklistInfographics();
 normalizeCharacterImages();
 enhanceStudentAvatars();
 
@@ -310,6 +277,7 @@ visualFixes.textContent = `
   .article-infographic--bare{padding:0!important;margin-top:14px!important;margin-bottom:22px!important;overflow:hidden!important;background:#fff!important;}
   .article-infographic--bare a{display:block!important;}
   .article-infographic--bare img{display:block!important;width:100%!important;height:auto!important;border-radius:18px!important;}
+  .article-checklist-infographics h3{margin-top:2.4em!important;}
   @media (min-width:901px){.article-page .article-layout{grid-template-columns:minmax(0,780px) 280px!important;justify-content:center!important;}}
   @media (max-width:640px){
     .character-img,.hero-character,.small-character,.medium-character{filter:none!important;}
