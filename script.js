@@ -153,4 +153,3 @@ normalizeCharacterImages();
 enhanceStudentAvatars();
 markSakuraSpeakers();
 addArticleTableOfContents();
-addArticleTocStyles();
