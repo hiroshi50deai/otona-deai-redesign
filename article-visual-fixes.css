@@ -345,3 +345,11 @@
 .article-page .btn[href="service.html"]:hover {
   background: #d96b8f !important;
 }
+
+/* Mobile article eyecatch overrides */
+
+@media (max-width: 640px) {
+  body:has(img[src="assets/eyecatches/profile-photo-ng-40s-men.png"]) .article-page .article-hero::before {
+    background-image: url("assets/eyecatches/profile-photo-ng-40s-men.png") !important;
+  }
+}
