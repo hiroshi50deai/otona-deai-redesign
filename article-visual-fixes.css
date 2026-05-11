@@ -1,0 +1,283 @@
+/* Article page visual fixes moved out of script.js */
+
+.hero-guide::before {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  opacity: 0 !important;
+}
+
+.conversation-row-v2--teacher:not(.conversation-row-v2--sakura) .conversation-person__label {
+  background: #b99a5b !important;
+  color: #fff !important;
+}
+
+.conversation-row-v2--teacher:not(.conversation-row-v2--sakura) .conversation-person__image {
+  border-color: rgba(185, 154, 91, 0.42) !important;
+}
+
+.conversation-row-v2--teacher:not(.conversation-row-v2--sakura) .conversation-bubble-v2 {
+  background: #fff8ea !important;
+  border-color: rgba(185, 154, 91, 0.24) !important;
+}
+
+.conversation-person--sakura .conversation-person__label {
+  background: #e87aa4 !important;
+  color: #fff !important;
+}
+
+.conversation-row-v2--sakura .conversation-person__image {
+  border-color: rgba(232, 122, 164, 0.42) !important;
+}
+
+.conversation-row-v2--sakura .conversation-bubble-v2 {
+  background: #fff7fb !important;
+  border-color: rgba(232, 122, 164, 0.24) !important;
+}
+
+.conversation-person__image--student {
+  display: grid !important;
+  place-items: center !important;
+  background: transparent !important;
+  color: #152a4d !important;
+  font-weight: 900 !important;
+  font-size: 1.45rem !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.conversation-person__image--student-character {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 72px !important;
+  height: 82px !important;
+  box-sizing: border-box !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+  color: transparent !important;
+}
+
+.conversation-person__image--student-character img {
+  display: block !important;
+  width: 72px !important;
+  height: 82px !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  object-position: center bottom !important;
+  filter: none !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+.character-img {
+  filter: drop-shadow(0 12px 18px rgba(21, 42, 77, 0.10)) !important;
+}
+
+.article-page .article-main {
+  gap: 34px !important;
+}
+
+.article-page .article-block {
+  padding: clamp(26px, 4.2vw, 46px) !important;
+}
+
+.article-page .article-block p {
+  margin-top: 0.95em !important;
+  margin-bottom: 0.95em !important;
+}
+
+.article-page .article-block h2 {
+  margin-top: 0 !important;
+  margin-bottom: 1.1em !important;
+}
+
+.article-page .article-block h3 {
+  margin-top: 2em !important;
+  margin-bottom: 0.85em !important;
+}
+
+.article-infographic--large img {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+.article-infographic--bare {
+  padding: 0 !important;
+  margin-top: 14px !important;
+  margin-bottom: 22px !important;
+  overflow: hidden !important;
+  background: #fff !important;
+}
+
+.article-infographic--bare a {
+  display: block !important;
+}
+
+.article-infographic--bare img {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  border-radius: 18px !important;
+}
+
+.article-checklist-infographics h3 {
+  margin-top: 2.4em !important;
+}
+
+.article-checklist-infographics .checklist-text {
+  margin-top: 10px !important;
+  margin-bottom: 18px !important;
+}
+
+@media (min-width: 901px) {
+  .article-page .article-layout {
+    grid-template-columns: minmax(0, 780px) 280px !important;
+    justify-content: center !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .character-img,
+  .hero-character,
+  .small-character,
+  .medium-character {
+    filter: none !important;
+  }
+
+  .conversation-person {
+    min-width: 54px !important;
+    max-width: 54px !important;
+    align-items: center !important;
+  }
+
+  .conversation-person__image--student-character {
+    width: 52px !important;
+    height: 62px !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    overflow: visible !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .conversation-person__image--student-character img {
+    width: 52px !important;
+    height: 62px !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: contain !important;
+    object-position: center bottom !important;
+    transform: none !important;
+    margin: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+  }
+
+  .conversation-person__label {
+    font-size: 10px !important;
+    line-height: 1.2 !important;
+    padding: 4px 5px !important;
+    max-width: 58px !important;
+    white-space: normal !important;
+  }
+
+  .article-page .article-hero-guide {
+    display: none !important;
+  }
+
+  .article-page .article-hero {
+    padding-top: 24px !important;
+    padding-bottom: 28px !important;
+  }
+
+  .article-page .article-main > figure.article-block:first-child {
+    display: none !important;
+  }
+
+  .article-page .article-layout {
+    padding-top: 22px !important;
+  }
+
+  .article-page h1 {
+    font-size: clamp(1.65rem, 8vw, 2.15rem) !important;
+    line-height: 1.42 !important;
+    letter-spacing: -0.03em !important;
+  }
+
+  .article-page .article-lead,
+  .article-page .article-block p,
+  .article-page .article-block li {
+    font-size: 1.04rem !important;
+    line-height: 2 !important;
+  }
+
+  .article-page .article-block {
+    padding: 24px 20px !important;
+    border-radius: 22px !important;
+  }
+
+  .article-page .article-block h2 {
+    font-size: 1.42rem !important;
+    line-height: 1.55 !important;
+    margin-bottom: 1em !important;
+  }
+
+  .article-page .article-block h3 {
+    font-size: 1.15rem !important;
+    line-height: 1.55 !important;
+    margin-top: 2.2em !important;
+  }
+
+  .article-page .article-main {
+    gap: 26px !important;
+  }
+
+  .article-infographic--large {
+    margin-left: -6px !important;
+    margin-right: -6px !important;
+    border-radius: 22px !important;
+  }
+
+  .article-infographic--large img {
+    display: block !important;
+    width: 100% !important;
+    min-height: 210px !important;
+    object-fit: contain !important;
+    background: #fff !important;
+  }
+
+  .article-infographic--bare {
+    margin-top: 12px !important;
+    margin-bottom: 20px !important;
+  }
+
+  .article-infographic--bare img {
+    min-height: 0 !important;
+    object-fit: contain !important;
+  }
+
+  .article-summary-box--compact,
+  .article-remember-box--compact {
+    padding: 20px !important;
+    border-radius: 22px !important;
+  }
+
+  .article-service-cta {
+    padding: 24px 20px !important;
+    border-radius: 22px !important;
+  }
+
+  .article-service-cta h2 {
+    font-size: 1.32rem !important;
+    line-height: 1.55 !important;
+  }
+}
