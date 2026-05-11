@@ -91,30 +91,27 @@ function markSakuraSpeakers() {
   });
 }
 
+function createHeadingId(index) {
+  return `article-section-${index + 1}`;
+}
+
 function addArticleTableOfContents() {
   const articleMain = document.querySelector('.article-page .article-main');
   if (!articleMain || articleMain.querySelector('.article-toc')) return;
 
-  const tocItems = [
-    { id: 'reason-age-not-only', label: '50代男性がいいねをもらえないのは年齢だけが原因ではない', match: '年齢だけ' },
-    { id: 'main-reasons', label: 'いいねをもらえない主な理由', match: '主な理由' },
-    { id: 'female-perspective', label: '女性は50代男性のどこを見ているのか', match: '女性は50代男性のどこを見ているのか' },
-    { id: 'ng-profile', label: '50代男性がやりがちなNGプロフィール', match: 'NGプロフィール' },
-    { id: 'what-to-improve', label: 'いいねをもらえる50代男性は何を整えているのか', match: '何を整えている' },
-    { id: 'five-checkpoints', label: 'まず見直すべき5つのポイント', match: '5つのポイント' },
-    { id: 'profile-example', label: 'プロフィール改善の具体例', match: 'プロフィール改善の具体例' },
-    { id: 'checklist', label: '年齢のせいにする前に確認したいチェックリスト', match: '年齢のせいにする前に確認したいチェックリスト' },
-    { id: 'summary', label: 'まとめ', match: 'まとめ' },
-  ];
-
   const headings = Array.from(articleMain.querySelectorAll('h2'));
-  tocItems.forEach((item) => {
-    const heading = headings.find((h2) => h2.textContent.replace(/\s+/g, '').includes(item.match.replace(/\s+/g, '')));
-    if (heading && !heading.id) heading.id = item.id;
-  });
+  if (!headings.length) return;
 
-  const availableItems = tocItems.filter((item) => document.getElementById(item.id));
-  if (!availableItems.length) return;
+  const tocItems = headings.map((heading, index) => {
+    if (!heading.id) {
+      heading.id = createHeadingId(index);
+    }
+
+    return {
+      id: heading.id,
+      label: heading.textContent.trim(),
+    };
+  });
 
   const nav = document.createElement('nav');
   nav.className = 'article-toc';
@@ -122,7 +119,7 @@ function addArticleTableOfContents() {
   nav.innerHTML = `
     <p class="article-toc__title">この記事でわかること</p>
     <ol class="article-toc__list">
-      ${availableItems.map((item) => `<li><a href="#${item.id}">${item.label}</a></li>`).join('')}
+      ${tocItems.map((item) => `<li><a href="#${item.id}">${item.label}</a></li>`).join('')}
     </ol>
   `;
 
@@ -133,7 +130,6 @@ function addArticleTableOfContents() {
     articleMain.prepend(nav);
   }
 }
-
 
 if (navToggle && siteNav) {
   navToggle.addEventListener('click', () => {
