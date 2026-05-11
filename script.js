@@ -134,60 +134,6 @@ function addArticleTableOfContents() {
   }
 }
 
-function addArticleTocStyles() {
-  if (document.getElementById('article-toc-styles')) return;
-
-  const style = document.createElement('style');
-  style.id = 'article-toc-styles';
-  style.textContent = `
-    .article-toc {
-      margin: 0 0 28px;
-      padding: 22px 24px;
-      border-radius: 22px;
-      background: #fffaf2;
-      border: 1px solid rgba(185, 154, 91, 0.24);
-    }
-
-    .article-toc__title {
-      margin: 0 0 12px;
-      font-weight: 800;
-      color: #152a4d;
-    }
-
-    .article-toc__list {
-      margin: 0;
-      padding-left: 1.4em;
-    }
-
-    .article-toc__list li {
-      margin: 0.55em 0;
-      line-height: 1.7;
-    }
-
-    .article-toc__list a {
-      color: #152a4d;
-      text-decoration: none;
-      font-weight: 700;
-    }
-
-    .article-toc__list a:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 640px) {
-      .article-toc {
-        padding: 20px;
-        border-radius: 20px;
-      }
-
-      .article-toc__list li {
-        font-size: 0.98rem;
-        line-height: 1.75;
-      }
-    }
-  `;
-  document.head.appendChild(style);
-}
 
 if (navToggle && siteNav) {
   navToggle.addEventListener('click', () => {
