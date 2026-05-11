@@ -281,6 +281,7 @@
     line-height: 1.55 !important;
   }
 }
+
 /* Article table of contents */
 
 .article-toc {
@@ -327,4 +328,18 @@
     font-size: 0.98rem;
     line-height: 1.75;
   }
+}
+
+/* Article CTA buttons */
+
+.article-page .service-mini-cta .btn,
+.article-page .article-service-cta .btn {
+  background: #e07a9a !important;
+  color: #fff !important;
+  box-shadow: 0 12px 30px rgba(224, 122, 154, 0.24) !important;
+}
+
+.article-page .service-mini-cta .btn:hover,
+.article-page .article-service-cta .btn:hover {
+  background: #d96b8f !important;
 }
