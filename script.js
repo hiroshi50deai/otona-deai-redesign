@@ -1,16 +1,5 @@
 const navToggle = document.querySelector('.nav-toggle');
 const siteNav = document.querySelector('.site-nav');
-
-const componentStyles = document.createElement('link');
-componentStyles.rel = 'stylesheet';
-componentStyles.href = 'components.css';
-document.head.appendChild(componentStyles);
-
-const articleVisualFixes = document.createElement('link');
-articleVisualFixes.rel = 'stylesheet';
-articleVisualFixes.href = 'article-visual-fixes.css';
-document.head.appendChild(articleVisualFixes);
-
 const characterImageReplacements = {
   'assets/characters/05_icon_bust.png': 'assets/characters/teacher-new-icon.png',
   'assets/characters/01_hero_teacher.png': 'assets/characters/teacher-new-main.png',
