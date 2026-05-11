@@ -91,6 +91,104 @@ function markSakuraSpeakers() {
   });
 }
 
+function addArticleTableOfContents() {
+  const articleMain = document.querySelector('.article-page .article-main');
+  if (!articleMain || articleMain.querySelector('.article-toc')) return;
+
+  const tocItems = [
+    { id: 'reason-age-not-only', label: '50代男性がいいねをもらえないのは年齢だけが原因ではない', match: '年齢だけ' },
+    { id: 'main-reasons', label: 'いいねをもらえない主な理由', match: '主な理由' },
+    { id: 'female-perspective', label: '女性は50代男性のどこを見ているのか', match: '女性は50代男性のどこを見ているのか' },
+    { id: 'ng-profile', label: '50代男性がやりがちなNGプロフィール', match: 'NGプロフィール' },
+    { id: 'what-to-improve', label: 'いいねをもらえる50代男性は何を整えているのか', match: '何を整えている' },
+    { id: 'five-checkpoints', label: 'まず見直すべき5つのポイント', match: '5つのポイント' },
+    { id: 'profile-example', label: 'プロフィール改善の具体例', match: 'プロフィール改善の具体例' },
+    { id: 'checklist', label: '年齢のせいにする前に確認したいチェックリスト', match: '年齢のせいにする前に確認したいチェックリスト' },
+    { id: 'summary', label: 'まとめ', match: 'まとめ' },
+  ];
+
+  const headings = Array.from(articleMain.querySelectorAll('h2'));
+  tocItems.forEach((item) => {
+    const heading = headings.find((h2) => h2.textContent.replace(/\s+/g, '').includes(item.match.replace(/\s+/g, '')));
+    if (heading && !heading.id) heading.id = item.id;
+  });
+
+  const availableItems = tocItems.filter((item) => document.getElementById(item.id));
+  if (!availableItems.length) return;
+
+  const nav = document.createElement('nav');
+  nav.className = 'article-toc';
+  nav.setAttribute('aria-label', 'この記事の目次');
+  nav.innerHTML = `
+    <p class="article-toc__title">この記事でわかること</p>
+    <ol class="article-toc__list">
+      ${availableItems.map((item) => `<li><a href="#${item.id}">${item.label}</a></li>`).join('')}
+    </ol>
+  `;
+
+  const eyecatch = articleMain.querySelector('figure.article-block');
+  if (eyecatch) {
+    eyecatch.insertAdjacentElement('afterend', nav);
+  } else {
+    articleMain.prepend(nav);
+  }
+}
+
+function addArticleTocStyles() {
+  if (document.getElementById('article-toc-styles')) return;
+
+  const style = document.createElement('style');
+  style.id = 'article-toc-styles';
+  style.textContent = `
+    .article-toc {
+      margin: 0 0 28px;
+      padding: 22px 24px;
+      border-radius: 22px;
+      background: #fffaf2;
+      border: 1px solid rgba(185, 154, 91, 0.24);
+    }
+
+    .article-toc__title {
+      margin: 0 0 12px;
+      font-weight: 800;
+      color: #152a4d;
+    }
+
+    .article-toc__list {
+      margin: 0;
+      padding-left: 1.4em;
+    }
+
+    .article-toc__list li {
+      margin: 0.55em 0;
+      line-height: 1.7;
+    }
+
+    .article-toc__list a {
+      color: #152a4d;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .article-toc__list a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 640px) {
+      .article-toc {
+        padding: 20px;
+        border-radius: 20px;
+      }
+
+      .article-toc__list li {
+        font-size: 0.98rem;
+        line-height: 1.75;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+}
+
 if (navToggle && siteNav) {
   navToggle.addEventListener('click', () => {
     const isOpen = siteNav.classList.toggle('is-open');
@@ -108,3 +206,5 @@ if (navToggle && siteNav) {
 normalizeCharacterImages();
 enhanceStudentAvatars();
 markSakuraSpeakers();
+addArticleTableOfContents();
+addArticleTocStyles();
