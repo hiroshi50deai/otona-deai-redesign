@@ -105,11 +105,6 @@ if (navToggle && siteNav) {
     });
   });
 }
-
-document.querySelectorAll('img[src="assets/eyecatches/why-50s-men-get-no-likes.svg"]').forEach((img) => {
-  img.src = 'assets/eyecatches/why-50s-men-get-no-likes.png';
-});
-
 normalizeCharacterImages();
 enhanceStudentAvatars();
 markSakuraSpeakers();
