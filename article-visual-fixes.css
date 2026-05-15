@@ -353,3 +353,18 @@
     background-image: url("assets/eyecatches/profile-photo-ng-40s-men.png") !important;
   }
 }
+
+/* Prevent article infographic overflow */
+.article-page .article-infographic {
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  overflow: hidden !important;
+}
+
+.article-page .article-infographic img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+}
