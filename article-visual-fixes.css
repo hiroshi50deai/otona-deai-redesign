@@ -368,3 +368,27 @@
   max-width: 100% !important;
   height: auto !important;
 }
+
+/* Prevent grid items from forcing horizontal overflow on medium-width screens */
+.article-page .article-layout,
+.article-page .article-main,
+.article-page .article-sidebar,
+.article-page .article-block,
+.article-page figure,
+.article-page img {
+  min-width: 0 !important;
+}
+
+.article-page {
+  overflow-x: hidden !important;
+}
+
+@media (min-width: 901px) and (max-width: 1139px) {
+  .article-page .article-layout {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .article-page .article-sidebar {
+    display: none !important;
+  }
+}
