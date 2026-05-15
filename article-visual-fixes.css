@@ -392,3 +392,24 @@
     display: none !important;
   }
 }
+
+/* Constrain CTA visual image inside the service mini CTA */
+.article-page .service-mini-cta .cta-visual {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 16px 0 24px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border-radius: 18px !important;
+  box-shadow: none !important;
+}
+
+.article-page .service-mini-cta .cta-visual img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+  border-radius: 18px !important;
+}
