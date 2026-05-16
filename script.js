@@ -251,6 +251,31 @@ function addProfileTextLinkToCleanlinessArticle() {
   `);
 }
 
+function addLikesArticleLinkToCleanlinessArticle() {
+  if (!location.pathname.endsWith('/middle-aged-men-cleanliness-mistakes.html')) return;
+  if (document.querySelector('a[href="why-50s-men-get-no-likes.html"]')) return;
+
+  const section = Array.from(document.querySelectorAll('.article-main .article-block')).find((block) => {
+    const heading = block.querySelector('h2');
+    return heading && heading.textContent.trim() === 'まとめ｜清潔感は、若さではなく「安心して近づけそうか」で決まる';
+  });
+
+  if (!section) return;
+
+  const lastParagraph = section.querySelector('p:last-of-type');
+  const html = `
+    <p>
+      清潔感は大切ですが、いいねが来ない原因は清潔感だけとは限りません。写真、プロフィール文、メッセージ、年齢の見せ方など、全体の原因を整理したい方は、<a href="why-50s-men-get-no-likes.html">50代男性がマッチングアプリでいいねをもらえない理由</a>の記事も参考にしてください。
+    </p>
+  `;
+
+  if (lastParagraph) {
+    lastParagraph.insertAdjacentHTML('beforebegin', html);
+  } else {
+    section.insertAdjacentHTML('beforeend', html);
+  }
+}
+
 function addCleanlinessLinkToLikesArticle() {
   if (!location.pathname.endsWith('/why-50s-men-get-no-likes.html')) return;
   if (document.querySelector('a[href="middle-aged-men-cleanliness-mistakes.html"]')) return;
@@ -357,6 +382,7 @@ normalizeCharacterImages();
 completeProfileTextWomenCheckSection();
 convertCleanlinessIntroSection();
 addProfileTextLinkToCleanlinessArticle();
+addLikesArticleLinkToCleanlinessArticle();
 addCleanlinessLinkToLikesArticle();
 addCleanlinessLinkToProfileTextArticle();
 enhanceStudentAvatars();
