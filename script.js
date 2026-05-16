@@ -260,6 +260,31 @@ function addCleanlinessLinkToLikesArticle() {
   `);
 }
 
+function addCleanlinessLinkToProfileTextArticle() {
+  if (!location.pathname.endsWith('/profile-text-safe-adult-men.html')) return;
+  if (document.querySelector('a[href="middle-aged-men-cleanliness-mistakes.html"]')) return;
+
+  const section = Array.from(document.querySelectorAll('.article-main .article-block')).find((block) => {
+    const heading = block.querySelector('h2');
+    return heading && heading.textContent.trim() === '写真と実物のギャップは、見た目ではなく信頼性の問題';
+  });
+
+  if (!section) return;
+
+  const note = section.querySelector('.article-note');
+  const html = `
+    <p>
+      プロフィール文だけを丁寧にしても、写真や清潔感の印象とズレていると、女性は違和感を持つことがあります。髪・ヒゲ・服装・肌・ニオイ・生活感など、清潔感で損しやすいポイントは、<a href="middle-aged-men-cleanliness-mistakes.html">清潔感がないと思われる中年男性の共通点</a>の記事でも詳しく整理しています。
+    </p>
+  `;
+
+  if (note) {
+    note.insertAdjacentHTML('beforebegin', html);
+  } else {
+    section.insertAdjacentHTML('beforeend', html);
+  }
+}
+
 function createHeadingId(index) {
   return `article-section-${index + 1}`;
 }
@@ -314,6 +339,7 @@ normalizeCharacterImages();
 completeProfileTextWomenCheckSection();
 convertCleanlinessIntroSection();
 addCleanlinessLinkToLikesArticle();
+addCleanlinessLinkToProfileTextArticle();
 enhanceStudentAvatars();
 markSakuraSpeakers();
 addArticleTableOfContents();
