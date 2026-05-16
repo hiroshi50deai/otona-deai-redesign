@@ -259,6 +259,69 @@ function convertProfileTextNgExamplesSection() {
   `;
 }
 
+function convertProfileConnectionSection() {
+  if (!location.pathname.endsWith('/profile-text-safe-adult-men.html')) return;
+
+  const section = Array.from(document.querySelectorAll('.article-page .article-block')).find((block) => {
+    const heading = block.querySelector('h2');
+    return heading && heading.textContent.trim() === '写真・プロフィール文・メッセージをつなげて整える理由';
+  });
+
+  if (!section || section.dataset.connectionConversationConverted === 'true') return;
+  section.dataset.connectionConversationConverted = 'true';
+  section.classList.add('article-conversation-block');
+  section.setAttribute('aria-label', '写真・プロフィール文・メッセージの一貫性を説明する会話');
+
+  section.innerHTML = `
+    <h2 class="article-conversation-block__title">写真・プロフィール文・メッセージをつなげて整える理由</h2>
+
+    <div class="conversation-row-v2 conversation-row-v2--student">
+      <div class="conversation-person">
+        <div class="conversation-person__image conversation-person__image--student" aria-hidden="true">50</div>
+        <span class="conversation-person__label">生徒・50代男性</span>
+      </div>
+      <div class="conversation-bubble-v2">
+        <p>先生、プロフィール文を整えれば、それだけでかなり良くなりますよね？</p>
+        <p>写真やメッセージまで同時に見直す必要がありますか？</p>
+      </div>
+    </div>
+
+    <div class="conversation-row-v2 conversation-row-v2--teacher">
+      <div class="conversation-bubble-v2">
+        <p>プロフィール文だけを整えても、写真やメッセージと印象がズレていると、女性は違和感を持ちます。</p>
+        <p>写真では清潔感があるのに、文章が雑。文章では誠実そうなのに、メッセージで急に距離を詰める。こうしたズレは、せっかくの良さを伝わりにくくします。</p>
+      </div>
+      <div class="conversation-person">
+        <img class="conversation-person__image" src="assets/characters/teacher-new-explain.png" alt="写真とプロフィール文とメッセージの一貫性を説明する先生キャラクター" />
+        <span class="conversation-person__label">先生</span>
+      </div>
+    </div>
+
+    <div class="conversation-row-v2 conversation-row-v2--student">
+      <div class="conversation-person">
+        <img class="conversation-person__image" src="assets/characters/sakura-point.png" alt="女性目線で一貫性を補足する助手さくら" />
+        <span class="conversation-person__label">さくら</span>
+      </div>
+      <div class="conversation-bubble-v2">
+        <p>女性側は、写真、プロフィール文、メッセージ、会話の雰囲気を別々ではなく、つながった印象として見ています。</p>
+        <p>たとえば、写真は落ち着いているのにメッセージが急ぎすぎると、「実際は距離感が近すぎる人かも」と感じることがあります。</p>
+      </div>
+    </div>
+
+    <div class="conversation-row-v2 conversation-row-v2--teacher">
+      <div class="conversation-bubble-v2">
+        <p>大切なのは、全体の一貫性です。</p>
+        <p>写真、プロフィール文、メッセージ、会話、清潔感、服装、雰囲気。これらが同じ方向を向いていると、女性は安心しやすくなります。</p>
+        <p>若作りをする必要はありません。今の自分の良さが、女性に伝わる形になっているかを確認することが大切です。</p>
+      </div>
+      <div class="conversation-person">
+        <img class="conversation-person__image" src="assets/characters/teacher-new-explain.png" alt="全体の一貫性が安心感につながることを説明する先生キャラクター" />
+        <span class="conversation-person__label">先生</span>
+      </div>
+    </div>
+  `;
+}
+
 function createHeadingId(index) {
   return `article-section-${index + 1}`;
 }
@@ -316,6 +379,7 @@ if (navToggle && siteNav) {
 normalizeCharacterImages();
 completeProfileTextWomenCheckSection();
 convertProfileTextNgExamplesSection();
+convertProfileConnectionSection();
 enhanceStudentAvatars();
 markSakuraSpeakers();
 addArticleTableOfContents();
