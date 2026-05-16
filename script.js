@@ -138,33 +138,6 @@ function completeProfileTextWomenCheckSection() {
   }
 }
 
-function addCleanlinessLinkToLikesArticle() {
-  if (!location.pathname.endsWith('/why-50s-men-get-no-likes.html')) return;
-  if (document.querySelector('a[href="middle-aged-men-cleanliness-mistakes.html"]')) return;
-
-  const targetHeading = Array.from(document.querySelectorAll('.article-main h3')).find((heading) =>
-    heading.textContent.trim().includes('理由1：プロフィール写真で清潔感や安心感が伝わっていない')
-  );
-
-  if (!targetHeading) return;
-
-  let node = targetHeading.nextElementSibling;
-  let lastParagraph = null;
-
-  while (node && node.tagName !== 'H3') {
-    if (node.tagName === 'P') lastParagraph = node;
-    node = node.nextElementSibling;
-  }
-
-  if (!lastParagraph) return;
-
-  lastParagraph.insertAdjacentHTML('afterend', `
-    <p>
-      いいねが来ない原因は、年齢や顔だけではありません。写真の中で髪・ヒゲ・服装・肌・生活感が雑に見えると、女性はプロフィール文を読む前に不安を感じることがあります。清潔感で損しやすいポイントは、<a href="middle-aged-men-cleanliness-mistakes.html">清潔感がないと思われる中年男性の共通点</a>の記事でも詳しく整理しています。
-    </p>
-  `);
-}
-
 function addCleanlinessLinkToProfileTextArticle() {
   if (!location.pathname.endsWith('/profile-text-safe-adult-men.html')) return;
   if (document.querySelector('a[href="middle-aged-men-cleanliness-mistakes.html"]')) return;
@@ -242,7 +215,6 @@ if (navToggle && siteNav) {
 
 normalizeCharacterImages();
 completeProfileTextWomenCheckSection();
-addCleanlinessLinkToLikesArticle();
 addCleanlinessLinkToProfileTextArticle();
 enhanceStudentAvatars();
 markSakuraSpeakers();
