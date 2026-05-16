@@ -1,5 +1,6 @@
 const navToggle = document.querySelector('.nav-toggle');
 const siteNav = document.querySelector('.site-nav');
+
 const characterImageReplacements = {
   'assets/characters/05_icon_bust.png': 'assets/characters/teacher-new-icon.png',
   'assets/characters/01_hero_teacher.png': 'assets/characters/teacher-new-main.png',
@@ -137,191 +138,6 @@ function completeProfileTextWomenCheckSection() {
   }
 }
 
-function convertProfileTextNgExamplesSection() {
-  if (!location.pathname.endsWith('/profile-text-safe-adult-men.html')) return;
-
-  const section = Array.from(document.querySelectorAll('.article-page .article-block')).find((block) => {
-    const heading = block.querySelector('h2');
-    return heading && heading.textContent.trim() === '40代・50代男性がプロフィール文で損するNG例';
-  });
-
-  if (!section || section.dataset.conversationConverted === 'true') return;
-  section.dataset.conversationConverted = 'true';
-  section.classList.add('article-conversation-block');
-  section.setAttribute('aria-label', '40代・50代男性がプロフィール文で損するNG例の会話解説');
-
-  section.innerHTML = `
-    <h2 class="article-conversation-block__title">40代・50代男性がプロフィール文で損するNG例</h2>
-
-    <div class="conversation-row-v2 conversation-row-v2--student">
-      <div class="conversation-person">
-        <div class="conversation-person__image conversation-person__image--student" aria-hidden="true">50</div>
-        <span class="conversation-person__label">生徒・50代男性</span>
-      </div>
-      <div class="conversation-bubble-v2">
-        <p>先生、自分では普通にプロフィール文を書いているつもりなんです。</p>
-        <p>でも、それでも損していることってあるんですか？</p>
-      </div>
-    </div>
-
-    <div class="conversation-row-v2 conversation-row-v2--teacher">
-      <div class="conversation-bubble-v2">
-        <p>あります。プロフィール文で損している人は、内容そのものが悪いというより、伝わり方で損していることが多いです。</p>
-        <p>自分では普通のつもりでも、女性側から見ると不安や違和感につながる表現があります。</p>
-      </div>
-      <div class="conversation-person">
-        <img class="conversation-person__image" src="assets/characters/teacher-new-explain.png" alt="プロフィール文のNG例を説明する先生キャラクター" />
-        <span class="conversation-person__label">先生</span>
-      </div>
-    </div>
-
-    <div class="conversation-row-v2 conversation-row-v2--student">
-      <div class="conversation-person">
-        <img class="conversation-person__image" src="assets/characters/sakura-point.png" alt="プロフィール文の注意点を補足する助手さくら" />
-        <span class="conversation-person__label">さくら</span>
-      </div>
-      <div class="conversation-bubble-v2">
-        <p>たとえば、短すぎるプロフィール文です。</p>
-        <p>「よろしくお願いします」「使い方がよくわかりません」「いい人がいれば」だけだと、女性は人柄を判断しにくくなります。</p>
-        <p>長文にする必要はありませんが、仕事、休日、性格、どんな関係を望んでいるかは、最低限伝えたいところです。</p>
-      </div>
-    </div>
-
-    <div class="conversation-row-v2 conversation-row-v2--teacher">
-      <div class="conversation-bubble-v2">
-        <p>次に、自慢や武勇伝が多い文章です。</p>
-        <p>収入、肩書き、過去のモテ話、仕事の成果ばかりを書くと、すごさよりも圧が伝わることがあります。</p>
-        <p>大切なのは「俺はすごい」と思わせることではなく、「この人と話すと落ち着きそう」と感じてもらうことです。</p>
-      </div>
-      <div class="conversation-person">
-        <img class="conversation-person__image" src="assets/characters/teacher-new-explain.png" alt="自慢や武勇伝の注意点を説明する先生キャラクター" />
-        <span class="conversation-person__label">先生</span>
-      </div>
-    </div>
-
-    <div class="conversation-row-v2 conversation-row-v2--student">
-      <div class="conversation-person">
-        <div class="conversation-person__image conversation-person__image--student" aria-hidden="true">50</div>
-        <span class="conversation-person__label">生徒・50代男性</span>
-      </div>
-      <div class="conversation-bubble-v2">
-        <p>なるほど……。</p>
-        <p>逆に「こんなおじさんでよければ」みたいに、控えめに書くのはどうなんでしょう？</p>
-      </div>
-    </div>
-
-    <div class="conversation-row-v2 conversation-row-v2--teacher">
-      <div class="conversation-bubble-v2">
-        <p>そこも注意が必要です。</p>
-        <p>「もう若くないですが」「こんなおじさんでよければ」「どうせマッチしないと思いますが」といった表現は、読む側を困らせます。</p>
-        <p>謙虚さと卑屈さは違います。年齢を下げる必要はありませんが、自分を必要以上に下げる必要もありません。</p>
-      </div>
-      <div class="conversation-person">
-        <img class="conversation-person__image" src="assets/characters/teacher-new-explain.png" alt="卑屈なプロフィール文の注意点を説明する先生キャラクター" />
-        <span class="conversation-person__label">先生</span>
-      </div>
-    </div>
-
-    <div class="conversation-row-v2 conversation-row-v2--student">
-      <div class="conversation-person">
-        <img class="conversation-person__image" src="assets/characters/sakura-think.png" alt="女性目線で条件の書き方を補足する助手さくら" />
-        <span class="conversation-person__label">さくら</span>
-      </div>
-      <div class="conversation-bubble-v2">
-        <p>条件や要望が先に出すぎる文章も、女性側は少し身構えます。</p>
-        <p>「太っている人は無理」「非常識な人は無理」「返信が遅い人は無理」のように並ぶと、会う前から厳しい人に見えやすいです。</p>
-        <p>条件を書くなら、相手を否定するより「丁寧にやり取りできる方だとうれしいです」のように、やわらかく伝える方が安心されやすいです。</p>
-      </div>
-    </div>
-
-    <div class="conversation-row-v2 conversation-row-v2--student">
-      <div class="conversation-person">
-        <div class="conversation-person__image conversation-person__image--student" aria-hidden="true">50</div>
-        <span class="conversation-person__label">生徒・50代男性</span>
-      </div>
-      <div class="conversation-bubble-v2">
-        <p>「まずは会いましょう」みたいなのも、やっぱり急かしているように見えますか？</p>
-      </div>
-    </div>
-
-    <div class="conversation-row-v2 conversation-row-v2--teacher">
-      <div class="conversation-bubble-v2">
-        <p>見えることがあります。</p>
-        <p>「メッセージより会った方が早いです」「まずは会いましょう」「すぐ会える人がいいです」は、男性側としては効率よく進めたいだけかもしれません。</p>
-        <p>しかし女性側から見ると、急かされているように感じることがあります。</p>
-        <p>だからこそ、「急がない」「まずは安心してやり取りしたい」という姿勢は、プロフィール文でも大事な安心材料になります。</p>
-      </div>
-      <div class="conversation-person">
-        <img class="conversation-person__image" src="assets/characters/teacher-new-explain.png" alt="急ぎすぎるプロフィール文の注意点を説明する先生キャラクター" />
-        <span class="conversation-person__label">先生</span>
-      </div>
-    </div>
-  `;
-}
-
-function convertProfileConnectionSection() {
-  if (!location.pathname.endsWith('/profile-text-safe-adult-men.html')) return;
-
-  const section = Array.from(document.querySelectorAll('.article-page .article-block')).find((block) => {
-    const heading = block.querySelector('h2');
-    return heading && heading.textContent.trim() === '写真・プロフィール文・メッセージをつなげて整える理由';
-  });
-
-  if (!section || section.dataset.connectionConversationConverted === 'true') return;
-  section.dataset.connectionConversationConverted = 'true';
-  section.classList.add('article-conversation-block');
-  section.setAttribute('aria-label', '写真・プロフィール文・メッセージの一貫性を説明する会話');
-
-  section.innerHTML = `
-    <h2 class="article-conversation-block__title">写真・プロフィール文・メッセージをつなげて整える理由</h2>
-
-    <div class="conversation-row-v2 conversation-row-v2--student">
-      <div class="conversation-person">
-        <div class="conversation-person__image conversation-person__image--student" aria-hidden="true">50</div>
-        <span class="conversation-person__label">生徒・50代男性</span>
-      </div>
-      <div class="conversation-bubble-v2">
-        <p>先生、プロフィール文を整えれば、それだけでかなり良くなりますよね？</p>
-        <p>写真やメッセージまで同時に見直す必要がありますか？</p>
-      </div>
-    </div>
-
-    <div class="conversation-row-v2 conversation-row-v2--teacher">
-      <div class="conversation-bubble-v2">
-        <p>プロフィール文だけを整えても、写真やメッセージと印象がズレていると、女性は違和感を持ちます。</p>
-        <p>写真では清潔感があるのに、文章が雑。文章では誠実そうなのに、メッセージで急に距離を詰める。こうしたズレは、せっかくの良さを伝わりにくくします。</p>
-      </div>
-      <div class="conversation-person">
-        <img class="conversation-person__image" src="assets/characters/teacher-new-explain.png" alt="写真とプロフィール文とメッセージの一貫性を説明する先生キャラクター" />
-        <span class="conversation-person__label">先生</span>
-      </div>
-    </div>
-
-    <div class="conversation-row-v2 conversation-row-v2--student">
-      <div class="conversation-person">
-        <img class="conversation-person__image" src="assets/characters/sakura-point.png" alt="女性目線で一貫性を補足する助手さくら" />
-        <span class="conversation-person__label">さくら</span>
-      </div>
-      <div class="conversation-bubble-v2">
-        <p>女性側は、写真、プロフィール文、メッセージ、会話の雰囲気を別々ではなく、つながった印象として見ています。</p>
-        <p>たとえば、写真は落ち着いているのにメッセージが急ぎすぎると、「実際は距離感が近すぎる人かも」と感じることがあります。</p>
-      </div>
-    </div>
-
-    <div class="conversation-row-v2 conversation-row-v2--teacher">
-      <div class="conversation-bubble-v2">
-        <p>大切なのは、全体の一貫性です。</p>
-        <p>写真、プロフィール文、メッセージ、会話、清潔感、服装、雰囲気。これらが同じ方向を向いていると、女性は安心しやすくなります。</p>
-        <p>若作りをする必要はありません。今の自分の良さが、女性に伝わる形になっているかを確認することが大切です。</p>
-      </div>
-      <div class="conversation-person">
-        <img class="conversation-person__image" src="assets/characters/teacher-new-explain.png" alt="全体の一貫性が安心感につながることを説明する先生キャラクター" />
-        <span class="conversation-person__label">先生</span>
-      </div>
-    </div>
-  `;
-}
-
 function convertCleanlinessIntroSection() {
   if (!location.pathname.endsWith('/middle-aged-men-cleanliness-mistakes.html')) return;
 
@@ -417,6 +233,33 @@ function convertCleanlinessIntroSection() {
   `;
 }
 
+function addCleanlinessLinkToLikesArticle() {
+  if (!location.pathname.endsWith('/why-50s-men-get-no-likes.html')) return;
+  if (document.querySelector('a[href="middle-aged-men-cleanliness-mistakes.html"]')) return;
+
+  const targetHeading = Array.from(document.querySelectorAll('.article-main h3')).find((heading) =>
+    heading.textContent.trim().includes('理由1：プロフィール写真で清潔感や安心感が伝わっていない')
+  );
+
+  if (!targetHeading) return;
+
+  let node = targetHeading.nextElementSibling;
+  let lastParagraph = null;
+
+  while (node && node.tagName !== 'H3') {
+    if (node.tagName === 'P') lastParagraph = node;
+    node = node.nextElementSibling;
+  }
+
+  if (!lastParagraph) return;
+
+  lastParagraph.insertAdjacentHTML('afterend', `
+    <p>
+      いいねが来ない原因は、年齢や顔だけではありません。写真の中で髪・ヒゲ・服装・肌・生活感が雑に見えると、女性はプロフィール文を読む前に不安を感じることがあります。清潔感で損しやすいポイントは、<a href="middle-aged-men-cleanliness-mistakes.html">清潔感がないと思われる中年男性の共通点</a>の記事でも詳しく整理しています。
+    </p>
+  `);
+}
+
 function createHeadingId(index) {
   return `article-section-${index + 1}`;
 }
@@ -429,14 +272,8 @@ function addArticleTableOfContents() {
   if (!headings.length) return;
 
   const tocItems = headings.map((heading, index) => {
-    if (!heading.id) {
-      heading.id = createHeadingId(index);
-    }
-
-    return {
-      id: heading.id,
-      label: heading.textContent.trim(),
-    };
+    if (!heading.id) heading.id = createHeadingId(index);
+    return { id: heading.id, label: heading.textContent.trim() };
   });
 
   const nav = document.createElement('nav');
@@ -463,6 +300,7 @@ if (navToggle && siteNav) {
     navToggle.setAttribute('aria-expanded', String(isOpen));
     navToggle.textContent = isOpen ? '×' : '☰';
   });
+
   siteNav.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {
       siteNav.classList.remove('is-open');
@@ -471,11 +309,11 @@ if (navToggle && siteNav) {
     });
   });
 }
+
 normalizeCharacterImages();
 completeProfileTextWomenCheckSection();
-convertProfileTextNgExamplesSection();
-convertProfileConnectionSection();
 convertCleanlinessIntroSection();
+addCleanlinessLinkToLikesArticle();
 enhanceStudentAvatars();
 markSakuraSpeakers();
 addArticleTableOfContents();
