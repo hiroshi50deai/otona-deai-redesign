@@ -322,6 +322,101 @@ function convertProfileConnectionSection() {
   `;
 }
 
+function convertCleanlinessIntroSection() {
+  if (!location.pathname.endsWith('/middle-aged-men-cleanliness-mistakes.html')) return;
+
+  const section = Array.from(document.querySelectorAll('.article-page .article-block')).find((block) => {
+    const heading = block.querySelector('h2');
+    return heading && heading.textContent.trim() === '清潔感は、恋愛対象に入るための最低条件';
+  });
+
+  if (!section || section.dataset.cleanlinessIntroConverted === 'true') return;
+  section.dataset.cleanlinessIntroConverted = 'true';
+  section.classList.add('article-conversation-block');
+  section.setAttribute('aria-label', '清潔感が恋愛対象に入る最低条件である理由の会話');
+
+  section.innerHTML = `
+    <h2 class="article-conversation-block__title">清潔感は、恋愛対象に入るための最低条件</h2>
+
+    <div class="conversation-row-v2 conversation-row-v2--student">
+      <div class="conversation-person">
+        <div class="conversation-person__image conversation-person__image--student" aria-hidden="true">50</div>
+        <span class="conversation-person__label">生徒・50代男性</span>
+      </div>
+      <div class="conversation-bubble-v2">
+        <p>先生、マッチングアプリで反応が悪いんです。</p>
+        <p>いいねも来ないし、マッチしても会う前にやり取りが止まることが多くて……。やっぱり年齢とか顔の問題なんでしょうか。</p>
+      </div>
+    </div>
+
+    <div class="conversation-row-v2 conversation-row-v2--teacher">
+      <div class="conversation-bubble-v2">
+        <p>年齢や見た目の影響がまったくないとは言いません。</p>
+        <p>でも、女性が最初に見ているのは、顔立ちそのものだけではありません。実はかなり強く見られているのが、<strong>清潔感</strong>です。</p>
+      </div>
+      <div class="conversation-person">
+        <img class="conversation-person__image" src="assets/characters/teacher-new-explain.png" alt="清潔感が恋愛対象に入る最低条件であることを説明する先生キャラクター" />
+        <span class="conversation-person__label">先生</span>
+      </div>
+    </div>
+
+    <div class="conversation-row-v2 conversation-row-v2--student">
+      <div class="conversation-person">
+        <div class="conversation-person__image conversation-person__image--student" aria-hidden="true">50</div>
+        <span class="conversation-person__label">生徒・50代男性</span>
+      </div>
+      <div class="conversation-bubble-v2">
+        <p>清潔感ですか……。</p>
+        <p>でも、毎日風呂には入っていますし、服も普通に洗っています。それでも足りないんですか？</p>
+      </div>
+    </div>
+
+    <div class="conversation-row-v2 conversation-row-v2--student">
+      <div class="conversation-person">
+        <img class="conversation-person__image" src="assets/characters/sakura-point.png" alt="女性目線で清潔感を説明する助手さくら" />
+        <span class="conversation-person__label">さくら</span>
+      </div>
+      <div class="conversation-bubble-v2">
+        <p>ここでいう清潔感は、単にお風呂に入っているかどうかだけではありません。</p>
+        <p>髪、肌、ヒゲ、歯、ニオイ、服、爪、写真の雰囲気から、「近づいても不快ではなさそうか」「生活が雑そうに見えないか」「会っても大丈夫そうか」を見ています。</p>
+      </div>
+    </div>
+
+    <div class="conversation-row-v2 conversation-row-v2--teacher">
+      <div class="conversation-bubble-v2">
+        <p>清潔感は、恋愛では加点要素というより、入口の条件です。</p>
+        <p>結婚相手に求める条件に関する調査でも、清潔感は重視されやすい項目です。不潔と感じる要素としても、汗臭さ、フケ、口臭などが強く挙げられています。</p>
+      </div>
+      <div class="conversation-person">
+        <img class="conversation-person__image" src="assets/characters/teacher-new-explain.png" alt="清潔感が入口の条件であることを説明する先生キャラクター" />
+        <span class="conversation-person__label">先生</span>
+      </div>
+    </div>
+
+    <div class="conversation-row-v2 conversation-row-v2--student">
+      <div class="conversation-person">
+        <img class="conversation-person__image" src="assets/characters/sakura-think.png" alt="女性が清潔感で安心感を見ていることを補足する助手さくら" />
+        <span class="conversation-person__label">さくら</span>
+      </div>
+      <div class="conversation-bubble-v2">
+        <p>女性が見ているのは、おしゃれかどうかだけではありません。</p>
+        <p>高い服か、流行の髪型か、若く見えるかより前に、「この人と近い距離で話しても大丈夫そうか」を見ています。</p>
+      </div>
+    </div>
+
+    <div class="conversation-row-v2 conversation-row-v2--teacher">
+      <div class="conversation-bubble-v2">
+        <p>清潔感は、イケメンになるためのものではありません。</p>
+        <p>女性に安心してもらうための、入口の整備です。ここを整えるだけでも、写真やプロフィールの見え方は変わります。</p>
+      </div>
+      <div class="conversation-person">
+        <img class="conversation-person__image" src="assets/characters/teacher-new-explain.png" alt="清潔感は女性に安心してもらう入口の整備だと説明する先生キャラクター" />
+        <span class="conversation-person__label">先生</span>
+      </div>
+    </div>
+  `;
+}
+
 function createHeadingId(index) {
   return `article-section-${index + 1}`;
 }
@@ -380,6 +475,7 @@ normalizeCharacterImages();
 completeProfileTextWomenCheckSection();
 convertProfileTextNgExamplesSection();
 convertProfileConnectionSection();
+convertCleanlinessIntroSection();
 enhanceStudentAvatars();
 markSakuraSpeakers();
 addArticleTableOfContents();
