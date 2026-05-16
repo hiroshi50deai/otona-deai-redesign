@@ -276,6 +276,30 @@ function addLikesArticleLinkToCleanlinessArticle() {
   }
 }
 
+function addRelatedArticlesBlockToCleanlinessArticle() {
+  if (!location.pathname.endsWith('/middle-aged-men-cleanliness-mistakes.html')) return;
+  if (Array.from(document.querySelectorAll('.article-main h2')).some((heading) => heading.textContent.trim() === '次に読みたい関連記事')) return;
+
+  const summarySection = Array.from(document.querySelectorAll('.article-main .article-block')).find((block) => {
+    const heading = block.querySelector('h2');
+    return heading && heading.textContent.trim() === 'まとめ｜清潔感は、若さではなく「安心して近づけそうか」で決まる';
+  });
+
+  if (!summarySection) return;
+
+  summarySection.insertAdjacentHTML('afterend', `
+    <section class="article-block">
+      <h2>次に読みたい関連記事</h2>
+      <p>清潔感だけでなく、写真・プロフィール文・全体の見せ方も合わせて整えると、女性に伝わる印象はさらに安定します。</p>
+      <ul class="article-check-list">
+        <li><a href="profile-photo-ng-40s-men.html">40代男性のプロフィール写真で損するNG例</a></li>
+        <li><a href="profile-text-safe-adult-men.html">女性が安心する大人の男のプロフィール文とは</a></li>
+        <li><a href="why-50s-men-get-no-likes.html">50代男性がマッチングアプリでいいねをもらえない理由</a></li>
+      </ul>
+    </section>
+  `);
+}
+
 function addCleanlinessLinkToLikesArticle() {
   if (!location.pathname.endsWith('/why-50s-men-get-no-likes.html')) return;
   if (document.querySelector('a[href="middle-aged-men-cleanliness-mistakes.html"]')) return;
@@ -383,6 +407,7 @@ completeProfileTextWomenCheckSection();
 convertCleanlinessIntroSection();
 addProfileTextLinkToCleanlinessArticle();
 addLikesArticleLinkToCleanlinessArticle();
+addRelatedArticlesBlockToCleanlinessArticle();
 addCleanlinessLinkToLikesArticle();
 addCleanlinessLinkToProfileTextArticle();
 enhanceStudentAvatars();
