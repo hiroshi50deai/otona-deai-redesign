@@ -356,6 +356,10 @@
   body:has(img[src="assets/eyecatches/profile-text-safe-adult-men.png"]) .article-page .article-hero::before {
     background-image: url("assets/eyecatches/profile-text-safe-adult-men.png") !important;
   }
+
+  body:has(img[src="assets/eyecatches/middle-aged-men-cleanliness-mistakes-eyecatch.png"]) .article-page .article-hero::before {
+    background-image: url("assets/eyecatches/middle-aged-men-cleanliness-mistakes-eyecatch.png?v=20260516-2") !important;
+  }
 }
 
 /* Prevent article infographic overflow */
