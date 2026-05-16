@@ -233,6 +233,24 @@ function convertCleanlinessIntroSection() {
   `;
 }
 
+function addProfileTextLinkToCleanlinessArticle() {
+  if (!location.pathname.endsWith('/middle-aged-men-cleanliness-mistakes.html')) return;
+  if (document.querySelector('a[href="profile-text-safe-adult-men.html"]')) return;
+
+  const section = Array.from(document.querySelectorAll('.article-main .article-conversation-block')).find((block) => {
+    const heading = block.querySelector('h2');
+    return heading && heading.textContent.trim() === '写真・清潔感・プロフィール全体をつなげて整えると、印象は変わる';
+  });
+
+  if (!section) return;
+
+  section.insertAdjacentHTML('beforeend', `
+    <p>
+      清潔感が整っていても、プロフィール文が雑だったり、距離感が急すぎたりすると、女性は途中で不安を感じることがあります。写真の印象と文章の印象をそろえる考え方は、<a href="profile-text-safe-adult-men.html">女性が安心する大人の男のプロフィール文とは</a>の記事でも詳しく解説しています。
+    </p>
+  `);
+}
+
 function addCleanlinessLinkToLikesArticle() {
   if (!location.pathname.endsWith('/why-50s-men-get-no-likes.html')) return;
   if (document.querySelector('a[href="middle-aged-men-cleanliness-mistakes.html"]')) return;
@@ -338,6 +356,7 @@ if (navToggle && siteNav) {
 normalizeCharacterImages();
 completeProfileTextWomenCheckSection();
 convertCleanlinessIntroSection();
+addProfileTextLinkToCleanlinessArticle();
 addCleanlinessLinkToLikesArticle();
 addCleanlinessLinkToProfileTextArticle();
 enhanceStudentAvatars();
