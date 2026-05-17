@@ -92,52 +92,6 @@ function markSakuraSpeakers() {
   });
 }
 
-function completeProfileTextWomenCheckSection() {
-  if (!location.pathname.endsWith('/profile-text-safe-adult-men.html')) return;
-
-  const section = Array.from(document.querySelectorAll('.article-page .article-block')).find((block) => {
-    const heading = block.querySelector('h2');
-    return heading && heading.textContent.trim() === '女性がプロフィール文で見ているもの';
-  });
-
-  if (!section) return;
-
-  if (!section.querySelector('img[src="assets/infographics/profile-text-what-women-check.png"]')) {
-    const heading = section.querySelector('h2');
-    heading?.insertAdjacentHTML('afterend', `
-      <figure class="article-infographic article-infographic--large article-infographic--bare reason-infographic">
-        <img
-          src="assets/infographics/profile-text-what-women-check.png"
-          alt="女性がプロフィール文で見ている5つのポイント。会話できそうか、生活の雰囲気、配慮、距離感、写真や年齢との一貫性を整理した図解"
-          loading="lazy"
-        />
-      </figure>
-    `);
-  }
-
-  const hasCareHeading = Array.from(section.querySelectorAll('h3')).some((h3) => h3.textContent.trim() === '相手への配慮があるか');
-  const hasConsistencyHeading = Array.from(section.querySelectorAll('h3')).some((h3) => h3.textContent.trim() === '写真や年齢との一貫性があるか');
-  const distanceHeading = Array.from(section.querySelectorAll('h3')).find((h3) => h3.textContent.trim() === '距離感が急すぎないか');
-
-  if (!hasCareHeading && distanceHeading) {
-    distanceHeading.insertAdjacentHTML('beforebegin', `
-      <h3>相手への配慮があるか</h3>
-      <p>プロフィール文では、自分の希望だけでなく、相手への配慮が伝わるかも見られています。</p>
-      <p>「こういう人は無理です」「返信が遅い人は合いません」のように条件を強く並べると、読む側は少し身構えてしまいます。</p>
-      <p>一方で、「お互いに無理なく、丁寧にやり取りできたらうれしいです」と書くと、自分本位ではなく、相手のペースも大切にできる人だと伝わりやすくなります。</p>
-    `);
-  }
-
-  if (!hasConsistencyHeading) {
-    section.insertAdjacentHTML('beforeend', `
-      <h3>写真や年齢との一貫性があるか</h3>
-      <p>女性は、プロフィール文だけを単体で見ているわけではありません。写真、年齢、文章、メッセージの雰囲気がつながっているかも見ています。</p>
-      <p>写真では落ち着いて見えるのに文章が軽すぎる。年齢は50代なのに「気持ちは30代」と若さばかりを強調している。こうしたズレがあると、実際に会ったときのギャップを想像されやすくなります。</p>
-      <p>大切なのは、若く見せることではなく、写真と文章から伝わる印象が自然にそろっていることです。一貫性があるプロフィールは、女性にとって安心材料になります。</p>
-    `);
-  }
-}
-
 function createHeadingId(index) {
   return `article-section-${index + 1}`;
 }
@@ -189,7 +143,6 @@ if (navToggle && siteNav) {
 }
 
 normalizeCharacterImages();
-completeProfileTextWomenCheckSection();
 enhanceStudentAvatars();
 markSakuraSpeakers();
 addArticleTableOfContents();
