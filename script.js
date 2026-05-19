@@ -126,6 +126,22 @@ function addArticleTableOfContents() {
   }
 }
 
+function addMobileEyecatchOverrides() {
+  const eyecatch = document.querySelector('.article-main > figure.article-block:first-child img[src]');
+  const src = eyecatch?.getAttribute('src');
+  if (!src) return;
+
+  const style = document.createElement('style');
+  style.textContent = `
+    @media (max-width: 640px) {
+      .article-page .article-hero::before {
+        background-image: url("${src}") !important;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+}
+
 if (navToggle && siteNav) {
   navToggle.addEventListener('click', () => {
     const isOpen = siteNav.classList.toggle('is-open');
@@ -146,3 +162,4 @@ normalizeCharacterImages();
 enhanceStudentAvatars();
 markSakuraSpeakers();
 addArticleTableOfContents();
+addMobileEyecatchOverrides();
