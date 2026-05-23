@@ -252,6 +252,35 @@ function enhanceWhy50sPhotoAndProfileSections() {
   }
 }
 
+function addFooterUtilityLinks() {
+  const footerInner = document.querySelector('.site-footer .footer-inner');
+  if (!footerInner || footerInner.querySelector('.footer-utility-links')) return;
+
+  const links = document.createElement('nav');
+  links.className = 'footer-utility-links';
+  links.setAttribute('aria-label', 'フッターリンク');
+  links.innerHTML = `
+    <a href="about.html">運営者情報</a>
+    <a href="contact.html">お問い合わせ</a>
+    <a href="privacy.html">プライバシーポリシー</a>
+  `;
+
+  links.style.display = 'flex';
+  links.style.flexWrap = 'wrap';
+  links.style.gap = '12px 18px';
+  links.style.justifyContent = 'center';
+  links.style.marginTop = '14px';
+  links.style.fontSize = '0.9rem';
+
+  links.querySelectorAll('a').forEach((link) => {
+    link.style.color = 'inherit';
+    link.style.textDecoration = 'underline';
+    link.style.textUnderlineOffset = '3px';
+  });
+
+  footerInner.appendChild(links);
+}
+
 if (navToggle && siteNav) {
   navToggle.addEventListener('click', () => {
     const isOpen = siteNav.classList.toggle('is-open');
@@ -274,3 +303,4 @@ markSakuraSpeakers();
 enhanceWhy50sPhotoAndProfileSections();
 addArticleTableOfContents();
 addMobileEyecatchOverrides();
+addFooterUtilityLinks();
