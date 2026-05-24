@@ -329,3 +329,44 @@ h1 span { color: var(--pink); }
     display: none !important;
   }
 }
+@media (max-width: 640px) {
+  .mini-guide {
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr);
+    align-items: end;
+    gap: 10px;
+    width: 100%;
+    min-height: auto;
+    padding-top: 8px;
+    margin-top: 10px;
+  }
+
+  .mini-guide .small-character {
+    position: static;
+    width: 72px;
+    align-self: end;
+  }
+
+  .mini-guide .speech-bubble.small {
+    position: relative;
+    left: auto;
+    top: auto;
+    max-width: 100%;
+    padding: 12px 14px;
+    font-size: 0.82rem;
+    line-height: 1.65;
+    align-self: start;
+  }
+
+  .mini-guide .speech-bubble.small::after {
+    left: -7px;
+    right: auto;
+    bottom: 18px;
+    width: 14px;
+    height: 14px;
+    border-right: none;
+    border-left: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    transform: rotate(45deg);
+  }
+}
