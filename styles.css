@@ -324,3 +324,8 @@ h1 span { color: var(--pink); }
     padding-top: 26px;
   }
 }
+@media (max-width: 640px) {
+  .hero .hero-guide {
+    display: none !important;
+  }
+}
