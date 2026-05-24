@@ -532,3 +532,35 @@ h1 span { color: var(--pink); }
     transform: rotate(45deg) !important;
   }
 }
+
+/* Article infographic responsive fix */
+.article-infographic {
+  width: 100%;
+  max-width: 100%;
+  margin: 22px 0 28px;
+  overflow: hidden;
+}
+
+.article-infographic img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+
+.article-infographic--bare {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+@media (max-width: 640px) {
+  .article-infographic {
+    margin: 18px 0 24px;
+  }
+
+  .article-infographic img {
+    border-radius: 14px;
+  }
+}
