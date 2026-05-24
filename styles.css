@@ -444,3 +444,42 @@ h1 span { color: var(--pink); }
     padding: 11px 13px;
   }
 }
+/* Articles page mobile guide size fix */
+@media (max-width: 640px) {
+  .articles-index-guide {
+    min-height: auto;
+    padding: 16px;
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1fr);
+    align-items: center;
+    gap: 12px;
+  }
+
+  .articles-index-guide .article-guide-character {
+    max-width: 64px;
+    margin: 0;
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .articles-index-guide .speech-bubble {
+    max-width: 100%;
+    padding: 12px 14px;
+    font-size: 0.82rem;
+    line-height: 1.65;
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .articles-index-guide .speech-bubble::after {
+    left: -7px;
+    right: auto;
+    bottom: 18px;
+    width: 14px;
+    height: 14px;
+    border-right: none;
+    border-left: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    transform: rotate(45deg);
+  }
+}
