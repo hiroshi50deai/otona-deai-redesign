@@ -6,6 +6,52 @@
   <title>サンプル診断レポート｜大人の男の出会い再設計教室</title>
   <meta name="description" content="プロフィール再設計ライト診断で実際にどのようなレポートが届くのかを確認できるサンプル診断レポートページです。" />
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    .sample-visual-section { background: #f8fbff; }
+    .sample-visual-grid { display: grid; gap: 26px; }
+    .sample-visual-card {
+      padding: clamp(18px, 4vw, 30px);
+      border-radius: calc(var(--radius) + 6px);
+      background: var(--white);
+      border: 1px solid var(--border);
+      box-shadow: 0 14px 36px rgba(21,42,77,0.07);
+    }
+    .sample-visual-card h3 { margin: 0 0 10px; font-size: clamp(1.25rem, 2.4vw, 1.8rem); }
+    .sample-visual-card p { color: var(--muted); margin: 0 0 18px; }
+    .sample-visual-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 22px;
+      border: 1px solid rgba(21,42,77,0.10);
+      box-shadow: 0 12px 28px rgba(21,42,77,0.08);
+      background: #fff;
+    }
+    .sample-visual-note {
+      margin-top: 14px !important;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+    .sample-visual-points {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .sample-visual-points span {
+      display: block;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: #fff7ed;
+      color: var(--navy);
+      font-weight: 800;
+      border: 1px solid rgba(224,122,154,0.16);
+    }
+    @media (max-width: 768px) {
+      .sample-visual-points { grid-template-columns: 1fr; }
+      .sample-visual-card img { border-radius: 16px; }
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -58,6 +104,52 @@
           <div><strong>悩み</strong><span>いいねが少ない / 写真に自信がない / 会話が続かない</span></div>
           <div><strong>目的</strong><span>会う前に離脱されにくいプロフィールへ改善したい</span></div>
           <div><strong>注意</strong><span>個人情報保護のため、内容は架空のケースです</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section sample-visual-section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Before / After</p>
+          <h2>見た目でわかる改善イメージ</h2>
+          <p>文字だけでは伝わりにくい変化を、ビフォー・アフターで見える形にしました。実際の診断では、このように「どこが損で、どう変えると印象が整うか」を具体的に整理します。</p>
+        </div>
+
+        <div class="sample-visual-grid">
+          <article class="sample-visual-card">
+            <h3>プロフィール写真の改善例</h3>
+            <p>暗い室内自撮りから、自然光・軽い笑顔・清潔感のあるプロフィール写真へ。</p>
+            <img src="assets/samples/profile-photo-before-after-sample.jpg" alt="プロフィール写真のビフォーアフター改善例" loading="lazy" />
+            <div class="sample-visual-points">
+              <span>自然光で顔色を明るく</span>
+              <span>背景の生活感を減らす</span>
+              <span>安心感のある軽い笑顔へ</span>
+            </div>
+            <p class="sample-visual-note">※ 写真は実在のお客様ではなく、改善イメージを伝えるための架空モデルです。</p>
+          </article>
+
+          <article class="sample-visual-card">
+            <h3>プロフィール文の改善例</h3>
+            <p>無難な自己紹介から、人柄・安心感・一緒にいる空気感が伝わる文章へ。</p>
+            <img src="assets/samples/profile-text-before-after-sample.jpg" alt="プロフィール文のビフォーアフター改善例" loading="lazy" />
+            <div class="sample-visual-points">
+              <span>事務的な文章を減らす</span>
+              <span>人柄が見える表現へ</span>
+              <span>会いやすい安心感を追加</span>
+            </div>
+          </article>
+
+          <article class="sample-visual-card">
+            <h3>初回メッセージの改善例</h3>
+            <p>定型文のような挨拶から、相手が返しやすい自然なメッセージへ。</p>
+            <img src="assets/samples/first-message-before-after-sample.jpg" alt="初回メッセージのビフォーアフター改善例" loading="lazy" />
+            <div class="sample-visual-points">
+              <span>定型文感を減らす</span>
+              <span>相手プロフィールに触れる</span>
+              <span>返事しやすい質問にする</span>
+            </div>
+          </article>
         </div>
       </div>
     </section>
