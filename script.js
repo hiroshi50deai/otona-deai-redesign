@@ -72,21 +72,15 @@ function markSakuraSpeakers() {
   });
 }
 
-function createHeadingId(index) { return `article-section-${index + 1}`; }
-
 function addArticleTableOfContents() {
   const articleMain = document.querySelector('.article-page .article-main');
   if (!articleMain || articleMain.querySelector('.article-toc')) return;
   const headings = Array.from(articleMain.querySelectorAll('h2'));
   if (!headings.length) return;
-  const tocItems = headings.map((heading, index) => {
-    if (!heading.id) heading.id = createHeadingId(index);
-    return { id: heading.id, label: heading.textContent.trim() };
-  });
   const nav = document.createElement('nav');
   nav.className = 'article-toc';
   nav.setAttribute('aria-label', 'この記事の目次');
-  nav.innerHTML = `<p class="article-toc__title">この記事でわかること</p><ol class="article-toc__list">${tocItems.map((item) => `<li><a href="#${item.id}">${item.label}</a></li>`).join('')}</ol>`;
+  nav.innerHTML = `<p class="article-toc__title">この記事でわかること</p><ol class="article-toc__list">${headings.map((heading, index) => { if (!heading.id) heading.id = `article-section-${index + 1}`; return `<li><a href="#${heading.id}">${heading.textContent.trim()}</a></li>`; }).join('')}</ol>`;
   const eyecatch = articleMain.querySelector('figure.article-block');
   if (eyecatch) eyecatch.insertAdjacentElement('afterend', nav); else articleMain.prepend(nav);
 }
@@ -107,12 +101,7 @@ function addFooterUtilityLinks() {
   links.className = 'footer-utility-links';
   links.setAttribute('aria-label', 'フッターリンク');
   links.innerHTML = `<a href="about.html">運営者情報</a><a href="contact.html">お問い合わせ</a><a href="privacy.html">プライバシーポリシー</a>`;
-  links.style.display = 'flex';
-  links.style.flexWrap = 'wrap';
-  links.style.gap = '12px 18px';
-  links.style.justifyContent = 'center';
-  links.style.marginTop = '14px';
-  links.style.fontSize = '0.9rem';
+  Object.assign(links.style, { display: 'flex', flexWrap: 'wrap', gap: '12px 18px', justifyContent: 'center', marginTop: '14px', fontSize: '0.9rem' });
   links.querySelectorAll('a').forEach((link) => { link.style.color = 'inherit'; link.style.textDecoration = 'underline'; link.style.textUnderlineOffset = '3px'; });
   footerInner.appendChild(links);
 }
@@ -141,31 +130,25 @@ function enhanceSampleReportBeforeSubPhotos() {
 function enhanceSampleReportProfileCopy() {
   if (!location.pathname.endsWith('sample-report.html')) return;
   const sections = Array.from(document.querySelectorAll('section'));
-  const editingSection = sections.find((section) => section.textContent.includes('プロフィール文の行ごと添削'));
-  const editingBody = editingSection?.querySelector('tbody');
+  const editingBody = sections.find((section) => section.textContent.includes('プロフィール文の行ごと添削'))?.querySelector('tbody');
   if (editingBody) {
     editingBody.innerHTML = `
       <tr><td>仕事は会社員をしています。</td><td>職業情報だけで終わっていて、誠実さ・余裕・日常の雰囲気が見えません。</td><td>平日は仕事中心ですが、帰り道に映画のレビューを読んだり、週末に観たい作品を探したりする時間がちょうどいい息抜きになっています。</td></tr>
       <tr><td>休日は映画を見たり、カフェに行ったりしています。</td><td>趣味の羅列に見えます。女性が「一緒に行ったらどんな時間になるか」を想像しにくいです。</td><td>休日は、気になっていた映画を観てから、近くのカフェで感想を話すような落ち着いた時間が好きです。にぎやかすぎる場所より、ゆっくり会話できる雰囲気の方が合っています。</td></tr>
       <tr><td>良い出会いがあればと思い登録しました。</td><td>受け身で、相手に何を大切にしている人なのかが伝わりません。</td><td>最初から無理に距離を縮めるより、メッセージで少しずつ人柄を知りながら、安心して会える関係を作れたらうれしいです。</td></tr>
-      <tr><td>よろしくお願いします。</td><td>締めが弱く、相手が返信するきっかけがありません。</td><td>映画やカフェの話からでも、気軽にやり取りできたらうれしいです。最近観てよかった作品があれば、ぜひ教えてください。</td></tr>
-    `;
+      <tr><td>よろしくお願いします。</td><td>締めが弱く、相手が返信するきっかけがありません。</td><td>映画やカフェの話からでも、気軽にやり取りできたらうれしいです。最近観てよかった作品があれば、ぜひ教えてください。</td></tr>`;
   }
-  const completedSection = sections.find((section) => section.textContent.includes('完成プロフィール文'));
-  const completedText = completedSection?.querySelector('.completed-text');
-  if (completedText) {
-    completedText.innerHTML = `はじめまして。プロフィールを見ていただきありがとうございます。<br><br>平日は仕事中心ですが、休日は気になっていた映画を観に行ったり、帰りに落ち着いたカフェで少しゆっくりしたりして過ごすことが多いです。派手なタイプではありませんが、相手の話を聞きながら、穏やかに会話する時間は好きです。<br><br>いきなり距離を詰めるより、まずはメッセージで少しずつ雰囲気を知れたらうれしいです。映画の話、休日の過ごし方、最近行ってよかったお店など、気軽なところから話せたらと思っています。<br><br>一緒にいて無理をしなくていい、自然体で笑える関係を大切にしたいです。よろしくお願いします。`;
-  }
-  const beforeProfile = document.querySelector('#app-mockup .phone-shell:first-child .app-profile-body');
-  const beforePromptCards = beforeProfile ? Array.from(beforeProfile.querySelectorAll('.prompt-card')) : [];
+  const completedText = sections.find((section) => section.textContent.includes('完成プロフィール文'))?.querySelector('.completed-text');
+  if (completedText) completedText.innerHTML = `はじめまして。プロフィールを見ていただきありがとうございます。<br><br>平日は仕事中心ですが、休日は気になっていた映画を観に行ったり、帰りに落ち着いたカフェで少しゆっくりしたりして過ごすことが多いです。派手なタイプではありませんが、相手の話を聞きながら、穏やかに会話する時間は好きです。<br><br>いきなり距離を詰めるより、まずはメッセージで少しずつ雰囲気を知れたらうれしいです。映画の話、休日の過ごし方、最近行ってよかったお店など、気軽なところから話せたらと思っています。<br><br>一緒にいて無理をしなくていい、自然体で笑える関係を大切にしたいです。よろしくお願いします。`;
+
+  const beforePromptCards = Array.from(document.querySelectorAll('#app-mockup .phone-shell:first-child .app-profile-body .prompt-card'));
   if (beforePromptCards[1]) {
     const label = beforePromptCards[1].querySelector('b');
     const text = beforePromptCards[1].querySelector('p');
     if (label) label.textContent = '一緒にしたいこと';
     if (text) text.textContent = '映画を見たり、カフェに行ったりしたいです。';
   }
-  const afterProfile = document.querySelector('#app-mockup .phone-shell:nth-child(2) .app-profile-body');
-  const promptCards = afterProfile ? Array.from(afterProfile.querySelectorAll('.prompt-card')) : [];
+  const promptCards = Array.from(document.querySelectorAll('#app-mockup .phone-shell:nth-child(2) .app-profile-body .prompt-card'));
   if (promptCards[0]) promptCards[0].querySelector('p').textContent = '平日は仕事中心ですが、休日は気になっていた映画を観に行ったり、帰りに落ち着いたカフェで少しゆっくりしたりしています。筋トレや散歩も続けていて、年齢を重ねても清潔感や健康的な生活は大切にしたいです。';
   if (promptCards[1]) promptCards[1].querySelector('p').textContent = '景色の良い場所を探索したり、映画を観たあとカフェで感想を話す時間が好きです。同じ映画でも、人によって感じ方が違うところにその人らしさが出るので、そういう会話を楽しめる関係に惹かれます。';
   if (promptCards[2]) promptCards[2].querySelector('p').textContent = '無理に盛り上げるより、安心して話せる関係を大切にしたいです。趣味や最近楽しかったことなど日常のちょっとした会話から少しずつ仲良くなれたらと考えています。';
@@ -209,8 +192,8 @@ function enhanceSampleReportWardrobeGuide() {
       <div class="wardrobe-visual-guide" style="display:grid;gap:22px;">
         <div class="wardrobe-hero-card" style="background:linear-gradient(135deg,#fff7ed 0%,#eff6ff 100%);border:1px solid #fed7aa;border-radius:30px;padding:24px;display:grid;grid-template-columns:1.05fr 1.35fr;gap:22px;align-items:center;box-shadow:0 16px 42px rgba(21,42,77,.07);">
           <div style="background:#fff;border:1px solid rgba(21,42,77,.08);border-radius:24px;padding:14px;box-shadow:0 12px 30px rgba(21,42,77,.08);">
-            <div style="position:relative;border-radius:20px;overflow:hidden;background:#e2e8f0;">
-              <img src="assets/samples/profile-photo-after-sample.jpg" alt="After写真の服装イメージ" loading="lazy" style="width:100%;height:340px;object-fit:cover;object-position:center;display:block;">
+            <div style="position:relative;border-radius:20px;overflow:hidden;background:#f8fafc;">
+              <img src="assets/samples/after-half-body-style-sample.jpg" alt="After写真の全身コーディネートイメージ" loading="lazy" style="width:100%;height:380px;object-fit:contain;object-position:center;display:block;background:#f8fafc;">
               <span style="position:absolute;top:12px;left:12px;background:rgba(15,23,42,.82);color:#fff;font-size:.78rem;font-weight:800;padding:7px 12px;border-radius:999px;">完成イメージ</span>
             </div>
           </div>
@@ -255,7 +238,7 @@ function enhanceSampleReportWardrobeGuide() {
         </div>
       </div>
     </div>
-    <style>@media(max-width:1000px){.wardrobe-hero-card{grid-template-columns:1fr!important}.wardrobe-item-grid,.wardrobe-step-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}@media(max-width:800px){.wardrobe-sub-grid{grid-template-columns:1fr!important}.wardrobe-infographic-grid{grid-template-columns:1fr!important}}@media(max-width:640px){.wardrobe-item-grid,.wardrobe-step-grid{grid-template-columns:1fr!important}.wardrobe-hero-card img{height:280px!important}}</style>
+    <style>@media(max-width:1000px){.wardrobe-hero-card{grid-template-columns:1fr!important}.wardrobe-item-grid,.wardrobe-step-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}@media(max-width:800px){.wardrobe-sub-grid{grid-template-columns:1fr!important}.wardrobe-infographic-grid{grid-template-columns:1fr!important}}@media(max-width:640px){.wardrobe-item-grid,.wardrobe-step-grid{grid-template-columns:1fr!important}.wardrobe-hero-card img{height:320px!important}}</style>
   `;
   photoSection.insertAdjacentElement('afterend', wardrobeSection);
 }
