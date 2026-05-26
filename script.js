@@ -281,6 +281,25 @@ function addFooterUtilityLinks() {
   footerInner.appendChild(links);
 }
 
+function enhanceSampleReportBeforeSubPhotos() {
+  if (!location.pathname.endsWith('sample-report.html')) return;
+
+  const mockup = document.querySelector('#app-mockup');
+  if (!mockup) return;
+
+  const beforeGrid = mockup.querySelector('.phone-shell:first-child .app-photo-grid');
+  if (!beforeGrid || beforeGrid.querySelector('img')) return;
+
+  beforeGrid.innerHTML = `
+    <div class="app-thumb"><img src="assets/samples/before-main-sub-sample.jpg" alt="改善前のメイン補助写真"><span class="app-thumb-label">メイン</span></div>
+    <div class="app-thumb"><img src="assets/samples/before-dark-room-sample.jpg" alt="改善前の暗い室内写真"><span class="app-thumb-label">サブ写真</span></div>
+    <div class="app-thumb"><img src="assets/samples/before-no-full-body-sample.jpg" alt="改善前の全身が伝わりにくい写真"><span class="app-thumb-label">全身写真</span></div>
+    <div class="app-thumb"><img src="assets/samples/before-no-hobby-sample.jpg" alt="改善前の趣味が伝わりにくい写真"><span class="app-thumb-label">趣味写真</span></div>
+    <div class="app-thumb"><img src="assets/samples/before-life-feeling-sample.jpg" alt="改善前の生活感が強い写真"><span class="app-thumb-label">生活感</span></div>
+    <div class="app-thumb"><img src="assets/samples/before-no-conversation-topic-sample.jpg" alt="改善前の会話ネタが弱い写真"><span class="app-thumb-label">会話ネタ</span></div>
+  `;
+}
+
 if (navToggle && siteNav) {
   navToggle.addEventListener('click', () => {
     const isOpen = siteNav.classList.toggle('is-open');
@@ -301,6 +320,7 @@ normalizeCharacterImages();
 enhanceStudentAvatars();
 markSakuraSpeakers();
 enhanceWhy50sPhotoAndProfileSections();
+enhanceSampleReportBeforeSubPhotos();
 addArticleTableOfContents();
 addMobileEyecatchOverrides();
 addFooterUtilityLinks();
