@@ -162,7 +162,7 @@ function enhanceSampleReportProfileCopy() {
   const afterProfile = document.querySelector('#app-mockup .phone-shell:nth-child(2) .app-profile-body');
   const promptCards = afterProfile ? Array.from(afterProfile.querySelectorAll('.prompt-card')) : [];
   if (promptCards[0]) promptCards[0].querySelector('p').textContent = '平日は仕事中心ですが、休日は気になっていた映画を観に行ったり、帰りに落ち着いたカフェで少しゆっくりしたりしています。筋トレや散歩も続けていて、年齢を重ねても清潔感や健康的な生活は大切にしたいです。';
-  if (promptCards[1]) promptCards[1].querySelector('p').textContent = '映画を観た後に、近くのカフェで感想を話すような、落ち着いた時間を一緒に過ごせたらうれしいです。';
+  if (promptCards[1]) promptCards[1].querySelector('p').textContent = '景色の良い場所を探索したり、映画を観たあとカフェで感想を話す時間が好きです。同じ映画でも、人によって感じ方が違うところにその人らしさが出るので、そういう会話を楽しめる関係に惹かれます。';
   if (promptCards[2]) promptCards[2].querySelector('p').textContent = '無理に盛り上げるより、安心して話せる関係を大切にしたいです。まずはメッセージで少しずつ雰囲気を知れたらうれしいです。';
 }
 
