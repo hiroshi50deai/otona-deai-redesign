@@ -175,6 +175,63 @@ function enhanceSampleReportProfileCopy() {
   if (promptCards[2]) promptCards[2].querySelector('p').textContent = '無理に盛り上げるより、安心して話せる関係を大切にしたいです。趣味や最近楽しかったことなど日常のちょっとした会話から少しずつ仲良くなれたらと考えています。';
 }
 
+function enhanceSampleReportPhotoAuditCards() {
+  if (!location.pathname.endsWith('sample-report.html')) return;
+
+  const sections = Array.from(document.querySelectorAll('section'));
+  const photoSection = sections.find((section) => section.textContent.includes('写真ごとの診断シート'));
+  const tableCard = photoSection?.querySelector('.diagnosis-table-card');
+  if (!photoSection || !tableCard || tableCard.dataset.visualAudit === 'true') return;
+
+  tableCard.dataset.visualAudit = 'true';
+  tableCard.style.border = 'none';
+  tableCard.style.boxShadow = 'none';
+  tableCard.style.background = 'transparent';
+  tableCard.style.overflow = 'visible';
+
+  tableCard.innerHTML = `
+    <div class="photo-audit-cards" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;">
+      <article style="background:#fff;border:1px solid var(--border);border-radius:26px;overflow:hidden;box-shadow:0 14px 36px rgba(21,42,77,.07);">
+        <img src="assets/samples/before-main-sub-sample.jpg" alt="改善前のメイン写真" loading="lazy" style="width:100%;height:230px;object-fit:cover;object-position:center;display:block;">
+        <div style="padding:18px;display:grid;gap:10px;">
+          <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;"><h3 style="margin:0;color:var(--navy);font-size:1.15rem;">メイン写真</h3><span class="tag must">差し替え推奨</span></div>
+          <p style="margin:0;color:var(--muted);font-weight:800;">役割：第一印象</p>
+          <p style="margin:0;line-height:1.8;">暗い室内・表情の硬さ・自撮り感で、悪い人ではなさそうでも恋愛対象としての魅力が伝わりにくい状態です。</p>
+          <p style="margin:0;padding:13px;border-radius:16px;background:#fff7ed;line-height:1.75;"><strong>改善方針：</strong>自然光・軽い笑顔・胸から上の他撮り風写真へ。最初の1枚で「清潔感」と「話しやすさ」を伝えます。</p>
+        </div>
+      </article>
+      <article style="background:#fff;border:1px solid var(--border);border-radius:26px;overflow:hidden;box-shadow:0 14px 36px rgba(21,42,77,.07);">
+        <img src="assets/samples/before-dark-room-sample.jpg" alt="改善前のサブ写真" loading="lazy" style="width:100%;height:230px;object-fit:cover;object-position:center;display:block;">
+        <div style="padding:18px;display:grid;gap:10px;">
+          <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;"><h3 style="margin:0;color:var(--navy);font-size:1.15rem;">サブ写真1</h3><span class="tag warn">追加推奨</span></div>
+          <p style="margin:0;color:var(--muted);font-weight:800;">役割：休日感</p>
+          <p style="margin:0;line-height:1.8;">似たような室内写真が続くと、休日の雰囲気や一緒に過ごすイメージが伝わりにくくなります。</p>
+          <p style="margin:0;padding:13px;border-radius:16px;background:#fff7ed;line-height:1.75;"><strong>改善方針：</strong>カフェ、公園、散歩など自然な日常写真を追加。女性が「この人と会ったら」を想像しやすくします。</p>
+        </div>
+      </article>
+      <article style="background:#fff;border:1px solid var(--border);border-radius:26px;overflow:hidden;box-shadow:0 14px 36px rgba(21,42,77,.07);">
+        <img src="assets/samples/before-no-full-body-sample.jpg" alt="改善前の全身が伝わりにくい写真" loading="lazy" style="width:100%;height:230px;object-fit:cover;object-position:center;display:block;">
+        <div style="padding:18px;display:grid;gap:10px;">
+          <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;"><h3 style="margin:0;color:var(--navy);font-size:1.15rem;">サブ写真2</h3><span class="tag must">必須</span></div>
+          <p style="margin:0;color:var(--muted);font-weight:800;">役割：全身・服装</p>
+          <p style="margin:0;line-height:1.8;">全身や服装の雰囲気が分からないと、会う前の安心材料が不足します。清潔感も写真だけでは判断されにくいです。</p>
+          <p style="margin:0;padding:13px;border-radius:16px;background:#fff7ed;line-height:1.75;"><strong>改善方針：</strong>半身〜全身がわかる写真を用意。サイズ感、姿勢、服装の清潔感を伝えます。</p>
+        </div>
+      </article>
+      <article style="background:#fff;border:1px solid var(--border);border-radius:26px;overflow:hidden;box-shadow:0 14px 36px rgba(21,42,77,.07);">
+        <img src="assets/samples/before-no-hobby-sample.jpg" alt="改善前の趣味が伝わりにくい写真" loading="lazy" style="width:100%;height:230px;object-fit:cover;object-position:center;display:block;">
+        <div style="padding:18px;display:grid;gap:10px;">
+          <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;"><h3 style="margin:0;color:var(--navy);font-size:1.15rem;">趣味写真</h3><span class="tag good">改善余地あり</span></div>
+          <p style="margin:0;color:var(--muted);font-weight:800;">役割：会話のきっかけ</p>
+          <p style="margin:0;line-height:1.8;">ただ写っているだけの写真だと、相手がメッセージで触れやすい話題が生まれにくいです。</p>
+          <p style="margin:0;padding:13px;border-radius:16px;background:#fff7ed;line-height:1.75;"><strong>改善方針：</strong>映画館帰り、カフェ、散歩中など、相手が質問しやすい写真を1枚入れます。</p>
+        </div>
+      </article>
+    </div>
+    <style>@media(max-width:800px){.photo-audit-cards{grid-template-columns:1fr!important}.photo-audit-cards img{height:220px!important}}</style>
+  `;
+}
+
 if (navToggle && siteNav) {
   navToggle.addEventListener('click', () => {
     const isOpen = siteNav.classList.toggle('is-open');
@@ -195,6 +252,7 @@ enhanceStudentAvatars();
 markSakuraSpeakers();
 enhanceSampleReportBeforeSubPhotos();
 enhanceSampleReportProfileCopy();
+enhanceSampleReportPhotoAuditCards();
 addArticleTableOfContents();
 addMobileEyecatchOverrides();
 addFooterUtilityLinks();
