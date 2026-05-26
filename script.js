@@ -237,6 +237,71 @@ function enhanceSampleReportPhotoAuditCards() {
   `;
 }
 
+function enhanceSampleReportWardrobeGuide() {
+  if (!location.pathname.endsWith('sample-report.html')) return;
+
+  const sections = Array.from(document.querySelectorAll('section'));
+  const photoSection = sections.find((section) => section.textContent.includes('写真ごとの診断シート'));
+  if (!photoSection || document.querySelector('.wardrobe-guide-section')) return;
+
+  const wardrobeSection = document.createElement('section');
+  wardrobeSection.className = 'section wardrobe-guide-section report-soft';
+  wardrobeSection.innerHTML = `
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">Wardrobe Guide</p>
+        <h2>服装・買い足しガイド</h2>
+        <p>After写真のような印象は、高級ブランドで固めなくても作れます。大切なのは、ブランド名そのものよりも、色・サイズ感・清潔感・組み合わせです。</p>
+      </div>
+
+      <div style="display:grid;gap:18px;">
+        <div style="background:#fff;border:1px solid var(--border);border-radius:28px;padding:24px;box-shadow:0 14px 36px rgba(21,42,77,.06);">
+          <h3 style="margin:0 0 12px;color:var(--navy);font-size:1.15rem;">まず揃えたい基本構成</h3>
+          <ul style="margin:0;padding-left:1.2em;line-height:1.9;">
+            <li>ネイビー〜黒系のシンプルなジャケット</li>
+            <li>白の無地Tシャツ、または白系のシンプルなインナー</li>
+            <li>黒・チャコール・ネイビーなど濃色のパンツ</li>
+            <li>きれいめスニーカー、または革靴風の落ち着いた靴</li>
+          </ul>
+          <p style="margin:14px 0 0;line-height:1.8;">40代・50代男性は、まずこの組み合わせだけでも印象がかなり整います。派手な服より、「無難だけど清潔感がある」方向の方がマッチングアプリでは強いです。</p>
+        </div>
+
+        <div class="wardrobe-guide-grid" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;">
+          <div style="background:#fff;border:1px solid var(--border);border-radius:28px;padding:24px;box-shadow:0 14px 36px rgba(21,42,77,.06);">
+            <h3 style="margin:0 0 12px;color:var(--navy);font-size:1.15rem;">買いやすい候補</h3>
+            <ul style="margin:0;padding-left:1.2em;line-height:1.9;">
+              <li>ユニクロ</li>
+              <li>無印良品</li>
+              <li>グローバルワーク</li>
+              <li>GU（アイテムを選べば十分使えます）</li>
+            </ul>
+            <p style="margin:14px 0 0;line-height:1.8;">まずは高級ブランドではなく、手に入りやすく清潔感を作りやすい店で十分です。</p>
+          </div>
+
+          <div style="background:#fff;border:1px solid var(--border);border-radius:28px;padding:24px;box-shadow:0 14px 36px rgba(21,42,77,.06);">
+            <h3 style="margin:0 0 12px;color:var(--navy);font-size:1.15rem;">相談で提案する内容</h3>
+            <ul style="margin:0;padding-left:1.2em;line-height:1.9;">
+              <li>今ある服で使えるもの・使いにくいものの整理</li>
+              <li>買い足すなら何を優先すべきか</li>
+              <li>予算に合わせた現実的な候補</li>
+              <li>写真用だけでなく、初対面でも使いやすい服装の方向性</li>
+            </ul>
+            <p style="margin:14px 0 0;line-height:1.8;">ただ「おしゃれにしましょう」と言うのではなく、手持ち服と予算に合わせて現実的に提案します。</p>
+          </div>
+        </div>
+
+        <div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:28px;padding:24px;">
+          <h3 style="margin:0 0 10px;color:var(--navy);font-size:1.1rem;">このセクションの意図</h3>
+          <p style="margin:0;line-height:1.85;">Before / Afterを見て「こんな服は持っていない」と感じる方は少なくありません。その不安を減らすために、このレポートでは <strong>“何を目指すべきか”だけでなく、“どこで・何を・どの順番で揃えるか”</strong> まで分かる構成にしています。</p>
+        </div>
+      </div>
+    </div>
+    <style>@media(max-width:800px){.wardrobe-guide-grid{grid-template-columns:1fr!important}}</style>
+  `;
+
+  photoSection.insertAdjacentElement('afterend', wardrobeSection);
+}
+
 if (navToggle && siteNav) {
   navToggle.addEventListener('click', () => {
     const isOpen = siteNav.classList.toggle('is-open');
@@ -258,6 +323,7 @@ markSakuraSpeakers();
 enhanceSampleReportBeforeSubPhotos();
 enhanceSampleReportProfileCopy();
 enhanceSampleReportPhotoAuditCards();
+enhanceSampleReportWardrobeGuide();
 addArticleTableOfContents();
 addMobileEyecatchOverrides();
 addFooterUtilityLinks();
