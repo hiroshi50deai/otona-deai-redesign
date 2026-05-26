@@ -4,10 +4,102 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>サンプル診断レポート｜大人の男の出会い再設計教室</title>
-  <meta name="description" content="プロフィール再設計ライト診断で実際にどのようなレポートが届くのかを確認できるサンプル診断レポートページです。" />
+  <meta name="description" content="プロフィール再設計ライト診断で実際にどのようなレポートが届くのかを確認できる、診断スコア・写真レビュー・プロフィール添削・7日間アクションプラン入りのサンプル診断レポートです。" />
   <link rel="stylesheet" href="styles.css" />
   <style>
-    .sample-visual-section { background: #f8fbff; }
+    .report-cover-section { background: #fff9f2; }
+    .report-cover {
+      display: grid;
+      grid-template-columns: 1fr 0.95fr;
+      gap: 34px;
+      align-items: stretch;
+      padding: clamp(26px, 5vw, 50px);
+      border-radius: calc(var(--radius) + 14px);
+      background: linear-gradient(135deg, #ffffff 0%, #fff7ed 55%, #eef3fb 100%);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    .report-cover-card {
+      display: grid;
+      align-content: center;
+      gap: 16px;
+      padding: clamp(20px, 4vw, 34px);
+      border-radius: 28px;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(21,42,77,0.10);
+    }
+    .report-badge {
+      display: inline-flex;
+      width: fit-content;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: var(--navy);
+      color: var(--white);
+      font-size: 0.82rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+    }
+    .report-cover-card h2 { margin: 0; font-size: clamp(1.7rem, 3.2vw, 2.8rem); }
+    .report-cover-card p { margin: 0; color: var(--muted); }
+    .report-cover-meta { display: grid; gap: 10px; }
+    .report-cover-meta div {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 13px 15px;
+      border-radius: 16px;
+      background: #fff7ed;
+      border: 1px solid rgba(224,122,154,0.16);
+    }
+    .report-cover-meta strong { color: var(--navy); }
+    .report-cover-meta span { color: var(--muted); text-align: right; }
+    .report-summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 22px; }
+    .report-summary-grid div {
+      padding: 16px;
+      border-radius: 18px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 24px rgba(21,42,77,0.05);
+    }
+    .report-summary-grid strong { display: block; color: var(--pink); font-size: 1.4rem; line-height: 1; }
+    .report-summary-grid span { display: block; margin-top: 8px; color: var(--navy); font-weight: 800; }
+
+    .score-section, .mockup-section, .line-edit-section, .message-pattern-section { background: #f8fbff; }
+    .score-board {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+    .score-total {
+      padding: clamp(24px, 4vw, 38px);
+      border-radius: calc(var(--radius) + 8px);
+      background: linear-gradient(135deg, var(--navy), #253c5c);
+      color: var(--white);
+      box-shadow: var(--shadow);
+    }
+    .score-total .eyebrow, .score-total h2, .score-total p { color: var(--white); }
+    .score-number { display: flex; align-items: baseline; gap: 12px; margin: 18px 0; }
+    .score-number strong { font-size: clamp(3rem, 9vw, 5.4rem); line-height: 1; }
+    .score-number span { font-size: 1.2rem; opacity: 0.8; }
+    .score-pill-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .score-pill-row span { padding: 8px 12px; border-radius: 999px; background: rgba(255,255,255,0.16); font-weight: 800; }
+    .score-list { display: grid; gap: 12px; }
+    .score-item {
+      padding: 18px;
+      border-radius: 20px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 24px rgba(21,42,77,0.05);
+    }
+    .score-item-top { display: flex; justify-content: space-between; gap: 12px; align-items: center; margin-bottom: 8px; }
+    .score-item-top strong { color: var(--navy); }
+    .score-item-top span { color: var(--pink); font-weight: 900; }
+    .score-bar { height: 10px; border-radius: 999px; background: #eef2f6; overflow: hidden; }
+    .score-bar i { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--pink), var(--navy)); }
+    .score-item p { margin: 8px 0 0; color: var(--muted); font-size: 0.95rem; }
+
+    .sample-visual-section { background: #ffffff; }
     .sample-visual-grid { display: grid; gap: 26px; }
     .sample-visual-card {
       padding: clamp(18px, 4vw, 30px);
@@ -27,17 +119,8 @@
       box-shadow: 0 12px 28px rgba(21,42,77,0.08);
       background: #fff;
     }
-    .sample-visual-note {
-      margin-top: 14px !important;
-      font-size: 0.92rem;
-      color: var(--muted);
-    }
-    .sample-visual-points {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 16px;
-    }
+    .sample-visual-note { margin-top: 14px !important; font-size: 0.92rem; color: var(--muted); }
+    .sample-visual-points { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
     .sample-visual-points span {
       display: block;
       padding: 12px 14px;
@@ -47,9 +130,97 @@
       font-weight: 800;
       border: 1px solid rgba(224,122,154,0.16);
     }
+
+    .diagnosis-table-card, .edit-table-card, .action-plan-card {
+      overflow: hidden;
+      border-radius: calc(var(--radius) + 4px);
+      background: var(--white);
+      border: 1px solid var(--border);
+      box-shadow: 0 14px 36px rgba(21,42,77,0.07);
+    }
+    .diagnosis-table, .edit-table, .action-table { width: 100%; border-collapse: collapse; }
+    .diagnosis-table th, .diagnosis-table td,
+    .edit-table th, .edit-table td,
+    .action-table th, .action-table td { padding: 16px 18px; border-bottom: 1px solid var(--border); vertical-align: top; text-align: left; }
+    .diagnosis-table th, .edit-table th, .action-table th { background: #fff7ed; color: var(--navy); font-weight: 900; }
+    .diagnosis-table td, .edit-table td, .action-table td { color: var(--charcoal); }
+    .judgement { display: inline-flex; padding: 5px 10px; border-radius: 999px; font-size: 0.82rem; font-weight: 900; }
+    .judgement.warning { background: #fff1f5; color: var(--pink); }
+    .judgement.good { background: #eef7ff; color: #1f5f99; }
+    .judgement.must { background: var(--navy); color: var(--white); }
+
+    .profile-mockup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: stretch; }
+    .profile-mockup {
+      padding: 22px;
+      border-radius: 28px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      box-shadow: 0 14px 36px rgba(21,42,77,0.07);
+    }
+    .mockup-label { display: inline-flex; padding: 6px 12px; border-radius: 999px; font-weight: 900; font-size: 0.86rem; margin-bottom: 14px; }
+    .mockup-label.before { background: #eef2f6; color: #51606f; }
+    .mockup-label.after { background: #e7f3ff; color: #1f5f99; }
+    .phone-card { border-radius: 26px; background: #f8fbff; border: 1px solid rgba(21,42,77,0.12); overflow: hidden; }
+    .phone-photo { min-height: 180px; display: grid; place-items: center; background: linear-gradient(135deg, #e8edf5, #fff7ed); color: var(--navy); font-weight: 900; }
+    .phone-photo.after { background: linear-gradient(135deg, #e7f3ff, #fff7ed); }
+    .phone-body { padding: 18px; }
+    .phone-name { margin: 0; color: var(--navy); font-weight: 900; font-size: 1.15rem; }
+    .phone-sub { margin: 4px 0 14px; color: var(--muted); font-size: 0.92rem; }
+    .phone-body p:not(.phone-name):not(.phone-sub) { color: var(--charcoal); margin: 0; line-height: 1.85; }
+
+    .completed-profile-card {
+      padding: clamp(24px, 4vw, 38px);
+      border-radius: calc(var(--radius) + 8px);
+      background: var(--white);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    .completed-profile-card h3 { margin-top: 0; }
+    .completed-profile-text {
+      padding: 24px;
+      border-radius: 22px;
+      background: #fff7ed;
+      border: 1px solid rgba(224,122,154,0.18);
+      color: var(--charcoal);
+      line-height: 2;
+    }
+    .message-pattern-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .message-card {
+      padding: 22px;
+      border-radius: calc(var(--radius) + 2px);
+      background: var(--white);
+      border: 1px solid var(--border);
+      box-shadow: 0 14px 36px rgba(21,42,77,0.07);
+    }
+    .message-card span { color: var(--pink); font-weight: 900; letter-spacing: 0.08em; }
+    .message-card h3 { margin: 8px 0 12px; }
+    .message-bubble-text { padding: 16px; border-radius: 18px; background: #eef7ff; color: var(--navy); font-weight: 700; }
+    .message-card p { color: var(--muted); }
+
+    .action-plan-card { background: var(--white); }
+    .report-close-box {
+      display: grid;
+      grid-template-columns: 1fr 260px;
+      gap: 28px;
+      align-items: center;
+      padding: clamp(28px, 5vw, 54px);
+      border-radius: calc(var(--radius) + 10px);
+      background: linear-gradient(135deg, #fff5f2, #eef3fb);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    .report-close-box p { color: var(--muted); }
+    .report-close-box img { max-width: 230px; margin: 0 auto; filter: drop-shadow(0 18px 26px rgba(21,42,77,0.16)); }
+
+    @media (max-width: 900px) {
+      .report-cover, .score-board, .profile-mockup-grid, .report-close-box { grid-template-columns: 1fr; }
+      .report-summary-grid, .message-pattern-grid { grid-template-columns: 1fr; }
+    }
     @media (max-width: 768px) {
       .sample-visual-points { grid-template-columns: 1fr; }
       .sample-visual-card img { border-radius: 16px; }
+      .diagnosis-table-card, .edit-table-card, .action-plan-card { overflow-x: auto; }
+      .diagnosis-table, .edit-table, .action-table { min-width: 760px; }
     }
   </style>
 </head>
@@ -78,32 +249,86 @@
         <div class="service-hero-copy">
           <p class="eyebrow">Sample Report</p>
           <h1>サンプル<span>診断レポート</span></h1>
-          <p class="hero-lead">プロフィール再設計ライト診断で、実際にどのようなレポートが届くのかを確認できる見本です。内容は架空のケースで構成しています。</p>
+          <p class="hero-lead">プロフィール再設計ライト診断で実際に届くレポートの見本です。診断スコア、写真レビュー、プロフィール文の行ごと添削、完成文、初回メッセージ例、7日間アクションプランまで含めて掲載しています。</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="service.html#contact">ライト診断に申し込む</a>
-            <a class="btn btn-secondary" href="service.html">サービス案内へ戻る</a>
+            <a class="btn btn-secondary" href="#score">診断内容を見る</a>
           </div>
         </div>
         <div class="service-hero-card">
-          <div class="speech-bubble">「何を、どこまで見てもらえるのか」を先に見ていただくためのサンプルです。</div>
+          <div class="speech-bubble">文字だけの感想ではなく、“どこをどう直すか”まで見える形でお返しします。</div>
           <img class="character-img service-main-character" src="assets/characters/04_gentle_cta.png" alt="安心感を与える案内役キャラクター" />
         </div>
       </div>
     </section>
 
-    <section class="section review-section">
-      <div class="container concept-box">
-        <div class="concept-text">
-          <p class="eyebrow">Case</p>
-          <h2>このサンプルについて</h2>
-          <p>以下は、49歳・Pairs利用・いいねが少ないという架空の相談者を想定したサンプルです。実際のライト診断でも、同じように「総合評価」「損しているポイント」「改善例」「優先順位」を整理してお返しします。</p>
+    <section class="section report-cover-section">
+      <div class="container report-cover">
+        <div class="report-cover-card">
+          <span class="report-badge">納品イメージ</span>
+          <h2>プロフィール再設計ライト診断<br>サンプルレポート</h2>
+          <p>以下は、49歳男性・Pairs利用・いいねが少ないという架空ケースをもとにした診断見本です。実際の納品では、あなたの写真・プロフィール文・メッセージ状況に合わせて個別に作成します。</p>
+          <div class="report-summary-grid">
+            <div><strong>12</strong><span>診断項目</span></div>
+            <div><strong>3</strong><span>改善優先順位</span></div>
+            <div><strong>7日</strong><span>実践プラン</span></div>
+          </div>
         </div>
-        <div class="review-list">
-          <div><strong>年齢</strong><span>49歳</span></div>
-          <div><strong>利用アプリ</strong><span>Pairs</span></div>
-          <div><strong>悩み</strong><span>いいねが少ない / 写真に自信がない / 会話が続かない</span></div>
-          <div><strong>目的</strong><span>会う前に離脱されにくいプロフィールへ改善したい</span></div>
-          <div><strong>注意</strong><span>個人情報保護のため、内容は架空のケースです</span></div>
+        <div class="report-cover-card">
+          <p class="eyebrow">Case Profile</p>
+          <div class="report-cover-meta">
+            <div><strong>年齢</strong><span>49歳</span></div>
+            <div><strong>利用アプリ</strong><span>Pairs</span></div>
+            <div><strong>悩み</strong><span>いいねが少ない / 写真に自信がない</span></div>
+            <div><strong>目的</strong><span>会う前に離脱されにくいプロフィールへ改善</span></div>
+            <div><strong>注意</strong><span>内容は架空のサンプルです</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="score" class="section score-section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Diagnosis Score</p>
+          <h2>総合スコアと改善余地</h2>
+          <p>なんとなく良い・悪いではなく、写真、文章、メッセージのどこで損しているかを項目別に整理します。</p>
+        </div>
+        <div class="score-board">
+          <div class="score-total">
+            <p class="eyebrow">Total Impression</p>
+            <h2>総合印象スコア</h2>
+            <div class="score-number"><strong>52</strong><span>点 / 100点</span></div>
+            <p>誠実さはありますが、写真・プロフィール文・初回メッセージがすべて少しずつ弱く、女性から見た「会ってみたい理由」がまだ作れていない状態です。</p>
+            <div class="score-pill-row"><span>改善後目標：78点</span><span>最優先：写真</span><span>次点：冒頭文</span></div>
+          </div>
+          <div class="score-list">
+            <div class="score-item">
+              <div class="score-item-top"><strong>写真の清潔感</strong><span>55点 → 75点</span></div>
+              <div class="score-bar"><i style="width: 55%"></i></div>
+              <p>最低限の清潔感はありますが、暗さと背景で損しています。</p>
+            </div>
+            <div class="score-item">
+              <div class="score-item-top"><strong>写真の親しみやすさ</strong><span>48点 → 78点</span></div>
+              <div class="score-bar"><i style="width: 48%"></i></div>
+              <p>表情が固く、会話しやすそうな雰囲気が弱く見えます。</p>
+            </div>
+            <div class="score-item">
+              <div class="score-item-top"><strong>プロフィール文の安心感</strong><span>60点 → 82点</span></div>
+              <div class="score-bar"><i style="width: 60%"></i></div>
+              <p>誠実さはありますが、人柄と関係性の希望がまだ薄いです。</p>
+            </div>
+            <div class="score-item">
+              <div class="score-item-top"><strong>メッセージの返しやすさ</strong><span>45点 → 80点</span></div>
+              <div class="score-bar"><i style="width: 45%"></i></div>
+              <p>丁寧ですが、相手が返しやすい会話の入口になっていません。</p>
+            </div>
+            <div class="score-item">
+              <div class="score-item-top"><strong>会いたくなる理由</strong><span>50点 → 76点</span></div>
+              <div class="score-bar"><i style="width: 50%"></i></div>
+              <p>悪くはないものの、「この人と話してみたい」と思う具体性が不足しています。</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -112,43 +337,28 @@
       <div class="container">
         <div class="section-heading">
           <p class="eyebrow">Before / After</p>
-          <h2>見た目でわかる改善イメージ</h2>
-          <p>文字だけでは伝わりにくい変化を、ビフォー・アフターで見える形にしました。実際の診断では、このように「どこが損で、どう変えると印象が整うか」を具体的に整理します。</p>
+          <h2>一目でわかる改善前・改善後</h2>
+          <p>読者が一番知りたいのは「何をどう変えると印象が整うのか」です。写真・プロフィール文・初回メッセージの3つを、見える形で比較します。</p>
         </div>
-
         <div class="sample-visual-grid">
           <article class="sample-visual-card">
             <h3>プロフィール写真の改善例</h3>
             <p>暗い室内自撮りから、自然光・軽い笑顔・清潔感のあるプロフィール写真へ。</p>
             <img src="assets/samples/profile-photo-before-after-sample.jpg" alt="プロフィール写真のビフォーアフター改善例" loading="lazy" />
-            <div class="sample-visual-points">
-              <span>自然光で顔色を明るく</span>
-              <span>背景の生活感を減らす</span>
-              <span>安心感のある軽い笑顔へ</span>
-            </div>
+            <div class="sample-visual-points"><span>自然光で顔色を明るく</span><span>背景の生活感を減らす</span><span>安心感のある軽い笑顔へ</span></div>
             <p class="sample-visual-note">※ 写真は実在のお客様ではなく、改善イメージを伝えるための架空モデルです。</p>
           </article>
-
           <article class="sample-visual-card">
             <h3>プロフィール文の改善例</h3>
             <p>無難な自己紹介から、人柄・安心感・一緒にいる空気感が伝わる文章へ。</p>
             <img src="assets/samples/profile-text-before-after-sample.jpg" alt="プロフィール文のビフォーアフター改善例" loading="lazy" />
-            <div class="sample-visual-points">
-              <span>事務的な文章を減らす</span>
-              <span>人柄が見える表現へ</span>
-              <span>会いやすい安心感を追加</span>
-            </div>
+            <div class="sample-visual-points"><span>事務的な文章を減らす</span><span>人柄が見える表現へ</span><span>会いやすい安心感を追加</span></div>
           </article>
-
           <article class="sample-visual-card">
             <h3>初回メッセージの改善例</h3>
             <p>定型文のような挨拶から、相手が返しやすい自然なメッセージへ。</p>
             <img src="assets/samples/first-message-before-after-sample.jpg" alt="初回メッセージのビフォーアフター改善例" loading="lazy" />
-            <div class="sample-visual-points">
-              <span>定型文感を減らす</span>
-              <span>相手プロフィールに触れる</span>
-              <span>返事しやすい質問にする</span>
-            </div>
+            <div class="sample-visual-points"><span>定型文感を減らす</span><span>相手プロフィールに触れる</span><span>返事しやすい質問にする</span></div>
           </article>
         </div>
       </div>
@@ -157,106 +367,158 @@
     <section class="section service-detail-section">
       <div class="container">
         <div class="section-heading">
-          <p class="eyebrow">Report</p>
-          <h2>サンプル診断レポート</h2>
-          <p>ここから実際の納品イメージです。</p>
+          <p class="eyebrow">Photo Audit</p>
+          <h2>写真ごとの診断シート</h2>
+          <p>プロフィール写真は、ただ雰囲気が良いかどうかではなく、それぞれの写真に役割があります。メイン写真・サブ写真・全身写真・趣味写真の不足を整理します。</p>
         </div>
+        <div class="diagnosis-table-card">
+          <table class="diagnosis-table">
+            <thead><tr><th>写真</th><th>役割</th><th>判定</th><th>診断コメント</th><th>改善方針</th></tr></thead>
+            <tbody>
+              <tr><td>メイン写真</td><td>第一印象</td><td><span class="judgement must">差し替え推奨</span></td><td>暗さと表情の固さで、疲れて見えやすいです。</td><td>自然光・軽い笑顔・胸から上の他撮り風写真へ。</td></tr>
+              <tr><td>サブ写真1</td><td>休日感</td><td><span class="judgement warning">追加推奨</span></td><td>人柄や休日の雰囲気が伝わる写真が不足しています。</td><td>カフェ、公園、散歩、趣味など自然な日常写真を追加。</td></tr>
+              <tr><td>サブ写真2</td><td>全身・服装</td><td><span class="judgement must">必須</span></td><td>服装・体型・雰囲気が伝わらず、会う前の不安が残ります。</td><td>清潔感のある服装で、半身〜全身がわかる写真を用意。</td></tr>
+              <tr><td>趣味写真</td><td>会話のきっかけ</td><td><span class="judgement good">改善余地あり</span></td><td>趣味の記載はありますが、写真で会話の入口が作れていません。</td><td>映画、カフェ、旅行、散歩など相手が反応しやすい写真を1枚。</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
 
-        <div class="category-grid">
-          <article class="category-card featured">
-            <div class="category-icon">1</div>
-            <span>Overview</span>
-            <h3>ご相談内容</h3>
-            <p>・年齢：49歳<br>・利用アプリ：Pairs<br>・状況：1か月使っているが、いいねがほとんど来ない<br>・悩み：写真に自信がない / プロフィール文が無難すぎる / マッチしても会話が続かない</p>
+    <section class="section mockup-section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Profile Mockup</p>
+          <h2>アプリ画面で見たときの印象</h2>
+          <p>プロフィールは、文章単体ではなく、写真・冒頭文・趣味・会話のきっかけまで含めた“画面全体の印象”で見られます。</p>
+        </div>
+        <div class="profile-mockup-grid">
+          <div class="profile-mockup">
+            <span class="mockup-label before">Before</span>
+            <div class="phone-card">
+              <div class="phone-photo">暗い室内自撮り</div>
+              <div class="phone-body">
+                <p class="phone-name">49歳・会社員</p>
+                <p class="phone-sub">映画 / カフェ / 良い出会いがあれば</p>
+                <p>はじめまして。仕事は会社員をしています。休日は映画を見たり、カフェに行ったりしています。よろしくお願いします。</p>
+              </div>
+            </div>
+          </div>
+          <div class="profile-mockup">
+            <span class="mockup-label after">After</span>
+            <div class="phone-card">
+              <div class="phone-photo after">自然光・軽い笑顔</div>
+              <div class="phone-body">
+                <p class="phone-name">49歳・落ち着いた雰囲気</p>
+                <p class="phone-sub">映画 / カフェ / 自然体で話せる関係</p>
+                <p>普段は落ち着いた性格だと言われることが多く、休日は映画を見たり、気になるカフェでゆっくり過ごしています。一緒にいて気を使いすぎず、自然体で話せる関係が理想です。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section line-edit-section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Line Editing</p>
+          <h2>プロフィール文の行ごと添削</h2>
+          <p>ただ完成文を渡すだけではなく、どの文がなぜ弱いのか、どう直すと女性に伝わりやすいのかを整理します。</p>
+        </div>
+        <div class="edit-table-card">
+          <table class="edit-table">
+            <thead><tr><th>現在の文</th><th>問題点</th><th>改善方向</th><th>修正例</th></tr></thead>
+            <tbody>
+              <tr><td>仕事は会社員をしています。</td><td>情報はありますが、人柄が見えません。</td><td>働き方や性格が少し伝わる表現を足す。</td><td>普段は落ち着いた性格だと言われることが多く、仕事もコツコツ取り組むタイプです。</td></tr>
+              <tr><td>休日は映画を見たり、カフェに行ったりしています。</td><td>よくある趣味の羅列に見えます。</td><td>どんな過ごし方をする人かを具体化する。</td><td>休日は映画を見たり、気になるカフェでゆっくり過ごすことが多いです。</td></tr>
+              <tr><td>良い出会いがあればと思い登録しました。</td><td>受け身で印象に残りにくいです。</td><td>どんな関係を望むかを言葉にする。</td><td>一緒にいて気を使いすぎず、自然体で話せる関係が理想です。</td></tr>
+              <tr><td>よろしくお願いします。</td><td>悪くはありませんが、会話の入口が弱いです。</td><td>気軽に話せる雰囲気を足す。</td><td>まずは気軽にお話しできたらうれしいです。よろしくお願いします。</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section service-detail-section">
+      <div class="container">
+        <div class="completed-profile-card">
+          <p class="eyebrow">Completed Profile</p>
+          <h2>完成プロフィール文</h2>
+          <p>添削後は、実際にプロフィールへ入れやすい形で完成文をお渡しします。</p>
+          <div class="completed-profile-text">
+            はじめまして。プロフィールをご覧いただきありがとうございます。<br>
+            普段は落ち着いた性格だと言われることが多く、休日は映画を見たり、気になるカフェでゆっくり過ごしたりしています。<br><br>
+            一緒にいて気を使いすぎず、自然体で話せる関係が理想です。まずは気軽にお話しできたらうれしいです。よろしくお願いします。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section message-pattern-section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Message Patterns</p>
+          <h2>初回メッセージ改善パターン</h2>
+          <p>1つの例だけではなく、相手プロフィールに合わせて使いやすい初回メッセージを複数パターンで提案します。</p>
+        </div>
+        <div class="message-pattern-grid">
+          <article class="message-card">
+            <span>Pattern A</span>
+            <h3>カフェ趣味に触れる</h3>
+            <div class="message-bubble-text">はじめまして。マッチありがとうございます。プロフィールを見て、カフェ巡りが好きなところに親近感を持ちました。最近行ってよかったお店ってありますか？</div>
+            <p>相手の趣味に触れて、返事しやすい質問で始める形です。</p>
           </article>
-
-          <article class="category-card featured">
-            <div class="category-icon">2</div>
-            <span>Summary</span>
-            <h3>総合評価</h3>
-            <p><strong>現状の印象：誠実そうではあるが、魅力と安心感が十分に伝わりきっていない状態です。</strong><br><br>大きな問題があるというより、<strong>「減点は小さいが、加点も弱い」</strong>状態です。女性から見ると「悪い印象ではないが、あえて会ってみたい理由も弱い」という見え方になっている可能性があります。</p>
+          <article class="message-card">
+            <span>Pattern B</span>
+            <h3>休日の過ごし方に触れる</h3>
+            <div class="message-bubble-text">はじめまして。休日をゆっくり過ごす感じが似ているなと思って、いいねしました。最近は外で過ごす日と家でのんびりする日、どちらが多いですか？</div>
+            <p>共通点から入るので、押しつけ感が少なく自然です。</p>
           </article>
-
-          <article class="category-card">
-            <div class="category-icon">3</div>
-            <span>Strength</span>
-            <h3>現状の強み</h3>
-            <p><strong>① まじめさは伝わる</strong><br>プロフィール文に誠実さがあり、遊び目的の軽さは感じません。40代・50代男性では、この「安心感の土台」があるだけでも強みです。<br><br><strong>② 生活が安定していそう</strong><br>文面から極端な不安定さは出ておらず、長期的な関係を考える女性にはプラスです。</p>
-          </article>
-
-          <article class="category-card">
-            <div class="category-icon">4</div>
-            <span>Issue</span>
-            <h3>損しているポイント① 写真</h3>
-            <p>写真自体は悪くありませんが、表情が少し固い、背景が生活感寄り、光が弱く顔色が沈んで見えるため、実年齢以上に疲れて見えやすいです。<br><br><strong>改善方向：</strong><br>自然光のある場所で撮る / 少し口角を上げる / 背景をすっきりさせる / 上半身が見える他撮り風写真を使う</p>
-          </article>
-
-          <article class="category-card">
-            <div class="category-icon">5</div>
-            <span>Issue</span>
-            <h3>損しているポイント② プロフィール文</h3>
-            <p>今の文章は誠実ですが、印象に残る要素が弱いです。「よろしくお願いします」で終わる、趣味が並んでいるだけ、どんな相手とどんな時間を過ごしたいかが見えない。このあたりで魅力が薄まりやすいです。</p>
-          </article>
-
-          <article class="category-card">
-            <div class="category-icon">6</div>
-            <span>Issue</span>
-            <h3>損しているポイント③ メッセージ</h3>
-            <p>初回メッセージが丁寧すぎて、会話というより挨拶文に近くなっています。<br><br>例：<br>「はじめまして。いいねありがとうございます。」<br>「よろしくお願いします。」<br>「お仕事は何をされていますか？」<br><br>礼儀正しい反面、少し事務的です。</p>
-          </article>
-
-          <article class="category-card featured">
-            <div class="category-icon">7</div>
-            <span>Priority</span>
-            <h3>優先順位つき改善ポイント</h3>
-            <p><strong>最優先1｜メイン写真を変える</strong><br>最初に見られるのは文章より写真です。<br><br><strong>最優先2｜プロフィール文の冒頭を修正する</strong><br>最初の3〜4行で印象が決まります。<br><br><strong>最優先3｜初回メッセージを柔らかくする</strong><br>マッチ後の離脱を減らすために、定型感を減らします。</p>
-          </article>
-
-          <article class="category-card">
-            <div class="category-icon">8</div>
-            <span>Rewrite</span>
-            <h3>プロフィール文 改善例</h3>
-            <p><strong>修正前</strong><br>はじめまして。プロフィールを見ていただきありがとうございます。仕事は会社員をしています。休日は映画を見たり、カフェに行ったりしています。良い出会いがあればと思い登録しました。よろしくお願いします。<br><br><strong>修正後（例）</strong><br>はじめまして。プロフィールをご覧いただきありがとうございます。普段は落ち着いた性格だと言われることが多く、休日は映画を見たり、気になるカフェでゆっくり過ごしたりしています。一緒にいて気を使いすぎず、自然体で話せる関係が理想です。まずは気軽にお話しできたらうれしいです。よろしくお願いします。</p>
-          </article>
-
-          <article class="category-card">
-            <div class="category-icon">9</div>
-            <span>Message</span>
-            <h3>初回メッセージ 改善例</h3>
-            <p><strong>修正前</strong><br>はじめまして。マッチングありがとうございます。よろしくお願いします。<br><br><strong>修正後（例）</strong><br>はじめまして。マッチありがとうございます。プロフィールを見て、カフェ巡りが好きなところに親近感を持ちました。最近行ってよかったお店ってありますか？<br><br><strong>改善意図：</strong>定型文感を減らし、相手プロフィールを読んでいることと、返事しやすい質問を同時に入れています。</p>
-          </article>
-
-          <article class="category-card">
-            <div class="category-icon">10</div>
-            <span>Photo</span>
-            <h3>写真改善の方向性</h3>
-            <p><strong>おすすめ3枚構成</strong><br>1枚目：自然光・清潔感のある服装・軽い笑顔<br>2枚目：全身または半身・雰囲気が伝わる写真<br>3枚目：趣味や休日感が伝わる写真<br><br><strong>避けたいもの</strong><br>暗い室内自撮り / 鏡越し / 加工感の強い写真 / 生活感の強い背景</p>
-          </article>
-
-          <article class="category-card featured">
-            <div class="category-icon">11</div>
-            <span>Action</span>
-            <h3>この方が最初にやるべきこと</h3>
-            <p>1. メイン写真を撮り直す<br>2. プロフィール文の冒頭を修正する<br>3. 初回メッセージをテンプレから改善する</p>
-          </article>
-
-          <article class="category-card featured">
-            <div class="category-icon">12</div>
-            <span>Conclusion</span>
-            <h3>まとめ</h3>
-            <p>現状は「大きく悪い」わけではありません。ただし、<strong>写真・プロフィール文・メッセージが全部“少しずつ弱い”ため、総合印象で損している</strong>可能性があります。逆に言えば、写真・冒頭文・メッセージの入り方の3つを整えるだけでも、反応が変わる余地があります。</p>
+          <article class="message-card">
+            <span>Pattern C</span>
+            <h3>写真の雰囲気に触れる</h3>
+            <div class="message-bubble-text">はじめまして。写真の雰囲気が自然で、話しやすそうだなと思いました。あの写真は旅行先ですか？</div>
+            <p>写真への自然なコメントから、会話のきっかけを作ります。</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section final-cta-section">
-      <div class="container final-cta-box">
-        <p class="eyebrow">Next Step</p>
-        <h2>自分のプロフィールでも見てほしい方へ</h2>
-        <p>このサンプルのように、あなたの現在のプロフィールをもとに、どこで損しているか・何を優先して直すべきかを整理します。</p>
-        <a class="btn btn-primary" href="service.html#contact">プロフィール再設計ライト診断に申し込む</a>
-        <p class="cta-note">※ 最初は完璧でなくて大丈夫です。今ある状態から見ていきます。</p>
+    <section class="section service-detail-section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">7 Days Action Plan</p>
+          <h2>7日間の改善アクションプラン</h2>
+          <p>診断レポートは読むだけで終わらせず、何から手をつければいいかを行動順に整理します。</p>
+        </div>
+        <div class="action-plan-card">
+          <table class="action-table">
+            <thead><tr><th>日程</th><th>やること</th><th>目的</th></tr></thead>
+            <tbody>
+              <tr><td>1日目</td><td>メイン写真を差し替える</td><td>第一印象の減点を最初に減らす</td></tr>
+              <tr><td>2日目</td><td>プロフィール文の冒頭を変更する</td><td>最初の3〜4行で安心感と人柄を伝える</td></tr>
+              <tr><td>3日目</td><td>サブ写真を1枚追加する</td><td>休日感・服装感・人柄を補う</td></tr>
+              <tr><td>4日目</td><td>初回メッセージをテンプレから変更する</td><td>返事しやすい会話の入口を作る</td></tr>
+              <tr><td>5日目</td><td>反応の変化を見る</td><td>いいね・足あと・返信率の変化を確認</td></tr>
+              <tr><td>6日目</td><td>いいねする相手を見直す</td><td>狙う相手とプロフィールの見せ方を合わせる</td></tr>
+              <tr><td>7日目</td><td>結果をもとに再調整する</td><td>写真・文章・メッセージを微修正する</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section review-section">
+      <div class="container report-close-box">
+        <div>
+          <p class="eyebrow">Conclusion</p>
+          <h2>このケースの結論</h2>
+          <p>現状は「大きく悪い」わけではありません。ただし、写真・プロフィール文・メッセージが全部少しずつ弱いため、総合印象で損している状態です。</p>
+          <p><strong>最初に直すべき順番は、写真 → プロフィール冒頭 → 初回メッセージです。</strong> この3つを整えることで、女性から見た安心感・清潔感・会話しやすさが伝わりやすくなります。</p>
+          <div class="hero-actions"><a class="btn btn-primary" href="service.html#contact">自分のプロフィールも診断してもらう</a><a class="btn btn-secondary" href="service.html">サービス案内へ戻る</a></div>
+        </div>
+        <img src="assets/characters/03_ok_explain.png" alt="説明する案内役キャラクター" />
       </div>
     </section>
   </main>
