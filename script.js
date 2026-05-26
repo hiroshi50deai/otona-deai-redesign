@@ -159,6 +159,15 @@ function enhanceSampleReportProfileCopy() {
     completedText.innerHTML = `はじめまして。プロフィールを見ていただきありがとうございます。<br><br>平日は仕事中心ですが、休日は気になっていた映画を観に行ったり、帰りに落ち着いたカフェで少しゆっくりしたりして過ごすことが多いです。派手なタイプではありませんが、相手の話を聞きながら、穏やかに会話する時間は好きです。<br><br>いきなり距離を詰めるより、まずはメッセージで少しずつ雰囲気を知れたらうれしいです。映画の話、休日の過ごし方、最近行ってよかったお店など、気軽なところから話せたらと思っています。<br><br>一緒にいて無理をしなくていい、自然体で笑える関係を大切にしたいです。よろしくお願いします。`;
   }
 
+  const beforeProfile = document.querySelector('#app-mockup .phone-shell:first-child .app-profile-body');
+  const beforePromptCards = beforeProfile ? Array.from(beforeProfile.querySelectorAll('.prompt-card')) : [];
+  if (beforePromptCards[1]) {
+    const label = beforePromptCards[1].querySelector('b');
+    const text = beforePromptCards[1].querySelector('p');
+    if (label) label.textContent = '一緒にしたいこと';
+    if (text) text.textContent = '映画を見たり、カフェに行ったりしたいです。';
+  }
+
   const afterProfile = document.querySelector('#app-mockup .phone-shell:nth-child(2) .app-profile-body');
   const promptCards = afterProfile ? Array.from(afterProfile.querySelectorAll('.prompt-card')) : [];
   if (promptCards[0]) promptCards[0].querySelector('p').textContent = '平日は仕事中心ですが、休日は気になっていた映画を観に行ったり、帰りに落ち着いたカフェで少しゆっくりしたりしています。筋トレや散歩も続けていて、年齢を重ねても清潔感や健康的な生活は大切にしたいです。';
