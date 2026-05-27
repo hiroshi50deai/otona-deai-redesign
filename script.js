@@ -57,7 +57,10 @@ function enhanceStudentAvatars() {
     img.src = src;
     img.alt = '生徒・50代男性';
     img.loading = 'lazy';
-    img.addEventListener('error', () => { avatar.classList.remove('conversation-person__image--student-character'); avatar.textContent = fallbackText; }, { once: true });
+    img.addEventListener('error', () => {
+      avatar.classList.remove('conversation-person__image--student-character');
+      avatar.textContent = fallbackText;
+    }, { once: true });
     avatar.appendChild(img);
   });
 }
@@ -187,64 +190,58 @@ function enhanceSampleReportWardrobeGuide() {
   wardrobeSection.className = 'section wardrobe-guide-section report-soft';
   wardrobeSection.innerHTML = `
     <div class="container">
-      <div class="section-heading">
-        <p class="eyebrow">Wardrobe Guide</p>
-        <h2>服装・買い足しガイド</h2>
-        <p>After写真のような印象は、高級ブランドで固めなくても作れます。大切なのは、ブランド名そのものよりも、色・サイズ感・清潔感・組み合わせです。</p>
-      </div>
-
+      <div class="section-heading"><p class="eyebrow">Wardrobe Guide</p><h2>服装・買い足しガイド</h2><p>After写真のような印象は、高級ブランドで固めなくても作れます。大切なのは、ブランド名そのものよりも、色・サイズ感・清潔感・組み合わせです。</p></div>
       <div class="wardrobe-visual-guide" style="display:grid;gap:22px;">
         <div class="wardrobe-hero-card" style="background:linear-gradient(135deg,#fff7ed 0%,#eff6ff 100%);border:1px solid #fed7aa;border-radius:30px;padding:24px;display:grid;grid-template-columns:1.05fr 1.35fr;gap:22px;align-items:center;box-shadow:0 16px 42px rgba(21,42,77,.07);">
-          <div style="background:#fff;border:1px solid rgba(21,42,77,.08);border-radius:24px;padding:14px;box-shadow:0 12px 30px rgba(21,42,77,.08);">
-            <div style="position:relative;border-radius:20px;overflow:hidden;background:#f8fafc;">
-              <img src="assets/samples/after-half-body-style-sample.jpg" alt="After写真の全身コーディネートイメージ" loading="lazy" style="width:100%;height:380px;object-fit:contain;object-position:center;display:block;background:#f8fafc;">
-              <span style="position:absolute;top:12px;left:12px;background:rgba(15,23,42,.82);color:#fff;font-size:.78rem;font-weight:800;padding:7px 12px;border-radius:999px;">完成イメージ</span>
-            </div>
-          </div>
-          <div style="display:grid;gap:16px;">
-            <div>
-              <p style="margin:0 0 8px;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:#c2410c;font-weight:900;">After写真を再現する基本4点セット</p>
-              <h3 style="margin:0;color:var(--navy);font-size:clamp(1.25rem,2.4vw,1.9rem);line-height:1.35;">ジャケット ＋ 白T ＋ 濃色パンツ ＋ きれいめ靴</h3>
-              <p style="margin:12px 0 0;line-height:1.85;">40代・50代男性は、まずこの4点を整えるだけでもかなり印象が変わります。派手さよりも、「無難だけど清潔感がある」方向が強いです。</p>
-            </div>
-            <div class="wardrobe-infographic-grid" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;">
-              <div style="background:#fff;border:1px solid rgba(21,42,77,.08);border-radius:18px;padding:14px;"><p style="margin:0 0 6px;color:#2563eb;font-size:.8rem;font-weight:900;">① きちんと感</p><strong style="color:var(--navy);">ネイビー〜黒系ジャケット</strong></div>
-              <div style="background:#fff;border:1px solid rgba(21,42,77,.08);border-radius:18px;padding:14px;"><p style="margin:0 0 6px;color:#2563eb;font-size:.8rem;font-weight:900;">② 顔まわりを明るく</p><strong style="color:var(--navy);">白の無地Tシャツ</strong></div>
-              <div style="background:#fff;border:1px solid rgba(21,42,77,.08);border-radius:18px;padding:14px;"><p style="margin:0 0 6px;color:#2563eb;font-size:.8rem;font-weight:900;">③ 全体を引き締める</p><strong style="color:var(--navy);">黒〜濃色パンツ</strong></div>
-              <div style="background:#fff;border:1px solid rgba(21,42,77,.08);border-radius:18px;padding:14px;"><p style="margin:0 0 6px;color:#2563eb;font-size:.8rem;font-weight:900;">④ 生活感を消す</p><strong style="color:var(--navy);">きれいめ靴</strong></div>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:10px;"><span style="padding:8px 12px;border-radius:999px;background:#fff;color:#c2410c;font-weight:900;">高級ブランド不要</span><span style="padding:8px 12px;border-radius:999px;background:#fff;color:#1d4ed8;font-weight:900;">まずは4点で十分</span><span style="padding:8px 12px;border-radius:999px;background:#fff;color:#0f766e;font-weight:900;">清潔感重視</span></div>
-          </div>
+          <div style="background:#fff;border:1px solid rgba(21,42,77,.08);border-radius:24px;padding:14px;box-shadow:0 12px 30px rgba(21,42,77,.08);"><div style="position:relative;border-radius:20px;overflow:hidden;background:#f8fafc;"><img src="assets/samples/after-half-body-style-sample.jpg" alt="After写真の全身コーディネートイメージ" loading="lazy" style="width:100%;height:380px;object-fit:contain;object-position:center;display:block;background:#f8fafc;"><span style="position:absolute;top:12px;left:12px;background:rgba(15,23,42,.82);color:#fff;font-size:.78rem;font-weight:800;padding:7px 12px;border-radius:999px;">完成イメージ</span></div></div>
+          <div style="display:grid;gap:16px;"><div><p style="margin:0 0 8px;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:#c2410c;font-weight:900;">After写真を再現する基本4点セット</p><h3 style="margin:0;color:var(--navy);font-size:clamp(1.25rem,2.4vw,1.9rem);line-height:1.35;">ジャケット ＋ 白T ＋ 濃色パンツ ＋ きれいめ靴</h3><p style="margin:12px 0 0;line-height:1.85;">40代・50代男性は、まずこの4点を整えるだけでもかなり印象が変わります。派手さよりも、「無難だけど清潔感がある」方向が強いです。</p></div><div class="wardrobe-infographic-grid" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;"><div style="background:#fff;border:1px solid rgba(21,42,77,.08);border-radius:18px;padding:14px;"><p style="margin:0 0 6px;color:#2563eb;font-size:.8rem;font-weight:900;">① きちんと感</p><strong style="color:var(--navy);">ネイビー〜黒系ジャケット</strong></div><div style="background:#fff;border:1px solid rgba(21,42,77,.08);border-radius:18px;padding:14px;"><p style="margin:0 0 6px;color:#2563eb;font-size:.8rem;font-weight:900;">② 顔まわりを明るく</p><strong style="color:var(--navy);">白の無地Tシャツ</strong></div><div style="background:#fff;border:1px solid rgba(21,42,77,.08);border-radius:18px;padding:14px;"><p style="margin:0 0 6px;color:#2563eb;font-size:.8rem;font-weight:900;">③ 全体を引き締める</p><strong style="color:var(--navy);">黒〜濃色パンツ</strong></div><div style="background:#fff;border:1px solid rgba(21,42,77,.08);border-radius:18px;padding:14px;"><p style="margin:0 0 6px;color:#2563eb;font-size:.8rem;font-weight:900;">④ 生活感を消す</p><strong style="color:var(--navy);">きれいめ靴</strong></div></div><div style="display:flex;flex-wrap:wrap;gap:10px;"><span style="padding:8px 12px;border-radius:999px;background:#fff;color:#c2410c;font-weight:900;">高級ブランド不要</span><span style="padding:8px 12px;border-radius:999px;background:#fff;color:#1d4ed8;font-weight:900;">まずは4点で十分</span><span style="padding:8px 12px;border-radius:999px;background:#fff;color:#0f766e;font-weight:900;">清潔感重視</span></div></div>
         </div>
-
         <div class="wardrobe-item-grid" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;">
           <article style="background:#fff;border:1px solid var(--border);border-radius:28px;padding:22px;box-shadow:0 14px 36px rgba(21,42,77,.06);"><div style="width:48px;height:48px;border-radius:16px;background:#eff6ff;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:14px;color:#1d4ed8;font-weight:900;">①</div><h3 style="margin:0 0 10px;color:var(--navy);font-size:1.05rem;">ネイビー〜黒系ジャケット</h3><p style="margin:0;line-height:1.8;">初対面で「ちゃんとして見える」。若作りに見えにくく、他の服とも合わせやすい定番です。</p><p style="margin:12px 0 0;color:var(--muted);font-weight:800;">色：ネイビー / 黒 / ダークグレー</p></article>
           <article style="background:#fff;border:1px solid var(--border);border-radius:28px;padding:22px;box-shadow:0 14px 36px rgba(21,42,77,.06);"><div style="width:48px;height:48px;border-radius:16px;background:#f8fafc;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:14px;color:#334155;font-weight:900;">②</div><h3 style="margin:0 0 10px;color:var(--navy);font-size:1.05rem;">白の無地Tシャツ</h3><p style="margin:0;line-height:1.8;">顔まわりが明るく見え、頑張りすぎない自然体の清潔感を作りやすいです。</p><p style="margin:12px 0 0;color:var(--muted);font-weight:800;">色：白 / オフホワイト</p></article>
           <article style="background:#fff;border:1px solid var(--border);border-radius:28px;padding:22px;box-shadow:0 14px 36px rgba(21,42,77,.06);"><div style="width:48px;height:48px;border-radius:16px;background:#f5f3ff;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:14px;color:#6d28d9;font-weight:900;">③</div><h3 style="margin:0 0 10px;color:var(--navy);font-size:1.05rem;">黒〜濃色パンツ</h3><p style="margin:0;line-height:1.8;">全体が引き締まり、年齢相応の落ち着きとスマートさが出しやすくなります。</p><p style="margin:12px 0 0;color:var(--muted);font-weight:800;">色：黒 / ネイビー / チャコール</p></article>
           <article style="background:#fff;border:1px solid var(--border);border-radius:28px;padding:22px;box-shadow:0 14px 36px rgba(21,42,77,.06);"><div style="width:48px;height:48px;border-radius:16px;background:#ecfeff;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:14px;color:#0e7490;font-weight:900;">④</div><h3 style="margin:0 0 10px;color:var(--navy);font-size:1.05rem;">レザー白スニーカー / レザーローファー</h3><p style="margin:0;line-height:1.8;">足元の生活感を消し、若作りではない軽さと清潔感を底上げできます。</p><p style="margin:12px 0 0;color:var(--muted);font-weight:800;">色：白 / ブラウン / ダークブラウン / グレー系</p></article>
         </div>
-
-        <div class="wardrobe-priority-card" style="background:#fff;border:1px solid var(--border);border-radius:28px;padding:24px;box-shadow:0 14px 36px rgba(21,42,77,.06);">
-          <p style="margin:0 0 8px;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:#64748b;font-weight:900;">Shopping Priority</p>
-          <h3 style="margin:0 0 16px;color:var(--navy);font-size:1.18rem;">買い足すならこの順番</h3>
-          <div class="wardrobe-step-grid" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;">
-            <div style="background:#f8fafc;border-radius:18px;padding:14px;"><div style="border-radius:14px;overflow:hidden;background:#fff;margin-bottom:12px;border:1px solid rgba(21,42,77,.08);"><img src="assets/samples/wardrobe-item-01-jacket.png" alt="ジャケットのガイド画像" loading="lazy" style="width:100%;height:150px;object-fit:cover;display:block;"></div><strong>STEP 1</strong><p style="margin:8px 0 0;line-height:1.7;">ジャケット<br><span style="color:var(--muted);">一番印象が変わる</span></p></div>
-            <div style="background:#f8fafc;border-radius:18px;padding:14px;"><div style="border-radius:14px;overflow:hidden;background:#fff;margin-bottom:12px;border:1px solid rgba(21,42,77,.08);"><img src="assets/samples/wardrobe-item-02-white-tshirt.png" alt="白Tシャツのガイド画像" loading="lazy" style="width:100%;height:150px;object-fit:cover;display:block;"></div><strong>STEP 2</strong><p style="margin:8px 0 0;line-height:1.7;">白T / 白系インナー<br><span style="color:var(--muted);">顔まわりを整える</span></p></div>
-            <div style="background:#f8fafc;border-radius:18px;padding:14px;"><div style="border-radius:14px;overflow:hidden;background:#fff;margin-bottom:12px;border:1px solid rgba(21,42,77,.08);"><img src="assets/samples/wardrobe-item-03-dark-pants.png" alt="濃色パンツのガイド画像" loading="lazy" style="width:100%;height:150px;object-fit:cover;display:block;"></div><strong>STEP 3</strong><p style="margin:8px 0 0;line-height:1.7;">濃色パンツ<br><span style="color:var(--muted);">全体を引き締める</span></p></div>
-            <div style="background:#f8fafc;border-radius:18px;padding:14px;"><div style="border-radius:14px;overflow:hidden;background:#fff;margin-bottom:12px;border:1px solid rgba(21,42,77,.08);"><img src="assets/samples/wardrobe-item-04-shoes.png" alt="靴のガイド画像" loading="lazy" style="width:100%;height:150px;object-fit:cover;display:block;"></div><strong>STEP 4</strong><p style="margin:8px 0 0;line-height:1.7;">きれいめな靴<br><span style="color:var(--muted);">完成度を上げる</span></p></div>
-          </div>
-          <p style="margin:16px 0 0;line-height:1.85;">一気に全部揃えなくても大丈夫です。優先順位をつけて整えるだけで、写真の印象はかなり変わります。</p>
-        </div>
-
-        <div class="wardrobe-sub-grid" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;">
-          <article style="background:#fff;border:1px solid var(--border);border-radius:28px;padding:24px;box-shadow:0 14px 36px rgba(21,42,77,.06);"><p style="margin:0 0 8px;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:#64748b;font-weight:900;">Buyable Stores</p><h3 style="margin:0 0 12px;color:var(--navy);font-size:1.12rem;">買いやすい店</h3><div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px;"><span style="padding:8px 12px;border-radius:999px;background:#eff6ff;font-weight:700;">ユニクロ</span><span style="padding:8px 12px;border-radius:999px;background:#f8fafc;font-weight:700;">無印良品</span><span style="padding:8px 12px;border-radius:999px;background:#f5f3ff;font-weight:700;">グローバルワーク</span><span style="padding:8px 12px;border-radius:999px;background:#ecfeff;font-weight:700;">GU</span></div><p style="margin:0;line-height:1.85;">まずは高級ブランドではなく、<strong>手に入りやすく、清潔感を作りやすい店</strong>で十分です。ブランド名より、サイズ感と色合わせの方が重要です。</p></article>
-          <article style="background:#fff;border:1px solid var(--border);border-radius:28px;padding:24px;box-shadow:0 14px 36px rgba(21,42,77,.06);"><p style="margin:0 0 8px;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:#64748b;font-weight:900;">What We Suggest</p><h3 style="margin:0 0 12px;color:var(--navy);font-size:1.12rem;">相談で提案する内容</h3><ul style="margin:0;padding-left:1.2em;line-height:1.9;"><li>今ある服で使えるもの・使いにくいものの整理</li><li>買い足すなら何を優先すべきか</li><li>予算に合わせた現実的な候補</li><li>写真用だけでなく、初対面でも使いやすい服装の方向性</li></ul></article>
-        </div>
+        <div class="wardrobe-priority-card" style="background:#fff;border:1px solid var(--border);border-radius:28px;padding:24px;box-shadow:0 14px 36px rgba(21,42,77,.06);"><p style="margin:0 0 8px;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:#64748b;font-weight:900;">Shopping Priority</p><h3 style="margin:0 0 16px;color:var(--navy);font-size:1.18rem;">買い足すならこの順番</h3><div class="wardrobe-step-grid" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;"><div style="background:#f8fafc;border-radius:18px;padding:14px;"><div style="border-radius:14px;overflow:hidden;background:#fff;margin-bottom:12px;border:1px solid rgba(21,42,77,.08);"><img src="assets/samples/wardrobe-item-01-jacket.png" alt="ジャケットのガイド画像" loading="lazy" style="width:100%;height:150px;object-fit:cover;display:block;"></div><strong>STEP 1</strong><p style="margin:8px 0 0;line-height:1.7;">ジャケット<br><span style="color:var(--muted);">一番印象が変わる</span></p></div><div style="background:#f8fafc;border-radius:18px;padding:14px;"><div style="border-radius:14px;overflow:hidden;background:#fff;margin-bottom:12px;border:1px solid rgba(21,42,77,.08);"><img src="assets/samples/wardrobe-item-02-white-tshirt.png" alt="白Tシャツのガイド画像" loading="lazy" style="width:100%;height:150px;object-fit:cover;display:block;"></div><strong>STEP 2</strong><p style="margin:8px 0 0;line-height:1.7;">白T / 白系インナー<br><span style="color:var(--muted);">顔まわりを整える</span></p></div><div style="background:#f8fafc;border-radius:18px;padding:14px;"><div style="border-radius:14px;overflow:hidden;background:#fff;margin-bottom:12px;border:1px solid rgba(21,42,77,.08);"><img src="assets/samples/wardrobe-item-03-dark-pants.png" alt="濃色パンツのガイド画像" loading="lazy" style="width:100%;height:150px;object-fit:cover;display:block;"></div><strong>STEP 3</strong><p style="margin:8px 0 0;line-height:1.7;">濃色パンツ<br><span style="color:var(--muted);">全体を引き締める</span></p></div><div style="background:#f8fafc;border-radius:18px;padding:14px;"><div style="border-radius:14px;overflow:hidden;background:#fff;margin-bottom:12px;border:1px solid rgba(21,42,77,.08);"><img src="assets/samples/wardrobe-item-04-shoes.png" alt="靴のガイド画像" loading="lazy" style="width:100%;height:150px;object-fit:cover;display:block;"></div><strong>STEP 4</strong><p style="margin:8px 0 0;line-height:1.7;">きれいめな靴<br><span style="color:var(--muted);">完成度を上げる</span></p></div></div><p style="margin:16px 0 0;line-height:1.85;">一気に全部揃えなくても大丈夫です。優先順位をつけて整えるだけで、写真の印象はかなり変わります。</p></div>
+        <div class="wardrobe-sub-grid" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;"><article style="background:#fff;border:1px solid var(--border);border-radius:28px;padding:24px;box-shadow:0 14px 36px rgba(21,42,77,.06);"><p style="margin:0 0 8px;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:#64748b;font-weight:900;">Buyable Stores</p><h3 style="margin:0 0 12px;color:var(--navy);font-size:1.12rem;">買いやすい店</h3><div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px;"><span style="padding:8px 12px;border-radius:999px;background:#eff6ff;font-weight:700;">ユニクロ</span><span style="padding:8px 12px;border-radius:999px;background:#f8fafc;font-weight:700;">無印良品</span><span style="padding:8px 12px;border-radius:999px;background:#f5f3ff;font-weight:700;">グローバルワーク</span><span style="padding:8px 12px;border-radius:999px;background:#ecfeff;font-weight:700;">GU</span></div><p style="margin:0;line-height:1.85;">まずは高級ブランドではなく、<strong>手に入りやすく、清潔感を作りやすい店</strong>で十分です。ブランド名より、サイズ感と色合わせの方が重要です。</p></article><article style="background:#fff;border:1px solid var(--border);border-radius:28px;padding:24px;box-shadow:0 14px 36px rgba(21,42,77,.06);"><p style="margin:0 0 8px;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:#64748b;font-weight:900;">What We Suggest</p><h3 style="margin:0 0 12px;color:var(--navy);font-size:1.12rem;">相談で提案する内容</h3><ul style="margin:0;padding-left:1.2em;line-height:1.9;"><li>今ある服で使えるもの・使いにくいものの整理</li><li>買い足すなら何を優先すべきか</li><li>予算に合わせた現実的な候補</li><li>写真用だけでなく、初対面でも使いやすい服装の方向性</li></ul></article></div>
       </div>
     </div>
     <style>@media(max-width:1000px){.wardrobe-hero-card{grid-template-columns:1fr!important}.wardrobe-item-grid,.wardrobe-step-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}@media(max-width:800px){.wardrobe-sub-grid{grid-template-columns:1fr!important}.wardrobe-infographic-grid{grid-template-columns:1fr!important}}@media(max-width:640px){.wardrobe-item-grid,.wardrobe-step-grid{grid-template-columns:1fr!important}.wardrobe-hero-card img{height:320px!important}}</style>
   `;
   photoSection.insertAdjacentElement('afterend', wardrobeSection);
+}
+
+function addSampleReportMobileFixes() {
+  if (!location.pathname.endsWith('sample-report.html')) return;
+  const style = document.createElement('style');
+  style.textContent = `
+    html, body { max-width: 100%; overflow-x: hidden; }
+    img, video { max-width: 100%; }
+    * { min-width: 0; }
+    @media (max-width: 768px) {
+      body { overflow-x: hidden !important; }
+      .container { width: calc(100% - 24px) !important; max-width: 100% !important; }
+      .section { padding: 52px 0 !important; }
+      .report-grid-2, .report-grid-3, .score-board, .app-mockup-wrap, .close-box,
+      .wardrobe-hero-card, .wardrobe-item-grid, .wardrobe-step-grid, .wardrobe-sub-grid,
+      .photo-audit-cards { grid-template-columns: 1fr !important; width: 100% !important; max-width: 100% !important; }
+      .report-card, .score-item, .message-card, .phone-shell, .wardrobe-guide-section article,
+      .wardrobe-hero-card, .wardrobe-priority-card, .diagnosis-table-card { width: 100% !important; max-width: 100% !important; }
+      table.report-table { min-width: 0 !important; width: 100% !important; }
+      .diagnosis-table-card table.report-table { min-width: 680px !important; }
+      .report-table th, .report-table td { padding: 11px 10px !important; word-break: break-word; overflow-wrap: anywhere; }
+      .phone-shell { padding: 8px !important; border-radius: 28px !important; }
+      .phone-screen { border-radius: 22px !important; }
+      .app-profile-body { padding: 14px !important; }
+      .app-photo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+      .wardrobe-hero-card { padding: 16px !important; border-radius: 24px !important; }
+      .wardrobe-hero-card h3, .wardrobe-guide-section h2, .wardrobe-guide-section h3 { overflow-wrap: anywhere; word-break: keep-all; }
+      .wardrobe-hero-card img { height: auto !important; max-height: 360px !important; object-fit: contain !important; }
+      .wardrobe-step-grid img { height: auto !important; max-height: none !important; object-fit: contain !important; background: #fff; }
+      .photo-audit-cards img { height: auto !important; max-height: none !important; object-fit: contain !important; background: #f8fafc; }
+    }
+  `;
+  document.head.appendChild(style);
 }
 
 if (navToggle && siteNav) {
@@ -269,6 +266,7 @@ enhanceSampleReportBeforeSubPhotos();
 enhanceSampleReportProfileCopy();
 enhanceSampleReportPhotoAuditCards();
 enhanceSampleReportWardrobeGuide();
+addSampleReportMobileFixes();
 addArticleTableOfContents();
 addMobileEyecatchOverrides();
 addFooterUtilityLinks();
