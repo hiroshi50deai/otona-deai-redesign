@@ -77,10 +77,14 @@ function addArticleTableOfContents() {
   if (!articleMain || articleMain.querySelector('.article-toc')) return;
   const headings = Array.from(articleMain.querySelectorAll('h2'));
   if (!headings.length) return;
+  const items = headings.map((heading, index) => {
+    if (!heading.id) heading.id = `article-section-${index + 1}`;
+    return `<li><a href="#${heading.id}">${heading.textContent.trim()}</a></li>`;
+  }).join('');
   const nav = document.createElement('nav');
   nav.className = 'article-toc';
   nav.setAttribute('aria-label', 'この記事の目次');
-  nav.innerHTML = `<p class="article-toc__title">この記事でわかること</p><ol class="article-toc__list">${headings.map((heading, index) => { if (!heading.id) heading.id = `article-section-${index + 1}`; return `<li><a href="#${heading.id}">${heading.textContent.trim()}</a></li>`; }).join('')}</ol>`;
+  nav.innerHTML = `<p class="article-toc__title">この記事でわかること</p><ol class="article-toc__list">${items}</ol>`;
   const eyecatch = articleMain.querySelector('figure.article-block');
   if (eyecatch) eyecatch.insertAdjacentElement('afterend', nav); else articleMain.prepend(nav);
 }
@@ -217,17 +221,17 @@ function enhanceSampleReportWardrobeGuide() {
           <article style="background:#fff;border:1px solid var(--border);border-radius:28px;padding:22px;box-shadow:0 14px 36px rgba(21,42,77,.06);"><div style="width:48px;height:48px;border-radius:16px;background:#eff6ff;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:14px;color:#1d4ed8;font-weight:900;">①</div><h3 style="margin:0 0 10px;color:var(--navy);font-size:1.05rem;">ネイビー〜黒系ジャケット</h3><p style="margin:0;line-height:1.8;">初対面で「ちゃんとして見える」。若作りに見えにくく、他の服とも合わせやすい定番です。</p><p style="margin:12px 0 0;color:var(--muted);font-weight:800;">色：ネイビー / 黒 / ダークグレー</p></article>
           <article style="background:#fff;border:1px solid var(--border);border-radius:28px;padding:22px;box-shadow:0 14px 36px rgba(21,42,77,.06);"><div style="width:48px;height:48px;border-radius:16px;background:#f8fafc;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:14px;color:#334155;font-weight:900;">②</div><h3 style="margin:0 0 10px;color:var(--navy);font-size:1.05rem;">白の無地Tシャツ</h3><p style="margin:0;line-height:1.8;">顔まわりが明るく見え、頑張りすぎない自然体の清潔感を作りやすいです。</p><p style="margin:12px 0 0;color:var(--muted);font-weight:800;">色：白 / オフホワイト</p></article>
           <article style="background:#fff;border:1px solid var(--border);border-radius:28px;padding:22px;box-shadow:0 14px 36px rgba(21,42,77,.06);"><div style="width:48px;height:48px;border-radius:16px;background:#f5f3ff;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:14px;color:#6d28d9;font-weight:900;">③</div><h3 style="margin:0 0 10px;color:var(--navy);font-size:1.05rem;">黒〜濃色パンツ</h3><p style="margin:0;line-height:1.8;">全体が引き締まり、年齢相応の落ち着きとスマートさが出しやすくなります。</p><p style="margin:12px 0 0;color:var(--muted);font-weight:800;">色：黒 / ネイビー / チャコール</p></article>
-          <article style="background:#fff;border:1px solid var(--border);border-radius:28px;padding:22px;box-shadow:0 14px 36px rgba(21,42,77,.06);"><div style="width:48px;height:48px;border-radius:16px;background:#ecfeff;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:14px;color:#0e7490;font-weight:900;">④</div><h3 style="margin:0 0 10px;color:var(--navy);font-size:1.05rem;">きれいめスニーカー / 革靴風の靴</h3><p style="margin:0;line-height:1.8;">足元の生活感を消し、若作りではない軽さと清潔感を底上げできます。</p><p style="margin:12px 0 0;color:var(--muted);font-weight:800;">色：白 / 黒 / グレー系</p></article>
+          <article style="background:#fff;border:1px solid var(--border);border-radius:28px;padding:22px;box-shadow:0 14px 36px rgba(21,42,77,.06);"><div style="width:48px;height:48px;border-radius:16px;background:#ecfeff;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:14px;color:#0e7490;font-weight:900;">④</div><h3 style="margin:0 0 10px;color:var(--navy);font-size:1.05rem;">レザー白スニーカー / レザーローファー</h3><p style="margin:0;line-height:1.8;">足元の生活感を消し、若作りではない軽さと清潔感を底上げできます。</p><p style="margin:12px 0 0;color:var(--muted);font-weight:800;">色：白 / ブラウン / ダークブラウン / グレー系</p></article>
         </div>
 
         <div class="wardrobe-priority-card" style="background:#fff;border:1px solid var(--border);border-radius:28px;padding:24px;box-shadow:0 14px 36px rgba(21,42,77,.06);">
           <p style="margin:0 0 8px;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:#64748b;font-weight:900;">Shopping Priority</p>
           <h3 style="margin:0 0 16px;color:var(--navy);font-size:1.18rem;">買い足すならこの順番</h3>
           <div class="wardrobe-step-grid" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;">
-            <div style="background:#f8fafc;border-radius:18px;padding:16px;"><strong>STEP 1</strong><p style="margin:8px 0 0;line-height:1.7;">ジャケット<br><span style="color:var(--muted);">一番印象が変わる</span></p></div>
-            <div style="background:#f8fafc;border-radius:18px;padding:16px;"><strong>STEP 2</strong><p style="margin:8px 0 0;line-height:1.7;">白T / 白系インナー<br><span style="color:var(--muted);">顔まわりを整える</span></p></div>
-            <div style="background:#f8fafc;border-radius:18px;padding:16px;"><strong>STEP 3</strong><p style="margin:8px 0 0;line-height:1.7;">濃色パンツ<br><span style="color:var(--muted);">全体を引き締める</span></p></div>
-            <div style="background:#f8fafc;border-radius:18px;padding:16px;"><strong>STEP 4</strong><p style="margin:8px 0 0;line-height:1.7;">きれいめな靴<br><span style="color:var(--muted);">完成度を上げる</span></p></div>
+            <div style="background:#f8fafc;border-radius:18px;padding:14px;"><div style="border-radius:14px;overflow:hidden;background:#fff;margin-bottom:12px;border:1px solid rgba(21,42,77,.08);"><img src="assets/samples/wardrobe-item-01-jacket.png" alt="ジャケットのガイド画像" loading="lazy" style="width:100%;height:150px;object-fit:cover;display:block;"></div><strong>STEP 1</strong><p style="margin:8px 0 0;line-height:1.7;">ジャケット<br><span style="color:var(--muted);">一番印象が変わる</span></p></div>
+            <div style="background:#f8fafc;border-radius:18px;padding:14px;"><div style="border-radius:14px;overflow:hidden;background:#fff;margin-bottom:12px;border:1px solid rgba(21,42,77,.08);"><img src="assets/samples/wardrobe-item-02-white-tshirt.png" alt="白Tシャツのガイド画像" loading="lazy" style="width:100%;height:150px;object-fit:cover;display:block;"></div><strong>STEP 2</strong><p style="margin:8px 0 0;line-height:1.7;">白T / 白系インナー<br><span style="color:var(--muted);">顔まわりを整える</span></p></div>
+            <div style="background:#f8fafc;border-radius:18px;padding:14px;"><div style="border-radius:14px;overflow:hidden;background:#fff;margin-bottom:12px;border:1px solid rgba(21,42,77,.08);"><img src="assets/samples/wardrobe-item-03-dark-pants.png" alt="濃色パンツのガイド画像" loading="lazy" style="width:100%;height:150px;object-fit:cover;display:block;"></div><strong>STEP 3</strong><p style="margin:8px 0 0;line-height:1.7;">濃色パンツ<br><span style="color:var(--muted);">全体を引き締める</span></p></div>
+            <div style="background:#f8fafc;border-radius:18px;padding:14px;"><div style="border-radius:14px;overflow:hidden;background:#fff;margin-bottom:12px;border:1px solid rgba(21,42,77,.08);"><img src="assets/samples/wardrobe-item-04-shoes.png" alt="靴のガイド画像" loading="lazy" style="width:100%;height:150px;object-fit:cover;display:block;"></div><strong>STEP 4</strong><p style="margin:8px 0 0;line-height:1.7;">きれいめな靴<br><span style="color:var(--muted);">完成度を上げる</span></p></div>
           </div>
           <p style="margin:16px 0 0;line-height:1.85;">一気に全部揃えなくても大丈夫です。優先順位をつけて整えるだけで、写真の印象はかなり変わります。</p>
         </div>
