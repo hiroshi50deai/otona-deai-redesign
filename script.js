@@ -23,9 +23,17 @@ function normalizeCharacterImages() {
     if (currentSrc && characterImageReplacements[currentSrc]) img.src = characterImageReplacements[currentSrc];
     img.addEventListener('error', () => {
       const failedSrc = img.getAttribute('src');
-      if (failedSrc && characterImageReplacements[failedSrc]) { img.src = characterImageReplacements[failedSrc]; return; }
-      if (failedSrc && failedSrc.includes('sakura-')) { img.src = 'assets/characters/sakura-think.png'; return; }
-      if (failedSrc && failedSrc.includes('teacher')) img.src = 'assets/characters/teacher-new-explain.png';
+      if (failedSrc && characterImageReplacements[failedSrc]) {
+        img.src = characterImageReplacements[failedSrc];
+        return;
+      }
+      if (failedSrc && failedSrc.includes('sakura-')) {
+        img.src = 'assets/characters/sakura-think.png';
+        return;
+      }
+      if (failedSrc && failedSrc.includes('teacher')) {
+        img.src = 'assets/characters/teacher-new-explain.png';
+      }
     }, { once: true });
   });
 }
@@ -89,7 +97,8 @@ function addArticleTableOfContents() {
   nav.setAttribute('aria-label', 'この記事の目次');
   nav.innerHTML = `<p class="article-toc__title">この記事でわかること</p><ol class="article-toc__list">${items}</ol>`;
   const eyecatch = articleMain.querySelector('figure.article-block');
-  if (eyecatch) eyecatch.insertAdjacentElement('afterend', nav); else articleMain.prepend(nav);
+  if (eyecatch) eyecatch.insertAdjacentElement('afterend', nav);
+  else articleMain.prepend(nav);
 }
 
 function addMobileEyecatchOverrides() {
@@ -108,8 +117,14 @@ function addFooterUtilityLinks() {
   links.className = 'footer-utility-links';
   links.setAttribute('aria-label', 'フッターリンク');
   links.innerHTML = `<a href="about.html">運営者情報</a><a href="contact.html">お問い合わせ</a><a href="privacy.html">プライバシーポリシー</a>`;
-  Object.assign(links.style, { display: 'flex', flexWrap: 'wrap', gap: '12px 18px', justifyContent: 'center', marginTop: '14px', fontSize: '0.9rem' });
-  links.querySelectorAll('a').forEach((link) => { link.style.color = 'inherit'; link.style.textDecoration = 'underline'; link.style.textUnderlineOffset = '3px'; });
+  Object.assign(links.style, {
+    display: 'flex', flexWrap: 'wrap', gap: '12px 18px', justifyContent: 'center', marginTop: '14px', fontSize: '0.9rem'
+  });
+  links.querySelectorAll('a').forEach((link) => {
+    link.style.color = 'inherit';
+    link.style.textDecoration = 'underline';
+    link.style.textUnderlineOffset = '3px';
+  });
   footerInner.appendChild(links);
 }
 
@@ -137,16 +152,74 @@ function enhanceSampleReportBeforeSubPhotos() {
 function enhanceSampleReportProfileCopy() {
   if (!location.pathname.endsWith('sample-report.html')) return;
   const sections = Array.from(document.querySelectorAll('section'));
-  const editingBody = sections.find((section) => section.textContent.includes('プロフィール文の行ごと添削'))?.querySelector('tbody');
+  const editingSection = sections.find((section) => section.textContent.includes('プロフィール文の行ごと添削'));
+  const editingTable = editingSection?.querySelector('table.report-table');
+  const editingHead = editingTable?.querySelector('thead');
+  const editingBody = editingTable?.querySelector('tbody');
+
+  if (editingHead) {
+    editingHead.innerHTML = `<tr><th>現在の文</th><th>問題点</th><th>修正例</th><th>狙い</th></tr>`;
+  }
+
   if (editingBody) {
     editingBody.innerHTML = `
-      <tr><td>仕事は会社員をしています。</td><td>職業情報だけで終わっていて、誠実さ・余裕・日常の雰囲気が見えません。</td><td>平日は仕事中心ですが、帰り道に映画のレビューを読んだり、週末に観たい作品を探したりする時間がちょうどいい息抜きになっています。</td></tr>
-      <tr><td>休日は映画を見たり、カフェに行ったりしています。</td><td>趣味の羅列に見えます。女性が「一緒に行ったらどんな時間になるか」を想像しにくいです。</td><td>休日は、気になっていた映画を観てから、近くのカフェで感想を話すような落ち着いた時間が好きです。にぎやかすぎる場所より、ゆっくり会話できる雰囲気の方が合っています。</td></tr>
-      <tr><td>良い出会いがあればと思い登録しました。</td><td>受け身で、相手に何を大切にしている人なのかが伝わりません。</td><td>最初から無理に距離を縮めるより、メッセージで少しずつ人柄を知りながら、安心して会える関係を作れたらうれしいです。</td></tr>
-      <tr><td>よろしくお願いします。</td><td>締めが弱く、相手が返信するきっかけがありません。</td><td>映画やカフェの話からでも、気軽にやり取りできたらうれしいです。最近観てよかった作品があれば、ぜひ教えてください。</td></tr>`;
+      <tr>
+        <td>仕事は会社員をしています。</td>
+        <td>職業情報だけで終わっていて、誠実さ・余裕・日常の雰囲気が見えません。</td>
+        <td>平日は仕事中心ですが、帰り道に映画のレビューを読んだり、週末に観たい作品を探したりする時間がちょうどいい息抜きになっています。</td>
+        <td><strong>仕事だけの人ではなく、日常に余裕のある人として伝える</strong></td>
+      </tr>
+      <tr>
+        <td>休日は映画を見たり、カフェに行ったりしています。</td>
+        <td>趣味の羅列に見えます。女性が「一緒に行ったらどんな時間になるか」を想像しにくいです。</td>
+        <td>休日は、気になっていた映画を観てから、近くのカフェで感想を話すような落ち着いた時間が好きです。にぎやかすぎる場所より、ゆっくり会話できる雰囲気の方が合っています。</td>
+        <td><strong>一緒に過ごす情景を見せて、会う理由を作る</strong></td>
+      </tr>
+      <tr>
+        <td>良い出会いがあればと思い登録しました。</td>
+        <td>受け身で、相手に何を大切にしている人なのかが伝わりません。</td>
+        <td>最初から無理に距離を詰めるより、メッセージで少しずつ人柄を知りながら、安心して会える関係を作れたらうれしいです。</td>
+        <td><strong>安心感と、関係を進めるペースを伝える</strong></td>
+      </tr>
+      <tr>
+        <td>よろしくお願いします。</td>
+        <td>締めが弱く、相手が返信するきっかけがありません。</td>
+        <td>映画やカフェの話からでも、気軽にやり取りできたらうれしいです。最近観てよかった作品があれば、ぜひ教えてください。</td>
+        <td><strong>相手が返しやすい会話の入口を作る</strong></td>
+      </tr>`;
   }
+
+  if (editingSection && !editingSection.querySelector('.line-editing-priority')) {
+    const tableCard = editingSection.querySelector('.diagnosis-table-card');
+    const priority = document.createElement('div');
+    priority.className = 'line-editing-priority';
+    priority.innerHTML = `
+      <div class="line-editing-priority__head">
+        <p class="eyebrow">Priority</p>
+        <h3>優先して直すポイント</h3>
+        <p>全部を一気に直すより、女性から見た印象が大きく変わる順に整えます。</p>
+      </div>
+      <div class="line-priority-grid">
+        <article><span>1位</span><h4>休日の過ごし方</h4><p>趣味の羅列ではなく、「一緒に過ごす情景」が浮かぶ文にする。</p></article>
+        <article><span>2位</span><h4>締めの一言</h4><p>相手が返信しやすい質問や話題を用意し、会話の入口を作る。</p></article>
+        <article><span>3位</span><h4>理想の関係</h4><p>抽象語だけでなく、安心して話せる日常の雰囲気として伝える。</p></article>
+      </div>`;
+
+    const bridge = document.createElement('div');
+    bridge.className = 'completed-profile-bridge';
+    bridge.innerHTML = `
+      <p class="eyebrow">Completed Profile</p>
+      <h3>この添削を反映すると、下のような完成プロフィール文になります。</h3>
+      <p>問題点を指摘するだけでなく、最終的にそのまま使いやすい文章まで整えます。</p>`;
+
+    tableCard?.insertAdjacentElement('afterend', priority);
+    priority.insertAdjacentElement('afterend', bridge);
+  }
+
   const completedText = sections.find((section) => section.textContent.includes('完成プロフィール文'))?.querySelector('.completed-text');
-  if (completedText) completedText.innerHTML = `はじめまして。プロフィールを見ていただきありがとうございます。<br><br>平日は仕事中心ですが、休日は気になっていた映画を観に行ったり、帰りに落ち着いたカフェで少しゆっくりしたりして過ごすことが多いです。派手なタイプではありませんが、相手の話を聞きながら、穏やかに会話する時間は好きです。<br><br>いきなり距離を詰めるより、まずはメッセージで少しずつ雰囲気を知れたらうれしいです。映画の話、休日の過ごし方、最近行ってよかったお店など、気軽なところから話せたらと思っています。<br><br>一緒にいて無理をしなくていい、自然体で笑える関係を大切にしたいです。よろしくお願いします。`;
+  if (completedText) {
+    completedText.innerHTML = `はじめまして。プロフィールを見ていただきありがとうございます。<br><br>平日は仕事中心ですが、休日は気になっていた映画を観に行ったり、帰りに落ち着いたカフェで少しゆっくりしたりして過ごすことが多いです。派手なタイプではありませんが、相手の話を聞きながら、穏やかに会話する時間は好きです。<br><br>いきなり距離を詰めるより、まずはメッセージで少しずつ雰囲気を知れたらうれしいです。映画の話、休日の過ごし方、最近行ってよかったお店など、気軽なところから話せたらと思っています。<br><br>一緒にいて無理をしなくていい、自然体で笑える関係を大切にしたいです。よろしくお願いします。`;
+  }
 
   const beforePromptCards = Array.from(document.querySelectorAll('#app-mockup .phone-shell:first-child .app-profile-body .prompt-card'));
   if (beforePromptCards[1]) {
@@ -155,6 +228,7 @@ function enhanceSampleReportProfileCopy() {
     if (label) label.textContent = '一緒にしたいこと';
     if (text) text.textContent = '映画を見たり、カフェに行ったりしたいです。';
   }
+
   const promptCards = Array.from(document.querySelectorAll('#app-mockup .phone-shell:nth-child(2) .app-profile-body .prompt-card'));
   if (promptCards[0]) promptCards[0].querySelector('p').textContent = '平日は仕事中心ですが、休日は気になっていた映画を観に行ったり、帰りに落ち着いたカフェで少しゆっくりしたりしています。筋トレや散歩も続けていて、年齢を重ねても清潔感や健康的な生活は大切にしたいです。';
   if (promptCards[1]) promptCards[1].querySelector('p').textContent = '景色の良い場所を探索したり、映画を観たあとカフェで感想を話す時間が好きです。同じ映画でも、人によって感じ方が違うところにその人らしさが出るので、そういう会話を楽しめる関係に惹かれます。';
@@ -218,15 +292,25 @@ function addSampleReportMobileFixes() {
     html, body { max-width: 100%; overflow-x: hidden; }
     img, video { max-width: 100%; }
     * { min-width: 0; }
+    .line-editing-priority, .completed-profile-bridge { margin-top: 18px; }
+    .line-editing-priority { padding: 24px; border-radius: 28px; background: #fff; border: 1px solid var(--border); box-shadow: 0 14px 36px rgba(21,42,77,.07); }
+    .line-editing-priority__head h3, .completed-profile-bridge h3 { margin: 0 0 8px; color: var(--navy); }
+    .line-editing-priority__head p:last-child, .completed-profile-bridge p:last-child { margin: 0; line-height: 1.8; color: var(--muted); }
+    .line-priority-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 16px; }
+    .line-priority-grid article { padding: 18px; border-radius: 20px; background: #f8fafc; border: 1px solid rgba(21,42,77,.08); }
+    .line-priority-grid span { display: inline-flex; padding: 5px 10px; border-radius: 999px; background: var(--navy); color: #fff; font-weight: 900; font-size: .78rem; }
+    .line-priority-grid h4 { margin: 10px 0 6px; color: var(--navy); }
+    .line-priority-grid p { margin: 0; line-height: 1.75; }
+    .completed-profile-bridge { padding: 22px; border-radius: 28px; background: #fff7ed; border: 1px solid rgba(224,122,154,.18); }
     @media (max-width: 768px) {
       body { overflow-x: hidden !important; }
       .container { width: calc(100% - 24px) !important; max-width: 100% !important; }
       .section { padding: 52px 0 !important; }
       .report-grid-2, .report-grid-3, .score-board, .app-mockup-wrap, .close-box,
       .wardrobe-hero-card, .wardrobe-item-grid, .wardrobe-step-grid, .wardrobe-sub-grid,
-      .photo-audit-cards { grid-template-columns: 1fr !important; width: 100% !important; max-width: 100% !important; }
+      .photo-audit-cards, .line-priority-grid { grid-template-columns: 1fr !important; width: 100% !important; max-width: 100% !important; }
       .report-card, .score-item, .message-card, .phone-shell, .wardrobe-guide-section article,
-      .wardrobe-hero-card, .wardrobe-priority-card, .diagnosis-table-card { width: 100% !important; max-width: 100% !important; }
+      .wardrobe-hero-card, .wardrobe-priority-card, .diagnosis-table-card, .line-editing-priority, .completed-profile-bridge { width: 100% !important; max-width: 100% !important; }
       table.report-table { min-width: 0 !important; width: 100% !important; }
       .diagnosis-table-card table.report-table { min-width: 680px !important; }
       .report-table th, .report-table td { padding: 11px 10px !important; word-break: break-word; overflow-wrap: anywhere; }
