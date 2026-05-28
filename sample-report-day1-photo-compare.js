@@ -1,6 +1,11 @@
 function enhanceSampleReportPhotoCompareStandalone(){
   if(!location.pathname.endsWith('sample-report.html')) return;
 
+  const removeRedundantBeforeAfterSection=()=>{
+    const section=Array.from(document.querySelectorAll('section')).find((item)=>item.textContent.includes('一目でわかる改善前・改善後')&&item.textContent.includes('プロフィール写真の改善例')&&item.textContent.includes('初回メッセージの改善例'));
+    if(section) section.remove();
+  };
+
   const ensureStyle=()=>{
     if(document.getElementById('action-photo-compare-style')) return;
     const style=document.createElement('style');
@@ -19,6 +24,7 @@ function enhanceSampleReportPhotoCompareStandalone(){
   };
 
   const run=()=>{
+    removeRedundantBeforeAfterSection();
     ensureStyle();
     addCompare({
       day:'1日目',
