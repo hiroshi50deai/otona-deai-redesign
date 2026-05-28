@@ -6,6 +6,22 @@ function enhanceSampleReportPhotoCompareStandalone(){
     if(section) section.remove();
   };
 
+  const updateAfterProfilePrompts=()=>{
+    const afterProfile=Array.from(document.querySelectorAll('.phone-shell')).find((item)=>item.textContent.includes('After Profile'));
+    if(!afterProfile) return;
+    const promptCards=Array.from(afterProfile.querySelectorAll('.prompt-card'));
+    const replacements={
+      '自己紹介':'平日は会社員として、仕事中心の生活をしています。<br>忙しい日もありますが、帰り道に映画のレビューを読んだり、週末に観たい作品を探したりする時間が、ちょうどいい息抜きになっています。<br><br>筋トレや散歩も続けていて、年齢を重ねても清潔感や健康的な雰囲気は大切にしたいと思っています。<br>派手なタイプではありませんが、落ち着いて話す時間や、日常の中の小さな楽しみを大事にする方です。',
+      '一緒にしたいこと':'休日は、気になっていた映画を観に行ったり、帰りに落ち着いたカフェで少しゆっくりしたりするのが好きです。<br><br>映画を観たあとに、「あの場面よかったね」とか「自分ならこう感じるかも」と話す時間もけっこう好きです。<br>同じ作品を観ても感じ方が違うところに、その人らしさが出る気がします。<br><br>天気のいい日には、景色の良い場所を散歩したり、少し体を動かしたあとにカフェで休憩するような時間も一緒に楽しめたらうれしいです。',
+      '理想の関係':'にぎやかすぎる場所で無理に盛り上がるより、落ち着いた雰囲気の中で自然に会話できる関係が自分には合っています。<br><br>最初から急に距離を縮めるより、メッセージで少しずつ人柄を知りながら、安心して会える関係を作れたらうれしいです。<br><br>休日の過ごし方や、好きなこと、何気ない日常の話からでも、気軽にやり取りできたらうれしいです。'
+    };
+    promptCards.forEach((card)=>{
+      const label=card.querySelector('b')?.textContent.trim();
+      const text=card.querySelector('p');
+      if(label&&text&&replacements[label]) text.innerHTML=replacements[label];
+    });
+  };
+
   const ensureStyle=()=>{
     if(document.getElementById('action-photo-compare-style')) return;
     const style=document.createElement('style');
@@ -25,6 +41,7 @@ function enhanceSampleReportPhotoCompareStandalone(){
 
   const run=()=>{
     removeRedundantBeforeAfterSection();
+    updateAfterProfilePrompts();
     ensureStyle();
     addCompare({
       day:'1日目',
