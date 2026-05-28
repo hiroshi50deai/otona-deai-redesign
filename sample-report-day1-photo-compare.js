@@ -42,6 +42,17 @@ function enhanceSampleReportPhotoCompareStandalone(){
       afterCaption:'映画好きが自然に伝わり、相手が話題を振りやすい',
       ariaLabel:'3日目のサブ写真ビフォーアフター比較'
     });
+    addCompare({
+      day:'4日目',
+      title:'初回メッセージを変える',
+      beforeSrc:'assets/samples/first-message-before-after-sample.jpg',
+      beforeAlt:'初回メッセージのビフォーアフター改善例',
+      beforeCaption:'無難な挨拶だけだと、相手が返す理由を見つけにくい',
+      afterSrc:'assets/samples/message-patterns-mockup.png',
+      afterAlt:'初回メッセージ改善パターンのやり取りモック',
+      afterCaption:'相手プロフィールに触れ、返しやすい質問で会話の入口を作る',
+      ariaLabel:'4日目の初回メッセージビフォーアフター比較'
+    });
   };
 
   run();
