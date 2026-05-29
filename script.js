@@ -186,6 +186,19 @@ function addFooterUtilityLinks() {
   footerInner.appendChild(links);
 }
 
+function enhanceWhy50sNoLikesArticleCta() {
+  if (!location.pathname.endsWith('why-50s-men-get-no-likes.html')) return;
+  const ctaBody = document.querySelector('.article-service-cta__body');
+  if (!ctaBody || ctaBody.dataset.sampleReportCta === 'true') return;
+  ctaBody.dataset.sampleReportCta = 'true';
+  ctaBody.innerHTML = `
+    <p class="article-service-cta__label">自分の場合、どこで損しているか知りたい方へ</p>
+    <h2>写真・プロフィール文・メッセージの見え方を、サンプル診断レポートで確認できます</h2>
+    <p>この記事で紹介した内容は、50代男性に多い一般的な改善ポイントです。ただ実際には、どこで損しているかは人によって違います。</p>
+    <p>「自分のプロフィールだと、どこを直せばいいのか知りたい」という方は、実際にどのような形で写真・プロフィール文・メッセージを整理するのか、まずはサンプル診断レポートをご覧ください。</p>
+    <a class="button button-primary" href="sample-report.html">サンプル診断レポートを見る</a>`;
+}
+
 function runEnhancements() {
   setupNavigation();
   normalizeCharacterImages();
@@ -196,6 +209,7 @@ function runEnhancements() {
   enhanceSampleReportMessagePatterns();
   enhanceSampleReportActionPlan();
   addSampleReportStyles();
+  enhanceWhy50sNoLikesArticleCta();
   addFooterUtilityLinks();
 }
 
