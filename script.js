@@ -201,15 +201,31 @@ function enhanceWhy50sNoLikesArticleCta() {
 
 function enhanceProfilePhotoNgArticleCta() {
   if (!location.pathname.endsWith('profile-photo-ng-40s-men.html')) return;
-  const ctaBody = document.querySelector('.article-service-cta__body');
-  if (!ctaBody || ctaBody.dataset.sampleReportCta === 'true') return;
-  ctaBody.dataset.sampleReportCta = 'true';
-  ctaBody.innerHTML = `
-    <p class="article-service-cta__label">自分の写真がどこで損しているか知りたい方へ</p>
-    <h2>プロフィール写真の見え方を、サンプル診断レポートで確認できます</h2>
-    <p>この記事で紹介した内容は、40代男性に多い写真の改善ポイントです。ただ実際には、どの写真が足を引っ張っているかは人によって違います。</p>
-    <p>「自分の写真だと、どこを直せばいいのか知りたい」という方は、実際にどのような形で写真・プロフィール文・メッセージ導線を整理するのか、まずはサンプル診断レポートをご覧ください。</p>
-    <a class="button button-primary" href="sample-report.html">サンプル診断レポートを見る</a>`;
+
+  const miniCta = document.querySelector('.service-mini-cta .service-copy');
+  if (miniCta && miniCta.dataset.sampleReportCta !== 'true') {
+    miniCta.dataset.sampleReportCta = 'true';
+    miniCta.innerHTML = `
+      <p class="eyebrow">Sample Report</p>
+      <figure class="article-visual cta-visual">
+        <img src="assets/ctas/profile-redesign-before-after.png" alt="プロフィール写真の相談前と相談後の印象の違い。若作りではなく、女性に安心感が伝わる見せ方へ整えるイメージ" loading="lazy">
+      </figure>
+      <h3>自分の写真がどこで損しているか知りたい方へ</h3>
+      <p>プロフィール写真を整えると、プロフィール文やメッセージの印象も変わります。ただ、どの写真が足を引っ張っているかは、自分だけでは気づきにくいものです。</p>
+      <p>実際にどのような形で写真・プロフィール文・メッセージ導線を整理するのか、まずはサンプル診断レポートで確認できます。</p>
+      <a class="btn btn-primary" href="sample-report.html">サンプル診断レポートを見る</a>`;
+  }
+
+  const finalCta = Array.from(document.querySelectorAll('section.article-conversation-block'))
+    .find((section) => section.textContent.includes('写真・プロフィール文・メッセージをまとめて整えたい方へ'));
+  if (finalCta && finalCta.dataset.sampleReportCta !== 'true') {
+    finalCta.dataset.sampleReportCta = 'true';
+    finalCta.innerHTML = `
+      <h2 class="article-conversation-block__title">自分の写真がどこで損しているか知りたい方へ</h2>
+      <p>この記事で紹介した内容は、40代男性に多い写真の改善ポイントです。ただ実際には、どの写真が足を引っ張っているかは人によって違います。</p>
+      <p>「自分の写真だと、どこを直せばいいのか知りたい」という方は、写真・プロフィール文・メッセージ導線をどう整理するのか、まずはサンプル診断レポートをご覧ください。</p>
+      <p><a class="btn btn-primary" href="sample-report.html">サンプル診断レポートを見る</a></p>`;
+  }
 }
 
 function runEnhancements() {
