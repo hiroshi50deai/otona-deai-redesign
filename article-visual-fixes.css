@@ -354,15 +354,31 @@
 
 .article-page .service-mini-cta .btn,
 .article-page .article-service-cta .btn,
-.article-page .btn[href="service.html"] {
+.article-page .article-service-cta .button.button-primary,
+.article-page .btn[href="service.html"],
+.article-page .btn[href="sample-report.html"],
+.article-page .button.button-primary[href="sample-report.html"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: auto !important;
+  margin-top: 10px !important;
+  padding: 14px 24px !important;
+  border-radius: 999px !important;
   background: #e07a9a !important;
   color: #fff !important;
+  font-weight: 900 !important;
+  text-decoration: none !important;
+  line-height: 1.4 !important;
   box-shadow: 0 12px 30px rgba(224, 122, 154, 0.24) !important;
 }
 
 .article-page .service-mini-cta .btn:hover,
 .article-page .article-service-cta .btn:hover,
-.article-page .btn[href="service.html"]:hover {
+.article-page .article-service-cta .button.button-primary:hover,
+.article-page .btn[href="service.html"]:hover,
+.article-page .btn[href="sample-report.html"]:hover,
+.article-page .button.button-primary[href="sample-report.html"]:hover {
   background: #d96b8f !important;
 }
 
