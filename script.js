@@ -199,6 +199,19 @@ function enhanceWhy50sNoLikesArticleCta() {
     <a class="button button-primary" href="sample-report.html">サンプル診断レポートを見る</a>`;
 }
 
+function enhanceProfilePhotoNgArticleCta() {
+  if (!location.pathname.endsWith('profile-photo-ng-40s-men.html')) return;
+  const ctaBody = document.querySelector('.article-service-cta__body');
+  if (!ctaBody || ctaBody.dataset.sampleReportCta === 'true') return;
+  ctaBody.dataset.sampleReportCta = 'true';
+  ctaBody.innerHTML = `
+    <p class="article-service-cta__label">自分の写真がどこで損しているか知りたい方へ</p>
+    <h2>プロフィール写真の見え方を、サンプル診断レポートで確認できます</h2>
+    <p>この記事で紹介した内容は、40代男性に多い写真の改善ポイントです。ただ実際には、どの写真が足を引っ張っているかは人によって違います。</p>
+    <p>「自分の写真だと、どこを直せばいいのか知りたい」という方は、実際にどのような形で写真・プロフィール文・メッセージ導線を整理するのか、まずはサンプル診断レポートをご覧ください。</p>
+    <a class="button button-primary" href="sample-report.html">サンプル診断レポートを見る</a>`;
+}
+
 function runEnhancements() {
   setupNavigation();
   normalizeCharacterImages();
@@ -210,6 +223,7 @@ function runEnhancements() {
   enhanceSampleReportActionPlan();
   addSampleReportStyles();
   enhanceWhy50sNoLikesArticleCta();
+  enhanceProfilePhotoNgArticleCta();
   addFooterUtilityLinks();
 }
 
