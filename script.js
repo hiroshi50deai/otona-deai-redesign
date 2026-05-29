@@ -200,6 +200,14 @@ function enhanceProfileTextArticleCta() {
   }
 }
 
+function enhanceFirstMessageArticleCta() {
+  if (!location.pathname.endsWith('first-message-not-continue.html')) return;
+  const miniCta = document.querySelector('.service-mini-cta .service-copy');
+  if (!miniCta || miniCta.dataset.sampleReportCta === 'true') return;
+  miniCta.dataset.sampleReportCta = 'true';
+  miniCta.innerHTML = `<p class="eyebrow">Sample Report</p><figure class="article-visual cta-visual"><img src="assets/ctas/profile-redesign-before-after.png" alt="初回メッセージ・プロフィール文・写真をまとめて整えることで印象が変わるイメージ" loading="lazy"></figure><h2>自分のメッセージが返されにくい理由を知りたい方へ</h2><p>初回メッセージ・プロフィール文・写真の見え方を、サンプル診断レポートで確認できます。</p><p>この記事で紹介した内容は、マッチングアプリで初回メッセージが続かない男性に多い改善ポイントです。ただ実際には、どこで返信しにくくなっているかは、人によって違います。</p><p>「自分のメッセージだと、どこを直せば返しやすくなるのか知りたい」という方は、まずはサンプル診断レポートをご覧ください。</p><a class="btn btn-primary" href="sample-report.html">サンプル診断レポートを見る</a>`;
+}
+
 function runEnhancements() {
   setupNavigation();
   normalizeCharacterImages();
@@ -214,6 +222,7 @@ function runEnhancements() {
   enhanceProfilePhotoNgArticleCta();
   enhanceCleanlinessArticleCta();
   enhanceProfileTextArticleCta();
+  enhanceFirstMessageArticleCta();
   addFooterUtilityLinks();
 }
 
