@@ -186,6 +186,20 @@ function enhanceCleanlinessArticleCta() {
   miniCta.innerHTML = `<p class="eyebrow">Sample Report</p><figure class="article-visual cta-visual"><img src="assets/ctas/profile-redesign-before-after.png" alt="清潔感・写真・プロフィール全体を整えることで印象が変わるイメージ" loading="lazy"></figure><h2>自分の見た目や清潔感がどう見られているか知りたい方へ</h2><p>清潔感・写真・プロフィール文の見え方を、サンプル診断レポートで確認できます。</p><p>この記事で紹介した内容は、中年男性に多い清潔感の改善ポイントです。ただ実際には、どこが女性から見て減点になっているかは、人によって違います。</p><p>「自分の場合、どこを直せば印象が良くなるのか知りたい」という方は、まずはサンプル診断レポートをご覧ください。</p><a class="btn btn-primary" href="sample-report.html">サンプル診断レポートを見る</a>`;
 }
 
+function enhanceProfileTextArticleCta() {
+  if (!location.pathname.endsWith('profile-text-safe-adult-men.html')) return;
+  const miniCta = document.querySelector('.service-mini-cta .service-copy');
+  if (miniCta && miniCta.dataset.sampleReportCta !== 'true') {
+    miniCta.dataset.sampleReportCta = 'true';
+    miniCta.innerHTML = `<p class="eyebrow">Sample Report</p><figure class="article-visual cta-visual"><img src="assets/ctas/profile-redesign-before-after.png" alt="プロフィール文・写真・メッセージ全体を整えることで印象が変わるイメージ" loading="lazy"></figure><h3>自分のプロフィール文をどう直せばいいか知りたい方へ</h3><p>プロフィール文・写真・メッセージの見え方を、サンプル診断レポートで確認できます。</p><p>この記事で紹介した内容は、40代・50代男性に多いプロフィール文の改善ポイントです。ただ実際には、どの文章が女性から見て不安に見えているかは、人によって違います。</p><p>「自分のプロフィール文だと、どこを直せば安心感が伝わるのか知りたい」という方は、まずはサンプル診断レポートをご覧ください。</p><a class="btn btn-primary" href="sample-report.html">サンプル診断レポートを見る</a>`;
+  }
+  const finalCta = Array.from(document.querySelectorAll('section.article-conversation-block')).find((section) => section.textContent.includes('プロフィール文が女性にどう見えているか不安'));
+  if (finalCta && finalCta.dataset.sampleReportCta !== 'true') {
+    finalCta.dataset.sampleReportCta = 'true';
+    finalCta.innerHTML = `<h2 class="article-conversation-block__title">自分のプロフィール文をどう直せばいいか知りたい方へ</h2><p>この記事で紹介した内容は、40代・50代男性に多いプロフィール文の改善ポイントです。ただ実際には、どの文章が女性から見て不安に見えているかは、人によって違います。</p><p>「自分のプロフィール文だと、どこを直せば安心感が伝わるのか知りたい」という方は、プロフィール文・写真・メッセージの見え方をどう整理するのか、まずはサンプル診断レポートをご覧ください。</p><p><a class="btn btn-primary" href="sample-report.html">サンプル診断レポートを見る</a></p>`;
+  }
+}
+
 function runEnhancements() {
   setupNavigation();
   normalizeCharacterImages();
@@ -199,6 +213,7 @@ function runEnhancements() {
   enhanceWhy50sNoLikesArticleCta();
   enhanceProfilePhotoNgArticleCta();
   enhanceCleanlinessArticleCta();
+  enhanceProfileTextArticleCta();
   addFooterUtilityLinks();
 }
 
