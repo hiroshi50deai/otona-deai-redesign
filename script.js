@@ -117,51 +117,6 @@ function enhanceSampleReportPhotoAuditCards() {
   card.innerHTML = `<div class="photo-audit-cards">${items.map(([title, role, badge, beforeSrc, afterSrc, beforeText, afterText]) => `<article class="photo-audit-card"><div class="photo-audit-pair"><div><img src="${beforeSrc}" alt="${title} 改善前"><span>Before</span></div><div><img src="${afterSrc}" alt="${title} 改善後"><span>After</span></div></div><div class="photo-audit-body"><h3>${title}</h3><p><strong>役割：</strong>${role}　<span class="tag warn">${badge}</span></p><p><strong>改善前：</strong>${beforeText}</p><p><strong>改善後：</strong>${afterText}</p></div></article>`).join('')}</div>`;
 }
 
-function enhanceSampleReportWardrobeGuide() {
-  if (!location.pathname.endsWith('sample-report.html')) return;
-  const photoSection = findSectionByText('写真ごとの診断シート');
-  if (!photoSection || document.querySelector('.wardrobe-guide-section')) return;
-  const section = document.createElement('section');
-  section.className = 'section wardrobe-guide-section report-soft';
-  section.innerHTML = `
-    <div class="container">
-      <div class="section-heading"><p class="eyebrow">Wardrobe Guide</p><h2>服装・買い足しガイド</h2><p>After写真のような印象は、高級ブランドで固めなくても作れます。大切なのは、ブランド名そのものよりも、色・サイズ感・清潔感・組み合わせです。</p></div>
-      <div class="wardrobe-hero-card"><img src="assets/samples/after-half-body-style-sample.jpg" alt="After写真の全身コーディネートイメージ"><div><p class="eyebrow">After写真を再現する基本4点セット</p><h3>ジャケット ＋ 白T ＋ 濃色パンツ ＋ きれいめ靴</h3><p>40代・50代男性は、まずこの4点を整えるだけでもかなり印象が変わります。</p></div></div>
-      <div class="wardrobe-item-grid"><article><h3>① ネイビー〜黒系ジャケット</h3><p>初対面で「ちゃんとして見える」。若作りに見えにくい定番です。</p></article><article><h3>② 白の無地Tシャツ</h3><p>顔まわりが明るく見え、自然体の清潔感を作りやすいです。</p></article><article><h3>③ 黒〜濃色パンツ</h3><p>全体が引き締まり、落ち着きが出ます。</p></article><article><h3>④ レザー白スニーカー / レザーローファー</h3><p>足元の生活感を消し、清潔感を底上げできます。</p></article></div>
-      <div class="wardrobe-priority-card"><h3>買い足すならこの順番</h3><div class="wardrobe-step-grid"><article><img src="assets/samples/wardrobe-item-01-jacket.png" alt="ジャケット"><strong>STEP 1</strong><p>ジャケット</p></article><article><img src="assets/samples/wardrobe-item-02-white-tshirt.png" alt="白Tシャツ"><strong>STEP 2</strong><p>白T / 白系インナー</p></article><article><img src="assets/samples/wardrobe-item-03-dark-pants.png" alt="濃色パンツ"><strong>STEP 3</strong><p>濃色パンツ</p></article><article><img src="assets/samples/wardrobe-item-04-shoes.png" alt="靴"><strong>STEP 4</strong><p>きれいめな靴</p></article></div></div>
-    </div>`;
-  photoSection.insertAdjacentElement('afterend', section);
-}
-
-function enhanceSampleReportMessagePatterns() {
-  if (!location.pathname.endsWith('sample-report.html')) return;
-  const section = findSectionByText('初回メッセージ改善パターン');
-  const container = section?.querySelector('.container');
-  if (!container || container.dataset.messageEnhanced === 'true') return;
-  container.dataset.messageEnhanced = 'true';
-  container.innerHTML = `
-    <div class="section-heading"><p class="eyebrow">Message Patterns</p><h2>初回メッセージ改善パターン</h2><p>相手プロフィールに合わせて使いやすい初回メッセージを、実際のやり取りイメージ付きで提案します。</p></div>
-    <article class="report-card sample-img-card message-mockup-card"><h3>実際のやり取りイメージ</h3><p class="report-note">「どこを見るか → 共感 → 返しやすい質問」の流れで作ると、初回メッセージは自然に続きやすくなります。</p><img src="assets/samples/message-patterns-mockup.png" alt="初回メッセージ改善パターンのやり取りモック" loading="lazy"></article>
-    <div class="report-grid-3 message-pattern-card-grid"><article class="message-card"><span>Pattern A</span><h3>カフェ趣味に触れる</h3><p class="report-note"><strong>使いやすい相手：</strong>カフェ巡り、落ち着いた休日、映画好き</p><div class="message-bubble">はじめまして。マッチありがとうございます。プロフィールを見て、カフェ巡りが好きなところに親近感を持ちました。最近行ってよかったお店ってありますか？</div><p class="report-note"><strong>ポイント：</strong>店名や好みで返しやすく、自然に会話が始まりやすいパターンです。</p></article><article class="message-card"><span>Pattern B</span><h3>休日感に触れる</h3><p class="report-note"><strong>使いやすい相手：</strong>散歩、ゆっくりした休日、映画、カフェ</p><div class="message-bubble">はじめまして。休日をゆっくり過ごす感じが似ているなと思って、いいねしました。最近は外で過ごす日と家でのんびりする日、どちらが多いですか？</div><p class="report-note"><strong>ポイント：</strong>選択式の質問なので、相手が短く返しやすいパターンです。</p></article><article class="message-card"><span>Pattern C</span><h3>写真の雰囲気に触れる</h3><p class="report-note"><strong>使いやすい相手：</strong>自然な写真、旅行先の写真、屋外写真</p><div class="message-bubble">はじめまして。写真の雰囲気が自然で、話しやすそうだなと思いました。あの写真は旅行先ですか？</div><p class="report-note"><strong>ポイント：</strong>外見を褒めすぎず、写真の背景に触れるので自然に会話へつなげやすいパターンです。</p></article></div>
-    <div class="completed-profile-bridge message-pattern-point"><p class="eyebrow">Point</p><h3>初回メッセージは、「例文」だけでなく「狙い」までセットで提案します。</h3><p>ただ丁寧な文章を送るのではなく、相手プロフィールのどこを見て、どう共感し、どんな質問で返しやすくするかまで整理します。</p></div>`;
-}
-
-function enhanceSampleReportActionPlan() {
-  if (!location.pathname.endsWith('sample-report.html')) return;
-  const section = findSectionByText('7日間の改善アクションプラン');
-  const container = section?.querySelector('.container');
-  if (!container || container.dataset.actionEnhanced === 'true') return;
-  container.dataset.actionEnhanced = 'true';
-  const days = [
-    ['1日目','メイン写真を差し替える','自然光・軽い笑顔・胸から上の他撮り風写真候補','足あと / いいね率 / 写真の離脱感','表情・明るさ・背景を再確認','#eff6ff'],
-    ['2日目','プロフィール文の冒頭を変更する','職業説明ではなく、日常と人柄が伝わる冒頭文','プロフィール閲覧後の反応 / いいねの質','抽象語を減らし、休日の情景を足す','#f0fdf4'],
-    ['3日目','サブ写真を1枚追加する','休日感・服装感・趣味が伝わる写真候補','写真全体を見た時の安心感 / 会話のきっかけ','暗い室内写真や生活感の強い写真を減らす','#fffbeb'],
-    ['4日目','初回メッセージを変える','相手プロフィール別の初回メッセージ例 A/B/C','返信率 / 返信までの速さ / 会話の続きやすさ','質問が重い場合は選択式に変える','#f5f3ff'],
-    ['5〜7日目','反応を見て再調整する','写真・文章・メッセージの微修正リスト','足あと、いいね、マッチ、返信率の推移','反応が弱い箇所から優先して再調整','#fdf2f8'],
-  ];
-  container.innerHTML = `<div class="section-heading"><p class="eyebrow">7 Days Action Plan</p><h2>7日間の改善アクションプラン</h2><p>診断レポートは読むだけで終わらせず、何を・なぜ・どう直すか、さらに反応をどう見るかまで行動順に整理します。</p></div><div class="action-overview-grid"><article class="report-card"><p class="eyebrow">海外式の納品イメージ</p><h3>行動計画・理由・具体例・測定方法までセットで返す</h3><p>単なるToDo表ではなく、各日の作業に「納品物」「見る指標」「次の調整」を付けることで、迷わず改善しやすくします。</p></article><article class="report-card action-overview-card--accent"><p class="eyebrow">What You Get</p><h3>この7日間で整えるもの</h3><ul><li>写真の第一印象</li><li>プロフィール文の安心感</li><li>サブ写真の会話きっかけ</li><li>初回メッセージの返信しやすさ</li><li>反応を見た再調整</li></ul></article></div><div class="action-plan-grid">${days.map(([day,title,deliverable,metric,adjust,color]) => `<article class="action-day-card" style="--action-bg:${color}"><div class="action-day-head"><span>${day}</span><h3>${title}</h3></div><div class="action-day-body"><p><strong>納品物</strong>${deliverable}</p><p><strong>見る指標</strong>${metric}</p><p><strong>次の調整</strong>${adjust}</p></div></article>`).join('')}</div><div class="completed-profile-bridge action-plan-point"><p class="eyebrow">Point</p><h3>読むレポートではなく、実行できるレポートにする。</h3><p>「1日目に何をするか」だけでなく、「なぜそれをするか」「何を見て判断するか」「反応が悪ければどう直すか」まで書くことで、改善が止まりにくくなります。</p></div>`;
-}
-
 function addSampleReportStyles() {
   if (!location.pathname.endsWith('sample-report.html') || document.querySelector('#sample-report-dynamic-styles')) return;
   const style = document.createElement('style');
@@ -252,9 +207,6 @@ function runEnhancements() {
   enhanceSampleReportBeforeSubPhotos();
   enhanceSampleReportProfileCopy();
   enhanceSampleReportPhotoAuditCards();
-  enhanceSampleReportWardrobeGuide();
-  enhanceSampleReportMessagePatterns();
-  enhanceSampleReportActionPlan();
   addSampleReportStyles();
   enhanceWhy50sNoLikesArticleCta();
   enhanceProfilePhotoNgArticleCta();
