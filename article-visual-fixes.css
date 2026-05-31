@@ -35,28 +35,22 @@
   border-color: rgba(232, 122, 164, 0.24) !important;
 }
 
-.conversation-person__image--student {
-  display: grid !important;
-  place-items: center !important;
-  background: transparent !important;
-  color: #152a4d !important;
-  font-weight: 900 !important;
-  font-size: 1.45rem !important;
-  border: 0 !important;
-  box-shadow: none !important;
-}
-
+.conversation-person__image--student,
 .conversation-person__image--student-character {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+  display: block !important;
   width: 72px !important;
   height: 82px !important;
+  max-width: none !important;
+  max-height: none !important;
   box-sizing: border-box !important;
+  object-fit: contain !important;
+  object-position: center bottom !important;
   background: transparent !important;
   border: 0 !important;
   border-radius: 0 !important;
   box-shadow: none !important;
+  filter: none !important;
+  opacity: 1 !important;
   overflow: visible !important;
   color: transparent !important;
 }
@@ -157,14 +151,20 @@
     align-items: center !important;
   }
 
+  .conversation-person__image--student,
   .conversation-person__image--student-character {
     width: 52px !important;
     height: 62px !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: contain !important;
+    object-position: center bottom !important;
     border: 0 !important;
     border-radius: 0 !important;
     overflow: visible !important;
     background: transparent !important;
     box-shadow: none !important;
+    opacity: 1 !important;
   }
 
   .conversation-person__image--student-character img {
